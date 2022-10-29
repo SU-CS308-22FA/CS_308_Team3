@@ -1,7 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
-import "../../index.css";
 import "./profile.scss";
 import axios from "axios";
 import bcrypt from "bcryptjs";
@@ -31,7 +30,7 @@ export default function ProfileWoLogin() {
         //const hashedPassword = password;
         console.log(hashedPassword);
         await axios
-            .post("/signup", {
+            .post("/user/signup", {
                 name: name,
                 surname: surname,
                 age: age,
@@ -49,7 +48,7 @@ export default function ProfileWoLogin() {
     const googleSignUp = () => {};
 
     return (
-        <div className="pageContainer">
+        <div className="profileWoLogin">
             <p>Please log in or sign up</p>
             <div className="textForm">
                 <TextField

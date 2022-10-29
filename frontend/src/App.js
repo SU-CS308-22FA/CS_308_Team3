@@ -4,6 +4,7 @@ import { UserContext } from "./contexts/userContext";
 import NavBar from "./components/navBar/navBar";
 import Login from "./routes/login/Login";
 
+import "./connection";
 import "./App.css";
 import Profile from "./routes/profile/Profile";
 import Fixture from "./routes/fixture/Fixture";
@@ -14,45 +15,50 @@ function App() {
     return (
         <BrowserRouter>
             <NavBar />
-            <Routes>
-                {!user ? (
-                    <>
-                        <Route path="/" element={<Fixture />} />
-                        <Route path="profile" element={<ProfileWoLogin />} />
+            <div className="pageContainer">
+                <Routes>
+                    {!user ? (
+                        <>
+                            <Route path="/" element={<Fixture />} />
+                            <Route
+                                path="profile"
+                                element={<ProfileWoLogin />}
+                            />
 
-                        {/* TODO */}
-                        {/* <Route path="*" element={<ErrorPage />} /> */}
-                        <Route
-                            path="*"
-                            element={
-                                <main style={{ padding: "15rem" }}>
-                                    <h1>
-                                        There's nothing here! Page Not Found
-                                    </h1>
-                                </main>
-                            }
-                        />
-                    </>
-                ) : (
-                    <>
-                        <Route path="/" element={<Fixture />} />
-                        <Route path="profile" element={<Profile />} />
+                            {/* TODO */}
+                            {/* <Route path="*" element={<ErrorPage />} /> */}
+                            <Route
+                                path="*"
+                                element={
+                                    <main style={{ padding: "15rem" }}>
+                                        <h1>
+                                            There's nothing here! Page Not Found
+                                        </h1>
+                                    </main>
+                                }
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <Route path="/" element={<Fixture />} />
+                            <Route path="profile" element={<Profile />} />
 
-                        {/* TODO */}
-                        {/* <Route path="*" element={<ErrorPage />} /> */}
-                        <Route
-                            path="*"
-                            element={
-                                <main style={{ padding: "15rem" }}>
-                                    <h1>
-                                        There's nothing here! Page Not Found
-                                    </h1>
-                                </main>
-                            }
-                        />
-                    </>
-                )}
-            </Routes>
+                            {/* TODO */}
+                            {/* <Route path="*" element={<ErrorPage />} /> */}
+                            <Route
+                                path="*"
+                                element={
+                                    <main style={{ padding: "15rem" }}>
+                                        <h1>
+                                            There's nothing here! Page Not Found
+                                        </h1>
+                                    </main>
+                                }
+                            />
+                        </>
+                    )}
+                </Routes>
+            </div>
         </BrowserRouter>
     );
 }
