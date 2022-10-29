@@ -1,0 +1,106 @@
+ul {
+    flex-direction: row;
+    width: 100%;
+}
+
+.navBar {
+    position: fixed;
+    top: 0;
+    padding-right: 8vw;
+    padding-left: 8vw;
+    height: 14vh;
+    width: 84vw;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 5px;
+    // background-color: #d9d4d4;
+    align-items: center;
+    border-color: #b91b1b;
+    overflow: visible;
+
+    /* background-image: url("../../assets/1658206002704.jpeg");
+    background-size: cover;  */
+    justify-content: space-between;
+
+    .teamsBar {
+        height: 7vh;
+        width: 75vw;
+        flex: 1;
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
+        .logos {
+            height: 2vw;
+            width: auto;
+            object-fit: cover;
+            transition-property: all; 
+            transition-duration: 0.2s; 
+            transition-timing-function: ease;
+            cursor: pointer; 
+        }
+        .logos:hover {
+            transform: scale(1.5); 
+        }
+    }
+
+    @media (max-width: 500px){
+        .teamsBar {
+            display: none;
+        }
+    }
+    .coloredBar {
+        height: 7vh;
+        max-height: 7vh;
+        width: 84vw;
+        justify-content: space-between;
+        background: linear-gradient(90deg, #b91b1b 0%, #4136f1 100%);
+        flex-direction: row;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+
+        .sections {
+            height: 100%;
+            margin-left: 3vw;
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            .section {
+                height: 100%;
+                //width: 3vw;
+                padding: 0vw 1vw;
+                //background-color: #419991;
+                cursor: pointer; 
+            }
+            .section:hover {
+                background-color: #681919;
+            }
+        }
+        @media (max-width: 500px){
+            .sections {
+                display: none;
+            }
+        }
+    }
+    @media (max-width: 500px){
+        .coloredBar {
+            margin-top: 7vh;
+        }
+    }
+
+    .logoBar {
+        height: 10vw;
+        width: auto;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        cursor: pointer;
+        padding-left: 2vw;
+        padding-top: 2vh;
+    }
+}
+

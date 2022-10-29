@@ -1,5 +1,10 @@
-import { createContext, useMemo, useState } from "react";
-
+import {
+    createContext,
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+} from "react";
 
 export const UserContext = createContext({
     user: null,
@@ -7,22 +12,24 @@ export const UserContext = createContext({
     logout: () => {},
 });
 
-
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(sessionStorage.getItem("user") ?? null);
+    const [user, setUser] = useState(null);
 
-    const login = () => {
-        
-    };
+    const login = () => {};
 
-    const logout = () => {
-
-    };
-
-    const value = useMemo(() => ({
-        user,
-        login,
-        logout,
-    }), [user, login, logout]);
-    return <UserContext.Provider value={value}>{children}</UserContext.Provider>
+    const logout = () => {};
+    // useEffect(() => {
+    //     setUser({ name: "Ege", surname: "Metin", age: 21, memberType: "Fan" });
+    // }, []);
+    const value = useMemo(
+        () => ({
+            user,
+            login,
+            logout,
+        }),
+        [user, login, logout]
+    );
+    return (
+        <UserContext.Provider value={value}>{children}</UserContext.Provider>
+    );
 };
