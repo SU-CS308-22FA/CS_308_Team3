@@ -39,7 +39,33 @@
 
 .pageContainer {
     width: 70vw;
+    height: auto;
     margin-top: 18vh;
     padding-left: 15vw;
     padding-right: 15vw;
+    /* overflow: hidden; */
+}
+
+@font-face {
+    font-family: "Kanit";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./assets/fonts/Kanit-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "KanitItalic";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./assets/fonts/Kanit-Italic.ttf") format("truetype");
+}
+
+/* Usage */
+.text {
+    font-family: Kanit;
+    font-style: normal;
+}
+.text-italic {
+    font-family: KanitItalic;
+    font-style: italic;
 }

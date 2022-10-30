@@ -9,11 +9,15 @@ import "./App.css";
 import Profile from "./routes/profile/Profile";
 import Fixture from "./routes/fixture/Fixture";
 import ProfileWoLogin from "./routes/profile/ProfileWoLogin";
+import Notification from "./components/notification/Notification";
+import { NotificationContext } from "./contexts/notificationContext";
 
 function App() {
     const { user } = useContext(UserContext);
+    const { alert, setalert } = useContext(NotificationContext);
     return (
         <BrowserRouter>
+            <Notification />
             <NavBar />
             <div className="pageContainer">
                 <Routes>

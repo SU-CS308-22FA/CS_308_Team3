@@ -1,8 +1,51 @@
+.profileWoLogin {
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+    //margin-left: 20vw,
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .textForm {
-    width: 14vw;
-    height: 20vh;
+    width: 25vw;
+    //height: 55vh;
     flex-direction: column;
     display: flex;
     flex: 1;
+    justify-items: center;
     justify-content: space-evenly;
 }
+
+.login {
+    height: 30vh;
+}
+
+.switch{
+    text-align: center;
+    margin-bottom: 5vh;
+}
+
+.textField {
+    margin: 2vh 0vw;
+    // flex-direction: row;
+    // display: flex;
+    // flex: 1;
+    // justify-content: space-between;
+}
+
+.errorHidden {
+    display: none;
+}
+
+.errorVisible {
+    
+}
+
+// .textFieldGroup {
+//     flex-direction: row;
+//     flex: 1;
+//     display: flex;
+//     justify-content: center;
+//     flex-wrap: wrap;
+// }
