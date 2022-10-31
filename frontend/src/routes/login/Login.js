@@ -1,4 +1,3 @@
-import "../../index.css";
 import "./Login.css";
 
 export default function Login() {

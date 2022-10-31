@@ -11,10 +11,3 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
-
-.pageContainer {
-    width: 70vw;
-    margin-top: 18vh;
-    padding-left: 15vw;
-    padding-right: 15vw;
-}

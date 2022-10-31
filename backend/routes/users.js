@@ -5,21 +5,19 @@ var userController = require("../controllers/userController.js");
 /*
  * GET
  */
-router.get("/", userController.list);
-router.get("/teams", userController.profile);
-router.get("/referees", userController.logout);
+//router.get("/", userController.list);
 
 /*
  * POST
  */
 router.post("/signup", userController.signup);
 router.post("/login", userController.login);
+router.get("/logout", userController.logout);
 
 /*
  * PUT
  */
-router.put("/teams:id", userController.update);
-router.put("/referees:id", userController.update);
+router.put("/:id", userController.update);
 
 /*
  * DELETE

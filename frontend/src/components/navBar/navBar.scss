@@ -31,6 +31,8 @@ ul {
         flex-direction: row;
         display: flex;
         justify-content: space-between;
+        overflow: hidden;
+        opacity: 1;
         .logos {
             height: 2vw;
             width: auto;
@@ -39,6 +41,7 @@ ul {
             transition-duration: 0.2s; 
             transition-timing-function: ease;
             cursor: pointer; 
+            opacity: 1;
         }
         .logos:hover {
             transform: scale(1.5); 
@@ -53,7 +56,7 @@ ul {
     .coloredBar {
         height: 7vh;
         max-height: 7vh;
-        width: 84vw;
+        width: 82vw;
         justify-content: space-between;
         background: linear-gradient(90deg, #b91b1b 0%, #4136f1 100%);
         flex-direction: row;
@@ -70,6 +73,11 @@ ul {
             flex-direction: row;
             justify-content: flex-start;
             .section {
+                //flex: 1; // covers whole bar
+                display: inline-flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
                 height: 100%;
                 //width: 3vw;
                 padding: 0vw 1vw;
@@ -80,9 +88,17 @@ ul {
                 background-color: #681919;
             }
         }
+        .menuIcon { 
+            display: none;
+        }
         @media (max-width: 500px){
             .sections {
                 display: none;
+            }
+            .menuIcon {
+                display: inline-block;
+                height: 50%;
+                margin: 0vw 2vw;
             }
         }
     }

@@ -4,13 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserProvider } from "./contexts/userContext";
+import { NotificationProvider } from "./contexts/notificationContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <UserProvider>
-            <App />
-        </UserProvider>
+        <NotificationProvider>
+            <UserProvider>
+                <App />
+            </UserProvider>
+        </NotificationProvider>
     </React.StrictMode>
 );
 

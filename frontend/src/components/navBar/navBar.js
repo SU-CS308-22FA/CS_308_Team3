@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import "./navBar.scss";
 import { UserContext } from "../../contexts/userContext";
 
+const menuIcon = require("../../assets/burger.png");
+
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -110,6 +112,10 @@ const NavBar = () => {
                 })}
             </div>
             <div className="coloredBar">
+                {/* <div className="tab">
+                    <img src={menuIcon} alt="menu icon" width={"2vh"} />
+                </div> */}
+                <img src={menuIcon} alt="menu icon" className="menuIcon" />
                 <div className="sections">
                     {sections.map(({ label, navUrl }, index) => {
                         return (
@@ -118,7 +124,12 @@ const NavBar = () => {
                                 onClick={() => navigate(navUrl)}
                                 key={index.toString()}
                             >
-                                <p style={{ fontSize: "1vw" }}>{label}</p>
+                                <p
+                                    className="text"
+                                    style={{ fontSize: "1.7vh" }}
+                                >
+                                    {label}
+                                </p>
                             </div>
                         );
                     })}

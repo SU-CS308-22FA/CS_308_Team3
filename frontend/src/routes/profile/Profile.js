@@ -1,7 +1,6 @@
 import { Button } from "@mui/material";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
-import "../../index.css";
 
 export default function Profile() {
     const {
