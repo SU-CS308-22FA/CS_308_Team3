@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import {
     alpha,
     Avatar,
@@ -59,9 +59,9 @@ const NavBar = () => {
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
     const [profilePhoto, setProfilePhoto] = useState(
-        require(user
+        require(user != null
             ? "../../assets/sample_pp.jpg"
-            : "../../assets/profiledefault.png")
+            : "../../assets/profiledefault_mini.png")
     );
     const handleOpenProfile = () => {
         navigate("profile");
@@ -88,14 +88,15 @@ const NavBar = () => {
         { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
     ]);
 
-    const [sections, setSections] = useState([
-        { label: "Referee", navUrl: "/" },
-        { label: "Referee", navUrl: "/profile" },
-        { label: "Referee", navUrl: "/profile" },
-        { label: "Referee", navUrl: "/profile" },
-        { label: "Referee", navUrl: "/profile" },
-        { label: "Referee", navUrl: "/profile" },
-    ]);
+    const sections = useMemo(
+        () => [
+            { label: "Fixture", navUrl: "/" },
+            { label: "Referee", navUrl: "/profile" },
+            { label: "Teams", navUrl: "/profile" },
+            { label: "Profile", navUrl: "/profile" },
+        ],
+        []
+    );
 
     return (
         <div className="navBar">
@@ -141,6 +142,7 @@ const NavBar = () => {
                     <StyledInputBase
                         placeholder="Search…"
                         inputProps={{ "aria-label": "search" }}
+                        autoComplete={"false"}
                     />
                 </Search>
                 <Tooltip title="Your Profile">

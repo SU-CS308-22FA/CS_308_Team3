@@ -18,7 +18,7 @@ export default function Notification() {
         >
             <Alert
                 onClose={handleClose}
-                severity={"error"}
+                severity={alert.severity ?? "error"}
                 sx={{ width: "100%" }}
                 variant={"filled"}
                 elevation={6}

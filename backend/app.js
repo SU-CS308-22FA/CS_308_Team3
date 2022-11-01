@@ -35,6 +35,7 @@ mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 
 var db = mongoose.connection;
+
 db.on(
     "error",
     console.error.bind(console, "Error while connectiong to the database")
@@ -51,4 +52,5 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/teams", teamsRouter);
 
+module.exports = db;
 module.exports = app;

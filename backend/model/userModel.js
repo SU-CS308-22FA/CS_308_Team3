@@ -16,10 +16,11 @@ const userSchema = Schema({
 
 userSchema.statics.authenticate = function (email, password, callback) {
     userModel.findOne({ email }).exec(function (err, user) {
-        console.log(user.email);
         if (err) {
+            //console.log("There is an error for login");
             return callback(err);
         } else if (!user) {
+            //console.log("User not found");
             var err = new Error("User not found.");
             err.status = 401;
             return callback(err);
@@ -27,10 +28,10 @@ userSchema.statics.authenticate = function (email, password, callback) {
         console.log(`${password}\n \n${user.password}`);
         bcrypt.compare(password, user.password, function (err, result) {
             if (result === true) {
-                console.log("doru");
+                console.log("true password");
                 return callback(null, user);
             } else {
-                console.log("yanlis");
+                console.log("wrong password");
                 return callback();
             }
         });
@@ -39,21 +40,3 @@ userSchema.statics.authenticate = function (email, password, callback) {
 
 const userModel = mongoose.model("users", userSchema);
 module.exports = userModel;
-
-// userModel.findOne({ email }).then((err, user) => {
-//     if (!user) return callback(err);
-
-//     //password comes from the user
-//     //user.password comes from the database
-//     bcrypt.compare(password, user.password, (err, data) => {
-//         //if error than throw error
-//         if (err) throw err;
-
-//         //if both match than you can do anything
-//         if (data) {
-//             return callback(null, user);
-//         } else {
-//             return callback();
-//         }
-//     });
-// });

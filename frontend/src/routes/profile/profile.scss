@@ -5,6 +5,17 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    .pp {
+        width: 15vw;
+        height: 15vw;
+    }
+    .column {
+        flex-direction: column;
+        display: flex;
+        align-items: flex-start;
+        flex: 1;
+        justify-content: flex-start;
+    }
 }
 
 .textForm {
@@ -41,6 +52,28 @@
 .errorVisible {
     
 }
+
+.profile {
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+    //margin-left: 20vw,
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
+}
+
+h4 {
+    display: flex;
+    flex-direction: row;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
 
 // .textFieldGroup {
 //     flex-direction: row;
