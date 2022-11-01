@@ -85,7 +85,7 @@ export default function Profile() {
                         })
                     );
                     setalert({
-                        message: "Your profile is updated",
+                        message: "Your profile is updated succesfully",
                         severity: "success",
                     });
                 }
@@ -115,7 +115,7 @@ export default function Profile() {
                     resetUser();
                 } else
                     setalert({
-                        message: "An error occured while deleting account",
+                        message: "There was an error while deleting account",
                     });
             })
             .then((err) => console.log(err));
@@ -182,6 +182,8 @@ export default function Profile() {
                         display: "flex",
                         flex: 1,
                         justifyContent: "space-between",
+                        
+
                     }}
                 >
                     <Button onClick={UpdateProfile}>Update my profile</Button>
