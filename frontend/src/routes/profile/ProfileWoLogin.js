@@ -19,7 +19,7 @@ import "./profile.scss";
 import { NotificationContext } from "../../contexts/notificationContext";
 
 export default function ProfileWoLogin() {
-    const { login } = useContext(UserContext);
+    const { login, updateUser } = useContext(UserContext);
     const { setalert } = useContext(NotificationContext);
 
     const [showSignUp, setShowSignUp] = useState(true);
@@ -44,11 +44,21 @@ export default function ProfileWoLogin() {
 
     const FIELDS = useMemo(
         () => [
-            { field: "Name", value: name, func: setName },
-            { field: "Surname", value: surname, func: setSurname },
-            { field: "Age", value: age, func: setAge },
-            { field: "Email", value: email, func: setEmail },
-            { field: "Password", value: password, func: setPassword },
+            { field: "Name", type: "text", value: name, func: setName },
+            {
+                field: "Surname",
+                type: "text",
+                value: surname,
+                func: setSurname,
+            },
+            { field: "Age", type: "number", value: age, func: setAge },
+            { field: "Email", type: "text", value: email, func: setEmail },
+            {
+                field: "Password",
+                type: "password",
+                value: password,
+                func: setPassword,
+            },
         ],
         [name, surname, age, email, password]
     );
@@ -72,25 +82,25 @@ export default function ProfileWoLogin() {
     };
 
     const signup = async () => {
-        // if (password.length < 8) {
-        //     console.log("error");
-        //     setalert({
-        //         open: true,
-        //         message: "Password has to be at least 8 characters!",
-        //     });
-        //     return;
-        // } else if (
-        //     name === "" ||
-        //     surname === "" ||
-        //     email === "" ||
-        //     age === ""
-        // ) {
-        //     setalert({
-        //         open: true,
-        //         message: "You cannot leave any of the fields empty!",
-        //     });
-        //     return;
-        // }
+        if (password.length < 8) {
+            console.log("error");
+            setalert({
+                open: true,
+                message: "Password has to be at least 8 characters!",
+            });
+            return;
+        } else if (
+            name === "" ||
+            surname === "" ||
+            email === "" ||
+            age === ""
+        ) {
+            setalert({
+                open: true,
+                message: "You cannot leave any of the fields empty!",
+            });
+            return;
+        }
 
         const salt = bcrypt.genSaltSync(10);
         const hashedPassword = bcrypt.hashSync(password, salt);
@@ -108,7 +118,21 @@ export default function ProfileWoLogin() {
             .then((res) => {
                 console.log(res.data);
                 if (res.data.message === "Registration is succesful") {
-                    console.log("");
+                    setalert({
+                        message:
+                            "The email is already taken, you can try to login",
+                        severity: "success",
+                    });
+                    updateUser(res.data.user);
+                    sessionStorage.setItem(
+                        "user",
+                        JSON.stringify(res.data.user)
+                    );
+                } else if (res.data.message === "The email is taken") {
+                    setalert({
+                        message:
+                            "The email is already taken, you can try to login",
+                    });
                 }
             })
             .catch((err) => {
@@ -162,18 +186,14 @@ export default function ProfileWoLogin() {
                         <h3 className="text">Your personal details</h3>
                         <div className="textForm">
                             <div className="textFieldGroup">
-                                {FIELDS.map(({ field, value, func }) => {
+                                {FIELDS.map(({ field, type, value, func }) => {
                                     return (
                                         <div className="textField" key={field}>
                                             <p className="text">{field}</p>
                                             <TextField
                                                 style={{ width: "20vw" }}
                                                 label={field}
-                                                type={
-                                                    field === "Password"
-                                                        ? "password"
-                                                        : "text"
-                                                }
+                                                type={type}
                                                 value={value}
                                                 onChange={(event) =>
                                                     func(event.target.value)
@@ -277,16 +297,3 @@ export default function ProfileWoLogin() {
         </div>
     );
 }
-
-// <TextField
-// id="outlined-multiline-flexible"
-// label="Name"
-// value={name}
-// onChange={(event) => setName(event.target.value)}
-// />
-// <TextField
-// id="outlined-multiline-flexible"
-// label="Surname"
-// value={surname}
-// onChange={(event) => setSurname(event.target.value)}
-// />

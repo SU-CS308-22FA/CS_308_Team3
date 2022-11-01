@@ -1,21 +1,36 @@
 import axios from "axios";
-import bcrypt from "bcryptjs";
+//import bcrypt from "bcryptjs";
 import {
     createContext,
     useCallback,
-    useEffect,
+    useContext,
     useMemo,
     useState,
 } from "react";
+import { NotificationContext } from "./notificationContext";
 
 export const UserContext = createContext({
     user: null,
+    updateUser: () => {},
     login: () => {},
     logout: () => {},
+    updateUser: () => {},
+    resetUser: () => {},
 });
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(
+        JSON.parse(sessionStorage.getItem("user")) ?? null
+    );
+    const { setalert } = useContext(NotificationContext);
+
+    const updateUser = (newUser) => {
+        setUser((oldUser) => ({ ...oldUser, ...newUser }));
+    };
+
+    const resetUser = () => {
+        setUser(null);
+    };
 
     const login = useCallback(async (email, password) => {
         // const salt = bcrypt.genSaltSync(10);
@@ -27,8 +42,18 @@ export const UserProvider = ({ children }) => {
             })
             .then((res) => {
                 console.log(res.data);
-                if (res.data.message === "Registration is succesful") {
-                    console.log("");
+                if (res.data.message === "Login is succesful") {
+                    setalert({
+                        open: true,
+                        message: "Login is succesful",
+                        severity: "success",
+                    });
+                    setUser(res.data.user);
+                } else {
+                    setalert({
+                        open: true,
+                        message: "Your credentials are wrong!",
+                    });
                 }
             })
             .catch((err) => {
@@ -45,6 +70,8 @@ export const UserProvider = ({ children }) => {
             user,
             login,
             logout,
+            updateUser,
+            resetUser,
         }),
         [user, login, logout]
     );

@@ -4,7 +4,29 @@ module.exports = {
         const {} = req.body;
         //console.log(JSON.stringify(req.body, null, 2));
 
-        return res.send({ teams: ["Fenerbahçe", "Galatasaray", "BJK"] });
+        return res.send({
+            teams: [
+                "Fenerbahçe",
+                "Galatasaray",
+                "Beşiktaş",
+                "Adana Demirspor",
+                "Trabzonspor",
+                "Başakşehir",
+                "Konyaspor",
+                "Kayserispor",
+                "Ümraniyespor",
+                "İstanbulspor",
+                "Giresunspor",
+                "Hatayspor",
+                "Sivasspor",
+                "Ankaragücü",
+                "Fatih Karagümrük",
+                "Antalyaspor",
+                "Kasımpaşa",
+                "Gaziantep Futbol Kulübü",
+                "Alanyaspor",
+            ],
+        });
     },
     logout: () => {},
     update: () => {},

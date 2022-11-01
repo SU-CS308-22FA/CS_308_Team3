@@ -9,7 +9,7 @@ export const NotificationProvider = ({ children }) => {
     const [alert, setAlert] = useState({ open: false, message: "" });
 
     const setalert = useCallback((newAlert) => {
-        setAlert((oldAlert) => ({ ...oldAlert, ...newAlert }));
+        setAlert(() => ({ open: true, ...newAlert }));
     }, []);
 
     const value = useMemo(
