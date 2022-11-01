@@ -11,6 +11,7 @@ import Fixture from "./routes/fixture/Fixture";
 import ProfileWoLogin from "./routes/profile/ProfileWoLogin";
 import Notification from "./components/notification/Notification";
 import { NotificationContext } from "./contexts/notificationContext";
+import ChangePassword from "./routes/profile/ChangePassword";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -29,6 +30,10 @@ function App() {
                                 element={<ProfileWoLogin />}
                             />
 
+                            {/* Temporarily here for development */}
+                            {/* <Route path="userprofile" element={<Profile />} />
+                            <Route path="changepassword" element={<ChangePassword />} /> */}
+
                             {/* TODO */}
                             {/* <Route path="*" element={<ErrorPage />} /> */}
                             <Route
@@ -46,7 +51,8 @@ function App() {
                         <>
                             <Route path="/" element={<Fixture />} />
                             <Route path="profile" element={<Profile />} />
-
+                            <Route path="changepassword" element={<ChangePassword />} />
+                            
                             {/* TODO */}
                             {/* <Route path="*" element={<ErrorPage />} /> */}
                             <Route
