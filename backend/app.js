@@ -9,7 +9,13 @@ var teamsRouter = require("./routes/teams");
 var app = express();
 
 var cors = require("cors");
-var allowedOrigins = ["http://localhost:3000", "http://localhost:3001", "https://refereeassigmentsystem.vercel.app/", "https://referee-assignment-system-backend.vercel.app/"];
+var allowedOrigins = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "*",
+    "https://refereeassigmentsystem.vercel.app",
+    "https://referee-assignment-system-backend.vercel.app",
+];
 app.use(
     cors({
         credentials: true,
@@ -23,6 +29,7 @@ app.use(
             }
             return callback(null, true);
         },
+        allowedHeaders: "*",
     })
 );
 
