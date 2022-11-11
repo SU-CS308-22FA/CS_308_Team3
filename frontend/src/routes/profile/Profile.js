@@ -28,10 +28,13 @@ export default function Profile() {
     const [teams, setTeams] = useState([]);
 
     useEffect(() => {
-        axios.get("/teams/list").then((res) => {
-            console.log(res.data);
-            setTeams(res.data.teams);
-        });
+        axios
+            .get("/teams/list")
+            .then((res) => {
+                console.log(res.data);
+                setTeams(res.data.teams);
+            })
+            .catch((err) => console.log(err));
 
         setName(user.name);
         setSurname(user.surname);
@@ -182,8 +185,6 @@ export default function Profile() {
                         display: "flex",
                         flex: 1,
                         justifyContent: "space-between",
-                        
-
                     }}
                 >
                     <Button onClick={UpdateProfile}>Update my profile</Button>

@@ -5,8 +5,9 @@ import NavBar from "./components/navBar/navBar";
 import Login from "./routes/login/Login";
 
 import "./connection";
-import "./App.css";
+import "./App.scss";
 import Profile from "./routes/profile/Profile";
+import Teams from "./routes/team/Teams";
 import Fixture from "./routes/fixture/Fixture";
 import ProfileWoLogin from "./routes/profile/ProfileWoLogin";
 import Notification from "./components/notification/Notification";
@@ -29,7 +30,8 @@ function App() {
                                 path="profile"
                                 element={<ProfileWoLogin />}
                             />
-
+                            <Route path="teams" element={<Teams />} />
+                            {/* <Route path="referees" element={<Referees />} /> */}
                             {/* Temporarily here for development */}
                             {/* <Route path="userprofile" element={<Profile />} />
                             <Route path="changepassword" element={<ChangePassword />} /> */}
@@ -51,8 +53,13 @@ function App() {
                         <>
                             <Route path="/" element={<Fixture />} />
                             <Route path="profile" element={<Profile />} />
-                            <Route path="changepassword" element={<ChangePassword />} />
-                            
+                            <Route path="teams" element={<Teams />} />
+                            {/* <Route path="referees" element={<Referees />} /> */}
+                            <Route
+                                path="changepassword"
+                                element={<ChangePassword />}
+                            />
+
                             {/* TODO */}
                             {/* <Route path="*" element={<ErrorPage />} /> */}
                             <Route

@@ -1,0 +1,16 @@
+.team{
+    margin: 2vh 2vh;
+    padding: 3vh 3vh;
+    border-width: 0.1vw;
+    border-color: black;
+    border-radius: 2vw;
+    border-style: solid;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+.team:hover{
+    background: linear-gradient(90deg, #b91b1b 0%, #4136f1 100%);
+    color: white;
+    cursor: pointer;
+}
