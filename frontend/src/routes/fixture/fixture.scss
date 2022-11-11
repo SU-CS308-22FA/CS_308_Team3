@@ -2,9 +2,9 @@
     .match {
         flex-direction: column;
         padding: 0.1vw 0.1vw;
-        width: 38%;
-        min-width: 300px;
-        padding: 0vw 3vw;
+        width: 39%;
+        min-width: 400px;
+        padding: 0vw 2vw;
         border-width: 0.1vw;
         border-color: black;
         border-radius: 2vw;
@@ -16,14 +16,22 @@
             flex-direction: row;
             // flex: 1;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .fixtureTeamLogo{
+                height: 50%;
+                max-height: 50px;
+                width: auto;
+                margin: 0px 1vw;
+            }
         }
     }
     .match:hover {
         background: linear-gradient(90deg, #27bed5 0%, #5e1ad5 100%);
         flex-direction: column;
         padding: 0.1vw 0.1vw;
-        width: 38%;
-        padding: 0vw 3vw;
+        width: 39%;
+        padding: 0vw 2vw;
         border-width: 0.1vw;
         border-color: white;
         border-radius: 2vw;
@@ -35,6 +43,11 @@
             color: white;
             // flex: 1;
             display: flex;
+            .fixtureTeamLogo{
+                height: 50%;
+                max-height: 50px;
+                width: auto;
+            }
         }
         .button {
             background-color: white; // theme.palette.primary.main
@@ -56,4 +69,5 @@
         text-align: center;
         margin: 1vh 0vh 1.5vh 0vh;
     }
+
 }
