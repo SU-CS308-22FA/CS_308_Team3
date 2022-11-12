@@ -6,6 +6,7 @@ var teamController = require("../controllers/teamController.js");
  * GET
  */
 router.get("/list", teamController.list);
+router.get("/teamsList", teamController.teamsList);
 
 /*
  * POST

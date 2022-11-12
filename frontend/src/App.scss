@@ -69,3 +69,22 @@
     font-family: KanitItalic;
     font-style: italic;
 }
+
+p {
+    font-family: Kanit;
+    font-style: normal;
+}
+
+h3 {
+    font-family: Kanit;
+    font-style: bold;
+}
+
+.wrapContainer {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

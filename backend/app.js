@@ -5,6 +5,8 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var teamsRouter = require("./routes/teams");
+var fixtureRouter = require("./routes/fixture");
+var refereeRouter = require("./routes/referee");
 
 var app = express();
 
@@ -59,6 +61,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/teams", teamsRouter);
+app.use("/fixture", fixtureRouter);
+app.use("/referees", refereeRouter);
 
 module.exports = db;
 module.exports = app;

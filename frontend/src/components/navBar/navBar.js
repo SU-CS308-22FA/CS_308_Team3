@@ -91,8 +91,8 @@ const NavBar = () => {
     const sections = useMemo(
         () => [
             { label: "Fixture", navUrl: "/" },
-            { label: "Referee", navUrl: "/profile" },
-            { label: "Teams", navUrl: "/profile" },
+            { label: "Referee", navUrl: "/referees" },
+            { label: "Teams", navUrl: "/teams" },
             { label: "Profile", navUrl: "/profile" },
         ],
         []
