@@ -34,8 +34,8 @@ export default function Teams() {
                                         src={anthem}
                                         alt={alt}
                                         style={{
-                                            width: "19vh",
-                                            height: "auto",
+                                            height: "20vh",
+                                            width: "auto",
                                             marginBottom: "2vh",
                                         }}
                                     />

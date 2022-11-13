@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./fixture.scss";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { sortList } from "../../functions/helpers";
 
 export default function Fixture() {
     const [matches, setMatches] = useState();
@@ -10,8 +11,10 @@ export default function Fixture() {
         axios
             .get("/fixture/list")
             .then((res) => {
-                console.log(res.data.matches);
-                setMatches(res.data.matches);
+                const matchesWoOrder = res.data.matches;
+                // console.table(matchesWoOrder);
+                const sortedMathces = sortList(matchesWoOrder);
+                setMatches(sortedMathces);
             })
             .catch((err) => console.log(err));
     }, []);
