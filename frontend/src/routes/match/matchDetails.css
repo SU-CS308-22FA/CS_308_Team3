@@ -1,0 +1,19 @@
+.side-by-side {
+    display: flex;
+    flex-direction: row;
+}
+
+.top-to-bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.matchTeamLogo {
+    max-height: 300px;
+    width: auto;
+    margin: 0px 1vw;
+}
+
+.team-title {
+    text-align: center;
+}

@@ -4,7 +4,7 @@ module.exports = {
     const {} = req.body;
 
     return res.send({
-      matchProperties: 
+      match: 
         {
           team1: "Fenerbahçe",
           logo1: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Fenerbah%C3%A7elogo.png",
@@ -13,7 +13,7 @@ module.exports = {
           date: "6.11.2002 20:00",
           referee: "Mustafa Çulcu",
           team1Goals: 6,
-          team2Gaols: 0,
+          team2Goals: 0,
         },
       
     });
