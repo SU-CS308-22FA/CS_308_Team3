@@ -7,6 +7,7 @@ var usersRouter = require("./routes/users");
 var teamsRouter = require("./routes/teams");
 var fixtureRouter = require("./routes/fixture");
 var refereeRouter = require("./routes/referee");
+var matchRouter = require("./routes/match");
 
 var app = express();
 
@@ -63,6 +64,7 @@ app.use("/users", usersRouter);
 app.use("/teams", teamsRouter);
 app.use("/fixture", fixtureRouter);
 app.use("/referees", refereeRouter);
+app.use("/match", matchRouter);
 
 module.exports = db;
 module.exports = app;
