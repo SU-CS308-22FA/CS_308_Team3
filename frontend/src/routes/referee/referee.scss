@@ -1,0 +1,33 @@
+.refereeContainer{
+    margin: 2vh 2vh;
+    padding: 3vh 2.5vh;
+    border-width: 0.1vw;
+    width: 250px;
+    height: auto;
+    border-color: rgb(103, 96, 96);
+    border-radius: 2vw;
+    border-style: solid;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    p {
+        margin: 0px 0px;
+    }
+    img {
+        border-radius: 20px;
+    }
+}
+
+.refereeInfo{
+    width: min-content;
+    height: auto;
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;   
+}
+
+.refereeContainer:hover {
+    background: linear-gradient(315deg, #ffffff 0%, #a8020a 100%);
+    cursor: pointer;
+}

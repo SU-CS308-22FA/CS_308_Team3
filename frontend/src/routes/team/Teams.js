@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./teams.scss";
-import { Button } from "@mui/material";
 import axios from "axios";
 
 export default function Teams() {
@@ -17,7 +16,7 @@ export default function Teams() {
 
     return (
         <div className="fixture">
-            <h3>Fixture of the Week</h3>
+            <h3>Teams</h3>
             <div className="wrapContainer">
                 {teams &&
                     teams.map(

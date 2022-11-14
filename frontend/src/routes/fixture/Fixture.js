@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import "./fixture.scss";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { sortList } from "../../functions/helpers";
+
+import "./fixture.scss";
 
 export default function Fixture() {
     const [matches, setMatches] = useState();
