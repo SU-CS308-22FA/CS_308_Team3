@@ -9,11 +9,34 @@
 }
 
 .matchTeamLogo {
-    max-height: 300px;
-    width: auto;
+    height: 40vh;
+    width: 15vw;
     margin: 0px 1vw;
 }
 
 .team-title {
     text-align: center;
+}
+
+.Main {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.left-side-top-to-bottom {
+    /* margin-right: 10vw; */
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side-top-to-bottom {
+    /* margin-left: 10vw; */
+    display: flex;
+    flex-direction: column;
+}
+
+.divider {
+    padding-left: 10vw;
+    padding-right: 10vw;
 }

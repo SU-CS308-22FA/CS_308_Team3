@@ -14,6 +14,8 @@ module.exports = {
           referee: "Mustafa Çulcu",
           team1Goals: 6,
           team2Goals: 0,
+          team1Coach: "Werner Lorant",
+          team2Coach: "Fatih Terim"
         },
       
     });
