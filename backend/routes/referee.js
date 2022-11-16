@@ -1,11 +1,11 @@
 var express = require("express");
 var router = express.Router();
-var teamController = require("../controllers/teamController.js");
+var refereeController = require("../controllers/refereeController.js");
 
 /*
  * GET
  */
-router.get("/list", teamController.list);
+router.get("/list", refereeController.list);
 
 /*
  * POST

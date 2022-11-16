@@ -13,6 +13,7 @@ import ProfileWoLogin from "./routes/profile/ProfileWoLogin";
 import Notification from "./components/notification/Notification";
 import { NotificationContext } from "./contexts/notificationContext";
 import ChangePassword from "./routes/profile/ChangePassword";
+import Referees from "./routes/referee/Referees";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -31,6 +32,7 @@ function App() {
                                 element={<ProfileWoLogin />}
                             />
                             <Route path="teams" element={<Teams />} />
+                            <Route path="referees" element={<Referees />} />
                             {/* <Route path="referees" element={<Referees />} /> */}
                             {/* Temporarily here for development */}
                             {/* <Route path="userprofile" element={<Profile />} />
@@ -54,6 +56,7 @@ function App() {
                             <Route path="/" element={<Fixture />} />
                             <Route path="profile" element={<Profile />} />
                             <Route path="teams" element={<Teams />} />
+                            <Route path="referees" element={<Referees />} />
                             {/* <Route path="referees" element={<Referees />} /> */}
                             <Route
                                 path="changepassword"
