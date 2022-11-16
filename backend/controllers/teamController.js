@@ -1,5 +1,4 @@
 module.exports = {
-    login: () => {},
     list: (req, res) => {
         const {} = req.body;
         //console.log(JSON.stringify(req.body, null, 2));
