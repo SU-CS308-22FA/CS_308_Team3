@@ -11,6 +11,7 @@ router.get("/list", refereeController.list);
  * POST
  */
 //router.post("/signup", teamController.signup);
+router.post("/refereeAdd",refereeController.refereeAdd)
 
 /*
  * PUT

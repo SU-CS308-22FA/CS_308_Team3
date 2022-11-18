@@ -14,6 +14,7 @@ import Notification from "./components/notification/Notification";
 import { NotificationContext } from "./contexts/notificationContext";
 import ChangePassword from "./routes/profile/ChangePassword";
 import Referees from "./routes/referee/Referees";
+import RefereeAdd from "./routes/referee/RefereeAdd";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -33,6 +34,7 @@ function App() {
                             />
                             <Route path="teams" element={<Teams />} />
                             <Route path="referees" element={<Referees />} />
+                            <Route path="add-referee" element={<RefereeAdd />} />
                             {/* <Route path="referees" element={<Referees />} /> */}
                             {/* Temporarily here for development */}
                             {/* <Route path="userprofile" element={<Profile />} />
@@ -57,6 +59,7 @@ function App() {
                             <Route path="profile" element={<Profile />} />
                             <Route path="teams" element={<Teams />} />
                             <Route path="referees" element={<Referees />} />
+                            <Route path="add-referee" element={<RefereeAdd />} />
                             {/* <Route path="referees" element={<Referees />} /> */}
                             <Route
                                 path="changepassword"

@@ -154,4 +154,31 @@ module.exports = {
     },
     update: () => {},
     remove: () => {},
+    refereeAdd: async (req, res) => {
+        const {name, surname, age, experience, license, hometown} =
+            req.body;
+        //console.log(JSON.stringify(req.body, null, 2));
+        //req.session.userId = newUser._id;
+        const newReferee = new userModel({
+            name: name,
+            surname: surname,
+            age: age,
+            experience: experience,
+            license: license,
+            hometown: hometown,
+            userType: "TFF",
+        });
+            newUser.save((err, user) => {
+                if (err) {
+                    return res.status(500).json({
+                        message: "Error when adding referee",
+                        error: err,
+                    });
+                }
+                return res.status(201).send({
+                    message: "Referee added succesfully",
+                    user: user,
+                });
+            });
+        }, 
 };

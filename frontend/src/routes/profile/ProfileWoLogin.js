@@ -120,7 +120,7 @@ export default function ProfileWoLogin() {
                 if (res.data.message === "Registration is succesful") {
                     setalert({
                         message:
-                            "The email is already taken, you can try to login",
+                            "Registration completed succesfully",
                         severity: "success",
                     });
                     updateUser(res.data.user);
