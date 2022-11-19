@@ -1,5 +1,6 @@
 var matches = [
     {
+        id: 0,
         team1: "FENERBAHÇE",
         logo1: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Fenerbah%C3%A7elogo.png",
         team2: "GALATASARAY",
@@ -12,6 +13,7 @@ var matches = [
         team2Coach: "Okan Buruk",
     },
     {
+        id: 1,
         team1: "KONYASPOR",
         logo1: "https://upload.wikimedia.org/wikipedia/tr/archive/4/41/20220809170232%21Konyaspor_1922.png",
         team2: "ANKARAGÜCÜ",
@@ -24,6 +26,7 @@ var matches = [
         team2Coach: "Ömer Erdoğan",
     },
     {
+        id: 2,
         team1: "TRABZONSPOR",
         logo1: "https://www.trabzonspor.org.tr/download/resources/logo_6367234456_-1x-1_false.png",
         team2: "BEŞIKTAŞ",
@@ -36,6 +39,7 @@ var matches = [
         team2Coach: "Şenol Güneş",
     },
     {
+        id: 3,
         team1: "FATIH KARAGÜMRÜK",
         logo1: "https://upload.wikimedia.org/wikipedia/tr/9/90/Fatihkaragumruk.png",
         team2: "ANTALYASPOR",
@@ -48,6 +52,7 @@ var matches = [
         team2Coach: "Nuri Şahin",
     },
     {
+        id: 4,
         team1: "KASIMPAŞA SPOR KULÜBÜ",
         logo1: "https://upload.wikimedia.org/wikipedia/tr/6/68/Kasimpasa_2012.png",
         team2: "ALANYASPOR",
@@ -60,6 +65,7 @@ var matches = [
         team2Coach: "Francesco Farioli",
     },
     {
+        id: 5,
         team1: "ADANA DEMIRSPOR",
         logo1: "https://upload.wikimedia.org/wikipedia/tr/5/5f/Adanademirspor.png?20101106185724",
         team2: "BAŞAKŞEHIR",
@@ -84,11 +90,11 @@ module.exports = {
         });
     },
     getMatch: (req, res) => {
-        const {} = req.body;
+        const {id} = req.params;
         //console.log(JSON.stringify(req.body, null, 2));
 
         return res.send({
-            match: matches[0]
+            match: matches[id]
         });
     },
 };

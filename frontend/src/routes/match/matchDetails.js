@@ -1,23 +1,26 @@
 import axios from "axios"
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import "./matchDetails.css"
 import { Divider,
   Avatar,
   Box } from "@mui/material";
+import { useParams } from "react-router-dom";
+
 
 
 export function MatchDetails() {
   const [match, setMatch] = useState();
+  var match_id = useParams().id;
 
   useEffect(() => {
     axios
-        .get("/fixture/1")
+        .get("/fixture/" + match_id)
         .then((res) => {
             console.log(res.data.match);
             setMatch(res.data.match);
         })
         .catch((err) => console.log(err));
-  }, []);
+  }, [match_id]);
 
   return (
     <div className="wrapContainer">
@@ -60,7 +63,7 @@ export function MatchDetails() {
             </div>
           </div>
         </div>
-        : console.log("Not Here")}
+        : <div> Loading... </div>}
     </div>
   );
 } 

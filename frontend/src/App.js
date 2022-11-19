@@ -32,7 +32,7 @@ function App() {
                                 element={<ProfileWoLogin />}
                             />
                             <Route path="teams" element={<Teams />} />
-                            <Route path="match-details" element={<MatchDetails />} />
+                            <Route path="match-details/:id" element={<MatchDetails />} />
                             {/* <Route path="referees" element={<Referees />} /> */}
                             {/* Temporarily here for development */}
                             {/* <Route path="userprofile" element={<Profile />} />
@@ -62,7 +62,7 @@ function App() {
                                 element={<ChangePassword />}
                             />
 
-                            <Route path="match-details" element={<MatchDetails />} />
+                            <Route path="match-details/:id" element={<MatchDetails />} />
 
                             {/* TODO */}
                             {/* <Route path="*" element={<ErrorPage />} /> */}
