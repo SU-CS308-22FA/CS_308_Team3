@@ -1,7 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react";
 import "./matchDetails.css"
-import { Divider } from "@mui/material";
+import { Divider,
+  Avatar,
+  Box } from "@mui/material";
 
 
 export function MatchDetails() {
@@ -9,7 +11,7 @@ export function MatchDetails() {
 
   useEffect(() => {
     axios
-        .get("/match/get")
+        .get("/fixture/1")
         .then((res) => {
             console.log(res.data.match);
             setMatch(res.data.match);
@@ -27,9 +29,10 @@ export function MatchDetails() {
           <div className="side-by-side">
 
             <div className="left-side-top-to-bottom" style={{overflow: "auto"}}>
-              <img className="matchTeamLogo"
-              src={match.logo1}
-              alt={match.team1}/>
+              
+                <img className="matchTeamLogo"
+                  src={match.logo1}
+                  alt={match.team1}/>
 
               <h1 className = "team-title"> {match.team1} </h1>
               <h2 className="team-title"> {match.team1Coach}</h2>
@@ -48,7 +51,7 @@ export function MatchDetails() {
 
 
             <div className="right-side-top-to-bottom">
-              <img className="matchTeamLogo" style={{overflow: "auto"}}
+            <img className="matchTeamLogo"
                 src={match.logo2}
                 alt={match.team2}/>
 

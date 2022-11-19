@@ -9,9 +9,11 @@
 }
 
 .matchTeamLogo {
-    height: 40vh;
+    height: "auto";
     width: 15vw;
+    max-height: 35vh;
     margin: 0px 1vw;
+    object-fit: contain;
 }
 
 .team-title {
