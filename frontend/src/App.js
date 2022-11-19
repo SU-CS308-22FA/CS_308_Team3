@@ -13,6 +13,7 @@ import ProfileWoLogin from "./routes/profile/ProfileWoLogin";
 import Notification from "./components/notification/Notification";
 import { NotificationContext } from "./contexts/notificationContext";
 import ChangePassword from "./routes/profile/ChangePassword";
+import { MatchDetails } from "./routes/match/matchDetails";
 import Referees from "./routes/referee/Referees";
 
 function App() {
@@ -32,7 +33,11 @@ function App() {
                                 element={<ProfileWoLogin />}
                             />
                             <Route path="teams" element={<Teams />} />
+
+                            <Route path="match-details/:id" element={<MatchDetails />} />
+
                             <Route path="referees" element={<Referees />} />
+
                             {/* <Route path="referees" element={<Referees />} /> */}
                             {/* Temporarily here for development */}
                             {/* <Route path="userprofile" element={<Profile />} />
@@ -62,6 +67,8 @@ function App() {
                                 path="changepassword"
                                 element={<ChangePassword />}
                             />
+
+                            <Route path="match-details/:id" element={<MatchDetails />} />
 
                             {/* TODO */}
                             {/* <Route path="*" element={<ErrorPage />} /> */}
