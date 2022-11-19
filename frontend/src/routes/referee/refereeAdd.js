@@ -1,24 +1,12 @@
-import {
-    Alert,
-    Button,
-    FormControl,
-    InputAdornment,
-    InputLabel,
-    MenuItem,
-    Select,
-    TextField,
-    ToggleButton,
-    ToggleButtonGroup,
-} from "@mui/material";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { Button, TextField } from "@mui/material";
+import { useContext, useMemo, useState } from "react";
 import { UserContext } from "../../contexts/userContext";
 import axios from "axios";
-import bcrypt from "bcryptjs";
 import "./RefereeAdd.scss";
 import { NotificationContext } from "../../contexts/notificationContext";
 
 export default function RefereeAdd() {
-    const { login, updateUser } = useContext(UserContext);
+    const { user, login, updateUser } = useContext(UserContext);
     const { setalert } = useContext(NotificationContext);
 
     const [classNameError, setClassNameError] = useState("errorHidden");
@@ -29,17 +17,8 @@ export default function RefereeAdd() {
     const [experience, setExperience] = useState("");
     const [license, setLicense] = useState("");
     const [hometown, setHometown] = useState("");
+    const [image, setImage] = useState(null);
     //const [score, setScore] = useState("");
-    const [password, setPassword] = useState("");
-
-    const [teams, setTeams] = useState([]);
-
-    useEffect(() => {
-        axios.get("/teams/list").then((res) => {
-            console.log(res.data);
-            setTeams(res.data.teams);
-        });
-    }, []);
 
     const FIELDS = useMemo(
         () => [
@@ -51,15 +30,30 @@ export default function RefereeAdd() {
                 func: setSurname,
             },
             { field: "Age", type: "number", value: age, func: setAge },
-            { field: "Years of Experience", type: "number", value: experience, func: setExperience},
-            { field: "License", type: "text", value: license, func: setLicense},
-            { field: "Hometown", type: "text", value: hometown, func: setHometown},
+            {
+                field: "Years of Experience",
+                type: "number",
+                value: experience,
+                func: setExperience,
+            },
+            {
+                field: "License",
+                type: "text",
+                value: license,
+                func: setLicense,
+            },
+            {
+                field: "Hometown",
+                type: "text",
+                value: hometown,
+                func: setHometown,
+            },
             // { field: "Score", type: "number", value: score, func: setScore},
         ],
         [name, surname, age, experience, license, hometown]
     );
     const add_referee = async () => {
-         if (
+        if (
             name === "" ||
             surname === "" ||
             experience === "" ||
@@ -74,24 +68,20 @@ export default function RefereeAdd() {
             return;
         }
 
-        const salt = bcrypt.genSaltSync(10);
-        const hashedPassword = bcrypt.hashSync(password, salt);
-        //console.log(hashedPassword);
         await axios
-            .post("/referees/", {
-                name: name,
-                surname: surname,
+            .post("/referees/refereeAdd", {
+                name: name + " " + surname,
                 age: parseInt(age),
-                experience: experience,
+                experience: parseInt(experience),
                 license: license,
-                hometown: hometown
+                hometown: hometown,
+                image: image,
             })
             .then((res) => {
                 console.log(res.data);
-                if (res.data.message === "Referee added succesfully") {
+                if (res.data.message === "RefereAdd is succesful") {
                     setalert({
-                        message:
-                            "Referee added to the system",
+                        message: "Referee is added to the system succesfully",
                         severity: "success",
                     });
                     updateUser(res.data.user);
@@ -99,7 +89,12 @@ export default function RefereeAdd() {
                         "user",
                         JSON.stringify(res.data.user)
                     );
-                } 
+                } else {
+                    setalert({
+                        message: res.data.message,
+                        severity: "error",
+                    });
+                }
             })
             .catch((err) => {
                 console.log(err);
@@ -108,18 +103,19 @@ export default function RefereeAdd() {
     const onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             let img = event.target.files[0];
-            this.setState({
-                image: URL.createObjectURL(img),
-            });
+            // console.log(URL.createObjectURL(img));
+            setImage(URL.createObjectURL(img));
+            // setImage(img);
+            // console.log(img);
         }
     };
 
     return (
         <div className="RefereeAdd">
             <div>
-                {(
+                {
                     <div style={{ flexDirection: "column" }}>
-                        <h3 className="text">Your personal details</h3>
+                        <h3>New Referee Details</h3>
                         <div className="textForm">
                             <div className="textFieldGroup">
                                 {FIELDS.map(({ field, type, value, func }) => {
@@ -154,11 +150,14 @@ export default function RefereeAdd() {
                                 onChange={onImageChange}
                             />
                         </div>
-                        <Button onClick={add_referee} style={{ marginTop: "2vh" }}>
+                        <Button
+                            onClick={add_referee}
+                            style={{ marginTop: "2vh" }}
+                        >
                             Add Referee
                         </Button>
                     </div>
-                )}
+                }
             </div>
         </div>
     );

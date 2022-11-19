@@ -10,8 +10,11 @@ import {
     OutlinedInput,
     Select,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function Referees() {
+    const navigate = useNavigate();
+
     const [referees, setReferees] = useState();
     const [referee1, setReferee1] = useState("");
     const [referee2, setReferee2] = useState("");
@@ -78,6 +81,11 @@ export default function Referees() {
                 </FormControl>
                 <Button onClick={compareReferees}>Compare</Button>
             </div>
+            <div>
+                <Button onClick={() => navigate("/add-referee")}>
+                    Add New Referee
+                </Button>
+            </div>
             {/* <h3 className="comparisonContainer">Ars</h3> */}
             <div className="wrapContainer">
                 {referees &&
@@ -91,7 +99,7 @@ export default function Referees() {
                                 hometown,
                                 score,
                                 image,
-                                matches,
+                                last3Matches,
                             },
                             index
                         ) => {
@@ -122,28 +130,33 @@ export default function Referees() {
                                     <div className="lastMatchesContainer">
                                         <p>Last 3 matches:</p>
                                         <div className="lastMatches">
-                                            {matches.map(
-                                                (
-                                                    { logo1, logo2, date },
-                                                    index
-                                                ) =>
-                                                    date && (
-                                                        <div
-                                                            className="match"
-                                                            key={index}
-                                                        >
-                                                            <img
-                                                                src={logo1}
-                                                                alt={"logo1"}
-                                                            />
-                                                            <p>vs</p>
-                                                            <img
-                                                                src={logo2}
-                                                                alt={"logo2"}
-                                                            />
-                                                        </div>
-                                                    )
-                                            )}
+                                            {last3Matches &&
+                                                last3Matches.map(
+                                                    (
+                                                        { logo1, logo2, date },
+                                                        index
+                                                    ) =>
+                                                        date && (
+                                                            <div
+                                                                className="match"
+                                                                key={index}
+                                                            >
+                                                                <img
+                                                                    src={logo1}
+                                                                    alt={
+                                                                        "logo1"
+                                                                    }
+                                                                />
+                                                                <p>vs</p>
+                                                                <img
+                                                                    src={logo2}
+                                                                    alt={
+                                                                        "logo2"
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        )
+                                                )}
                                         </div>
                                     </div>
                                 </div>
