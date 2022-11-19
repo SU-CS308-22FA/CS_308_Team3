@@ -66,27 +66,87 @@ const NavBar = () => {
     const handleOpenProfile = () => {
         navigate("profile");
     };
-    const [teamLogos, setTeamLogos] = useState([
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener1" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener2" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener3" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener4" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-        { logo: require("../../assets/fenerbahce.png"), alt: "fener5" },
-    ]);
+    const teamLogos = useMemo(
+        () => [
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/8/86/Fenerbah%C3%A7e_SK.png?20211002193712",
+                alt: "fb",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Galatasaray_Sports_Club_Logo.png/822px-Galatasaray_Sports_Club_Logo.png",
+                alt: "gs",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/commons/0/08/Be%C5%9Fikta%C5%9F_Logo_Be%C5%9Fikta%C5%9F_Amblem_Be%C5%9Fikta%C5%9F_Arma.png",
+                alt: "bjk",
+            },
+            {
+                anthem: "https://www.trabzonspor.org.tr/download/resources/logo_6367234456_-1x-1_false.png",
+                alt: "ts",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/archive/4/41/20220809170232%21Konyaspor_1922.png",
+                alt: "konya",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/5/5f/Adanademirspor.png?20101106185724",
+                alt: "adana",
+            },
+            {
+                anthem: "https://tmssl.akamaized.net/images/wappen/head/3205.png?lm=1520239955",
+                alt: "kayseri",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/7/75/%C3%9Cmraniyespor_Logosu.png",
+                alt: "umra",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/e/ed/IstanbulsporAS.png",
+                alt: "istan",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/c/c1/Giresunspor.png",
+                alt: "gires",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/0/08/Hatayspor.png",
+                alt: "hatay",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/en/thumb/2/20/Sivasspor_logo.svg/1200px-Sivasspor_logo.svg.png",
+                alt: "sivas",
+            },
+            {
+                anthem: "https://ankaragucu.org.tr/wp-content/uploads/2018/06/MKE_Ankarag%C3%BCc%C3%BC_logo.png",
+                alt: "ankara",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/9/90/Fatihkaragumruk.png",
+                alt: "fatihkara",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/b/b9/Antalyaspor_logo.png",
+                alt: "antalya",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/6/68/Kasimpasa_2012.png",
+                alt: "kasım",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/1/18/Gaziantep_FK.png",
+                alt: "antep",
+            },
+            {
+                anthem: "https://upload.wikimedia.org/wikipedia/tr/2/29/Alanyaspor_logo.png",
+                alt: "alanya",
+            },
+            {
+                anthem: "http://www.futbollogo.com/resimler/logolar/istanbulbasaksehir.png",
+                alt: "başak",
+            },
+        ],
+        []
+    );
 
     const sections = useMemo(
         () => [
@@ -101,12 +161,13 @@ const NavBar = () => {
     return (
         <div className="navBar">
             <div className="teamsBar">
-                {teamLogos.map(({ logo, alt }, index) => {
+                {teamLogos.map(({ anthem, alt }, index) => {
                     return (
                         <img
+                            onClick={() => console.log(alt)} //TODO
                             key={index.toString()}
                             className="logos"
-                            src={logo}
+                            src={anthem}
                             alt={alt}
                         />
                     );
@@ -116,7 +177,12 @@ const NavBar = () => {
                 {/* <div className="tab">
                     <img src={menuIcon} alt="menu icon" width={"2vh"} />
                 </div> */}
-                <img src={menuIcon} alt="menu icon" className="menuIcon" />
+                <img
+                    style={{ cursor: "pointer" }}
+                    src={menuIcon}
+                    alt="menu icon"
+                    className="menuIcon"
+                />
                 <div className="sections">
                     {sections.map(({ label, navUrl }, index) => {
                         return (
