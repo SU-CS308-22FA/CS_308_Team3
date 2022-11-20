@@ -16,7 +16,7 @@ import ChangePassword from "./routes/profile/ChangePassword";
 import { MatchDetails } from "./routes/match/matchDetails";
 import Referees from "./routes/referee/Referees";
 import TeamDetails from "./routes/team/TeamDetails";
-import RefereeAdd from "./routes/referee/RefereeAdd";
+import RefereeAdd from "./routes/referee/refereeAdd";
 
 function App() {
     const { user } = useContext(UserContext);
