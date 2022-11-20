@@ -15,7 +15,8 @@ import { NotificationContext } from "./contexts/notificationContext";
 import ChangePassword from "./routes/profile/ChangePassword";
 import { MatchDetails } from "./routes/match/matchDetails";
 import Referees from "./routes/referee/Referees";
-import RefereeAdd from "./routes/referee/RefereeAdd";
+import TeamDetails from "./routes/team/TeamDetails";
+import RefereeAdd from "./routes/referee/refereeAdd";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -36,6 +37,7 @@ function App() {
                             <Route path="teams" element={<Teams />} />
 
                             <Route path="match-details/:id" element={<MatchDetails />} />
+                            <Route path="teams/:id" element={<TeamDetails />} />
 
                             <Route path="referees" element={<Referees />} />
                             <Route path="add-referee" element={<RefereeAdd />} />
@@ -72,6 +74,7 @@ function App() {
                             />
 
                             <Route path="match-details/:id" element={<MatchDetails />} />
+                            <Route path="teams/:id" element={<TeamDetails />} />
 
                             {/* TODO */}
                             {/* <Route path="*" element={<ErrorPage />} /> */}
