@@ -24,6 +24,8 @@ ul {
     justify-content: space-between;
 
     .teamsBar {
+        opacity: 0;
+        background-color: white;
         height: 7vh;
         width: 75vw;
         padding: 0vw 5vw;

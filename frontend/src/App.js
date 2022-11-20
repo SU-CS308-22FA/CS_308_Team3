@@ -15,6 +15,7 @@ import { NotificationContext } from "./contexts/notificationContext";
 import ChangePassword from "./routes/profile/ChangePassword";
 import { MatchDetails } from "./routes/match/matchDetails";
 import Referees from "./routes/referee/Referees";
+import RefereeAdd from "./routes/referee/RefereeAdd";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -37,6 +38,7 @@ function App() {
                             <Route path="match-details/:id" element={<MatchDetails />} />
 
                             <Route path="referees" element={<Referees />} />
+                            <Route path="add-referee" element={<RefereeAdd />} />
 
                             {/* <Route path="referees" element={<Referees />} /> */}
                             {/* Temporarily here for development */}
@@ -62,6 +64,7 @@ function App() {
                             <Route path="profile" element={<Profile />} />
                             <Route path="teams" element={<Teams />} />
                             <Route path="referees" element={<Referees />} />
+                            <Route path="add-referee" element={<RefereeAdd />} />
                             {/* <Route path="referees" element={<Referees />} /> */}
                             <Route
                                 path="changepassword"
