@@ -1,0 +1,9 @@
+.side-by-side {
+  display: flex;
+  flex-direction: row;
+}
+
+.top-to-bottom {
+  display: flex;
+  flex-direction: column;
+}
