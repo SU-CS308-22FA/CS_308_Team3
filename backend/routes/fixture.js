@@ -6,6 +6,9 @@ var router = express.Router();
  * GET
  */
 router.get("/list", fixtureController.list);
+router.get("/that", fixtureController.getMatch);
+router.get("/:id", fixtureController.getMatch);
+
 
 /*
  * POST
