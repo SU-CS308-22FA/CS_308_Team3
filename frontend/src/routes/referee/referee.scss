@@ -67,7 +67,15 @@
     transform: translate(-50%,-50%);
     z-index: 1;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 500px) {
+    .comparisonContainer {
+        display: none;
+    }
+}
+
