@@ -1,0 +1,23 @@
+.teamLogo {
+  height: 30vh;
+  width: auto;
+}
+
+.side-by-side {
+  display: flex;
+  flex-direction: row;
+}
+
+.top-to-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-by-side-TeamDetails {
+    /* flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: justify; */
+    width: 100%;
+}

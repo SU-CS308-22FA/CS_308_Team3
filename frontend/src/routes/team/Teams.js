@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "./teams.scss";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Teams() {
     const [teams, setTeams] = useState();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios
@@ -26,7 +28,7 @@ export default function Teams() {
                                     className="team"
                                     key={index}
                                     onClick={() => {
-                                        console.log("asd"); //TODO go to match
+                                        navigate(`/teams/${index}`);
                                     }}
                                 >
                                     <img
