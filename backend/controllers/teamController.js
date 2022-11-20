@@ -88,7 +88,7 @@ module.exports = {
                 },
                 {
                     name: "İstanbulspor",
-                    coach: "Osman Zeki Korkmazv",
+                    coach: "Osman Zeki Korkmaz",
                     numPlayers: 22,
                     anthem: "https://upload.wikimedia.org/wikipedia/tr/e/ed/IstanbulsporAS.png",
                     alt: "istan",

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import "./referee.scss";
+import "./refereeTable.scss";
 import {
     Button,
     FormControl,
@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export default function Referees() {
+export default function RefereeTable() {
     const navigate = useNavigate();
 
     const [referees, setReferees] = useState();
@@ -104,12 +104,20 @@ export default function Referees() {
                             index
                         ) => {
                             return (
-                                <div className="refereeContainer" key={index}>
+                                <div
+                                    className="refereeContainer"
+                                    key={index}
+                                    onClick={() =>
+                                        navigate(name, {
+                                            state: { name: name },
+                                        })
+                                    }
+                                >
                                     <div
                                         className="refereeInfo"
-                                        onClick={() => {
-                                            console.log("asd"); //TODO go to match
-                                        }}
+                                        // onClick={() => {
+                                        //     console.log("asd"); //TODO go to match
+                                        // }}
                                     >
                                         <img
                                             src={image}

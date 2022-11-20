@@ -146,26 +146,27 @@ module.exports = {
             },
         ];
         refereeModel.find({}).exec(function (err, data) {
-            // console.log(data);
             refs.push(...data);
             // console.log(refs);
-            console.log(refs);
             return res.send({
                 referees: refs,
             });
         });
     },
-    teamsList: (req, res) => {
-        return res.send({
-            referees: [],
-        });
+    refereeDetails: async (req, res) => {
+        const { name } = req.params;
+
+        const refereeFound = await refereeModel.findOne({ name: name });
+
+        if (refereeFound != null)
+            res.send({ referee: refereeFound, message: "Found" });
+        else res.send({ message: "Not found" });
     },
     update: () => {},
     remove: () => {},
     refereeAdd: async (req, res) => {
         const { name, age, experience, licence, hometown, image } = req.body;
 
-        //req.session.userId = newUser._id;
         const newReferee = new refereeModel({
             name: name,
             age: age,

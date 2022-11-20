@@ -13,8 +13,9 @@ import ProfileWoLogin from "./routes/profile/ProfileWoLogin";
 import Notification from "./components/notification/Notification";
 import { NotificationContext } from "./contexts/notificationContext";
 import ChangePassword from "./routes/profile/ChangePassword";
-import Referees from "./routes/referee/Referees";
 import RefereeAdd from "./routes/referee/RefereeAdd";
+import RefereeDetails from "./routes/referee/RefereeDetails";
+import RefereeTable from "./routes/referee/RefereeTable";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -33,9 +34,15 @@ function App() {
                                 element={<ProfileWoLogin />}
                             />
                             <Route path="teams" element={<Teams />} />
-                            <Route path="referees" element={<Referees />} />
-                            <Route path="add-referee" element={<RefereeAdd />} />
-                            {/* <Route path="referees" element={<Referees />} /> */}
+                            <Route path="referees" element={<RefereeTable />} />
+                            <Route
+                                path="referees/:name"
+                                element={<RefereeDetails />}
+                            />
+                            <Route
+                                path="add-referee"
+                                element={<RefereeAdd />}
+                            />
                             {/* Temporarily here for development */}
                             {/* <Route path="userprofile" element={<Profile />} />
                             <Route path="changepassword" element={<ChangePassword />} /> */}
@@ -58,9 +65,15 @@ function App() {
                             <Route path="/" element={<Fixture />} />
                             <Route path="profile" element={<Profile />} />
                             <Route path="teams" element={<Teams />} />
-                            <Route path="referees" element={<Referees />} />
-                            <Route path="add-referee" element={<RefereeAdd />} />
-                            {/* <Route path="referees" element={<Referees />} /> */}
+                            <Route path="referees" element={<RefereeTable />} />
+                            <Route
+                                path="referees/:name"
+                                element={<RefereeDetails />}
+                            />
+                            <Route
+                                path="add-referee"
+                                element={<RefereeAdd />}
+                            />
                             <Route
                                 path="changepassword"
                                 element={<ChangePassword />}
