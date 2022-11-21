@@ -53,16 +53,16 @@ export default function Teams() {
                   <h3>Year of Establishment: <span style={{fontWeight: "normal",}}>{team.establishment}</span></h3>
                   <h3>Number of Trophies: <span style={{fontWeight: "normal",}}>{team.trophies}</span></h3>
                   <h3>Number of Fans: <span style={{fontWeight: "normal",}}>{team.fans}</span></h3>
+                  <h3>Number of Players: <span style={{fontWeight: "normal",}}>{team.numPlayers}</span></h3>
                 </div>
               </div>
 
 
-              <TableContainer component={Paper}>
+              {/* <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
                     <TableRow>
                       <TableCell>Player Name</TableCell>
-                      {/* <TableCell align="right">Number</TableCell> */}
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -74,12 +74,11 @@ export default function Teams() {
                         <TableCell component="th" scope="row">
                           {row.name}
                         </TableCell>
-                        {/* <TableCell align="right">{row.number}</TableCell> */}
                       </TableRow>
                     ))}
                   </TableBody>
                 </Table>
-              </TableContainer>
+              </TableContainer>*/}
               {/* <div style={{width: "100%", paddingTop: "5vh"}}> */}
                 {/* <div className="side-by-side-TeamDetails" style= {{paddingTop: "5vh"}}> */}
                   {/* <div style={{justifyContent: "start", alignItems: "start", alignContent: "start", float: "left"}}>
