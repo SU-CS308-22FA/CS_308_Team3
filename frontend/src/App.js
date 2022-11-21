@@ -17,6 +17,7 @@ import { MatchDetails } from "./routes/match/matchDetails";
 import Referees from "./routes/referee/Referees";
 import TeamDetails from "./routes/team/TeamDetails";
 import RefereeAdd from "./routes/referee/refereeAdd";
+import RefereeCompare from "./routes/referee/RefereeCompare";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -41,6 +42,7 @@ function App() {
 
                             <Route path="referees" element={<Referees />} />
                             <Route path="add-referee" element={<RefereeAdd />} />
+                            <Route path="referee-compare/:id1/:id2" element={<RefereeCompare />} />
 
                             {/* <Route path="referees" element={<Referees />} /> */}
                             {/* Temporarily here for development */}
@@ -75,6 +77,7 @@ function App() {
 
                             <Route path="match-details/:id" element={<MatchDetails />} />
                             <Route path="teams/:id" element={<TeamDetails />} />
+                            <Route path="referee-compare/:id1/:id2" element={<RefereeCompare />} />
 
                             {/* TODO */}
                             {/* <Route path="*" element={<ErrorPage />} /> */}
