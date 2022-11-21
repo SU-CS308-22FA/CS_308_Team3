@@ -14,7 +14,6 @@ export const UserContext = createContext({
     updateUser: () => {},
     login: () => {},
     logout: () => {},
-    updateUser: () => {},
     resetUser: () => {},
 });
 
@@ -59,9 +58,11 @@ export const UserProvider = ({ children }) => {
             .catch((err) => {
                 console.log(err);
             });
-    });
+    }, []);
 
-    const logout = () => {};
+    const logout = useCallback(() => {
+        setUser(null);
+    }, []);
     // useEffect(() => {
     //     setUser({ name: "Ege", surname: "Metin", age: 21, memberType: "Fan" });
     // }, []);

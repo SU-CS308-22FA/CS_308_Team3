@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import {
     alpha,
     Avatar,
@@ -147,6 +147,10 @@ const NavBar = () => {
         ],
         []
     );
+
+    useEffect(() => {
+        setProfilePhoto(require("../../assets/profiledefault_mini.png"));
+    }, [user]);
 
     const sections = useMemo(
         () => [

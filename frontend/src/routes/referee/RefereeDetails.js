@@ -24,16 +24,35 @@ export default function RefereeDetails() {
     return (
         <div className="refereeDetailsContainer">
             <div>
-                <img src={referee.image} alt={referee.name} />
+                <img
+                    className="refereePhoto"
+                    src={referee.image}
+                    alt={referee.name}
+                />
                 <div className="refereeDetails">
-                    <h3>Name: {referee.name}</h3>
                     <h3>Age: {referee.age}</h3>
                     <h3>Years of Experience: {referee.experience}</h3>
-                    <h3>Licence: {referee.license}</h3>
+                    <h3>License: {referee.license}</h3>
                     <h3>Hometown: {referee.hometown}</h3>
                 </div>
             </div>
-            <h3>Last 3 Matches</h3>
+            <h1>{referee.name}</h1>
+            <div className="lastMatchesContainer">
+                <p style={{ fontSize: "20px" }}>Last 3 matches:</p>
+                <div className="lastMatches">
+                    {referee.last3Matches &&
+                        referee.last3Matches.map(
+                            ({ logo1, logo2, date }, index) =>
+                                date && (
+                                    <div className="match" key={index}>
+                                        <img src={logo1} alt={"logo1"} />
+                                        <p>vs</p>
+                                        <img src={logo2} alt={"logo2"} />
+                                    </div>
+                                )
+                        )}
+                </div>
+            </div>
         </div>
     );
 }

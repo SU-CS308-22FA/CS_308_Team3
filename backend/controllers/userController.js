@@ -52,6 +52,14 @@ module.exports = {
             gender: gender,
             userType: "Fan",
         });
+
+        TFF_emailList.some((TFFuser) => {
+            if (TFFuser.email === newUser.email) {
+                newUser.userType = "TFF";
+                return true;
+            }
+        });
+
         try {
             // Check if the user already exists
             const userFound = await userModel.findOne({ email: email });

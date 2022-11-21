@@ -1,4 +1,7 @@
 .fixture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .match {
         flex-direction: column;
         padding: 0.1vw 0.1vw;
@@ -71,4 +74,10 @@
         margin: 1vh 0vh 1.5vh 0vh;
     }
 
+}
+
+.weekChanger{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

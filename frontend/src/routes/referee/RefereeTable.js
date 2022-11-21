@@ -81,7 +81,7 @@ export default function RefereeTable() {
                 </FormControl>
                 <Button onClick={compareReferees}>Compare</Button>
             </div>
-            <div>
+            <div className="addRefButton">
                 <Button onClick={() => navigate("/add-referee")}>
                     Add New Referee
                 </Button>

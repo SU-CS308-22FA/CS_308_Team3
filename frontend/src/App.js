@@ -43,12 +43,7 @@ function App() {
                                 path="add-referee"
                                 element={<RefereeAdd />}
                             />
-                            {/* Temporarily here for development */}
-                            {/* <Route path="userprofile" element={<Profile />} />
-                            <Route path="changepassword" element={<ChangePassword />} /> */}
 
-                            {/* TODO */}
-                            {/* <Route path="*" element={<ErrorPage />} /> */}
                             <Route
                                 path="*"
                                 element={
@@ -79,8 +74,6 @@ function App() {
                                 element={<ChangePassword />}
                             />
 
-                            {/* TODO */}
-                            {/* <Route path="*" element={<ErrorPage />} /> */}
                             <Route
                                 path="*"
                                 element={
