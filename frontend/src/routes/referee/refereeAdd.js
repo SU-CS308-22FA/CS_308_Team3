@@ -17,7 +17,7 @@ export default function RefereeAdd() {
     const [experience, setExperience] = useState("");
     const [license, setLicense] = useState("");
     const [hometown, setHometown] = useState("");
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState("");
     //const [score, setScore] = useState("");
 
     const FIELDS = useMemo(
@@ -136,18 +136,21 @@ export default function RefereeAdd() {
                                 })}
                             </div>
                         </div>
-                        <div
-                        // style={{
-                        //     flexDirection: "row",
-                        //     display: "flex",
-                        //     height: "3%",
-                        // }}
-                        >
+                        <div>
                             <p className="text">Profile Photo</p>
-                            <input
+                            {/* <input
                                 type="file"
                                 name="myImage"
                                 onChange={onImageChange}
+                            /> */}
+                            <TextField
+                                style={{ width: "20vw" }}
+                                label={"Image URL"}
+                                type={"text"}
+                                value={image}
+                                onChange={(event) =>
+                                    setImage(event.target.value)
+                                }
                             />
                         </div>
                         <Button

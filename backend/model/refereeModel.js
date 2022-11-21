@@ -10,6 +10,7 @@ const refereeSchema = Schema({
     gender: String,
     image: Object,
     last3Matches: Array,
+    score: Number,
 });
 
 const refereeModel = mongoose.model("referees", refereeSchema);

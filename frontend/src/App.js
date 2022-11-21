@@ -13,10 +13,11 @@ import ProfileWoLogin from "./routes/profile/ProfileWoLogin";
 import Notification from "./components/notification/Notification";
 import { NotificationContext } from "./contexts/notificationContext";
 import ChangePassword from "./routes/profile/ChangePassword";
+import RefereeAdd from "./routes/referee/RefereeAdd";
+import RefereeDetails from "./routes/referee/RefereeDetails";
+import RefereeTable from "./routes/referee/RefereeTable";
 import { MatchDetails } from "./routes/match/matchDetails";
-import Referees from "./routes/referee/Referees";
 import TeamDetails from "./routes/team/TeamDetails";
-import RefereeAdd from "./routes/referee/refereeAdd";
 import RefereeCompare from "./routes/referee/RefereeCompare";
 
 function App() {
@@ -36,21 +37,32 @@ function App() {
                                 element={<ProfileWoLogin />}
                             />
                             <Route path="teams" element={<Teams />} />
+                            <Route path="referees" element={<RefereeTable />} />
+                            <Route
+                                path="referees/:name"
+                                element={<RefereeDetails />}
+                            />
 
-                            <Route path="match-details/:id" element={<MatchDetails />} />
+                            <Route
+                                path="match-details/:id"
+                                element={<MatchDetails />}
+                            />
                             <Route path="teams/:id" element={<TeamDetails />} />
 
-                            <Route path="referees" element={<Referees />} />
-                            <Route path="add-referee" element={<RefereeAdd />} />
-                            <Route path="referee-compare/:id1/:id2" element={<RefereeCompare />} />
+                            <Route
+                                path="add-referee"
+                                element={<RefereeAdd />}
+                            />
+                            <Route
+                                path="referee-compare/:id1/:id2"
+                                element={<RefereeCompare />}
+                            />
 
                             {/* <Route path="referees" element={<Referees />} /> */}
                             {/* Temporarily here for development */}
                             {/* <Route path="userprofile" element={<Profile />} />
                             <Route path="changepassword" element={<ChangePassword />} /> */}
 
-                            {/* TODO */}
-                            {/* <Route path="*" element={<ErrorPage />} /> */}
                             <Route
                                 path="*"
                                 element={
@@ -67,17 +79,29 @@ function App() {
                             <Route path="/" element={<Fixture />} />
                             <Route path="profile" element={<Profile />} />
                             <Route path="teams" element={<Teams />} />
-                            <Route path="referees" element={<Referees />} />
-                            <Route path="add-referee" element={<RefereeAdd />} />
-                            {/* <Route path="referees" element={<Referees />} /> */}
+                            <Route path="referees" element={<RefereeTable />} />
+                            <Route
+                                path="referees/:name"
+                                element={<RefereeDetails />}
+                            />
+                            <Route
+                                path="add-referee"
+                                element={<RefereeAdd />}
+                            />
                             <Route
                                 path="changepassword"
                                 element={<ChangePassword />}
                             />
 
-                            <Route path="match-details/:id" element={<MatchDetails />} />
+                            <Route
+                                path="match-details/:id"
+                                element={<MatchDetails />}
+                            />
                             <Route path="teams/:id" element={<TeamDetails />} />
-                            <Route path="referee-compare/:id1/:id2" element={<RefereeCompare />} />
+                            <Route
+                                path="referee-compare/:id1/:id2"
+                                element={<RefereeCompare />}
+                            />
 
                             {/* TODO */}
                             {/* <Route path="*" element={<ErrorPage />} /> */}
@@ -100,21 +124,3 @@ function App() {
 }
 
 export default App;
-
-// {!user ? (
-// <Route path="/" element={<Fixture />}>
-//     {/* <Route index element={<Fixture />} /> */}
-//     <Route path="profile" element={<Login />} />
-//     {/* <Route index element={<Fixture />} /> */}
-
-//     {/* TODO */}
-//     {/* <Route path="*" element={<ErrorPage />} /> */}
-//     <Route
-//         path="*"
-//         element={
-//             <main style={{ padding: "1rem" }}>
-//                 <p>There's nothing here!</p>
-//             </main>
-//         }
-//     />
-// </Route>

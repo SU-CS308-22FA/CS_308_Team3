@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import "./referee.scss";
+import "./refereeTable.scss";
 import {
     Button,
     FormControl,
@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export default function Referees() {
+export default function RefereeTable() {
     const navigate = useNavigate();
 
     const [referees, setReferees] = useState();
@@ -83,7 +83,7 @@ export default function Referees() {
                 </FormControl>
                 <Button onClick={() => compareReferees(referee1, referee2)}>Compare</Button>
             </div>
-            <div>
+            <div className="addRefButton">
                 <Button onClick={() => navigate("/add-referee")}>
                     Add New Referee
                 </Button>
@@ -96,8 +96,8 @@ export default function Referees() {
                             {
                                 name,
                                 age,
-                                exp,
-                                licence,
+                                experience,
+                                license,
                                 hometown,
                                 score,
                                 image,
@@ -106,12 +106,20 @@ export default function Referees() {
                             index
                         ) => {
                             return (
-                                <div className="refereeContainer" key={index}>
+                                <div
+                                    className="refereeContainer"
+                                    key={index}
+                                    onClick={() =>
+                                        navigate(name, {
+                                            state: { name: name },
+                                        })
+                                    }
+                                >
                                     <div
                                         className="refereeInfo"
-                                        onClick={() => {
-                                            console.log("asd"); //TODO go to match
-                                        }}
+                                        // onClick={() => {
+                                        //     console.log("asd"); //TODO go to match
+                                        // }}
                                     >
                                         <img
                                             src={image}
@@ -124,8 +132,8 @@ export default function Referees() {
                                         />
                                         <p>Name: {name}</p>
                                         <p>Age: {age}</p>
-                                        <p>Years of experience: {exp}</p>
-                                        <p>License: {licence}</p>
+                                        <p>Years of experience: {experience}</p>
+                                        <p>License: {license}</p>
                                         <p>Hometown: {hometown}</p>
                                         <p>Score: {score}</p>
                                     </div>
