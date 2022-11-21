@@ -16,6 +16,9 @@ import ChangePassword from "./routes/profile/ChangePassword";
 import RefereeAdd from "./routes/referee/RefereeAdd";
 import RefereeDetails from "./routes/referee/RefereeDetails";
 import RefereeTable from "./routes/referee/RefereeTable";
+import { MatchDetails } from "./routes/match/matchDetails";
+import TeamDetails from "./routes/team/TeamDetails";
+import RefereeCompare from "./routes/referee/RefereeCompare";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -39,10 +42,26 @@ function App() {
                                 path="referees/:name"
                                 element={<RefereeDetails />}
                             />
+
+                            <Route
+                                path="match-details/:id"
+                                element={<MatchDetails />}
+                            />
+                            <Route path="teams/:id" element={<TeamDetails />} />
+
                             <Route
                                 path="add-referee"
                                 element={<RefereeAdd />}
                             />
+                            <Route
+                                path="referee-compare/:id1/:id2"
+                                element={<RefereeCompare />}
+                            />
+
+                            {/* <Route path="referees" element={<Referees />} /> */}
+                            {/* Temporarily here for development */}
+                            {/* <Route path="userprofile" element={<Profile />} />
+                            <Route path="changepassword" element={<ChangePassword />} /> */}
 
                             <Route
                                 path="*"
@@ -75,6 +94,18 @@ function App() {
                             />
 
                             <Route
+                                path="match-details/:id"
+                                element={<MatchDetails />}
+                            />
+                            <Route path="teams/:id" element={<TeamDetails />} />
+                            <Route
+                                path="referee-compare/:id1/:id2"
+                                element={<RefereeCompare />}
+                            />
+
+                            {/* TODO */}
+                            {/* <Route path="*" element={<ErrorPage />} /> */}
+                            <Route
                                 path="*"
                                 element={
                                     <main style={{ padding: "15rem" }}>
@@ -93,21 +124,3 @@ function App() {
 }
 
 export default App;
-
-// {!user ? (
-// <Route path="/" element={<Fixture />}>
-//     {/* <Route index element={<Fixture />} /> */}
-//     <Route path="profile" element={<Login />} />
-//     {/* <Route index element={<Fixture />} /> */}
-
-//     {/* TODO */}
-//     {/* <Route path="*" element={<ErrorPage />} /> */}
-//     <Route
-//         path="*"
-//         element={
-//             <main style={{ padding: "1rem" }}>
-//                 <p>There's nothing here!</p>
-//             </main>
-//         }
-//     />
-// </Route>

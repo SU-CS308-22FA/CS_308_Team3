@@ -1,0 +1,44 @@
+.side-by-side {
+    display: flex;
+    flex-direction: row;
+}
+
+.top-to-bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.matchTeamLogo {
+    height: "auto";
+    width: 15vw;
+    max-height: 35vh;
+    margin: 0px 1vw;
+    object-fit: contain;
+}
+
+.team-title {
+    text-align: center;
+}
+
+.Main {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.left-side-top-to-bottom {
+    /* margin-right: 10vw; */
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side-top-to-bottom {
+    /* margin-left: 10vw; */
+    display: flex;
+    flex-direction: column;
+}
+
+.divider {
+    padding-left: 10vw;
+    padding-right: 10vw;
+}

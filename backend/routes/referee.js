@@ -7,6 +7,7 @@ var refereeController = require("../controllers/refereeController.js");
  */
 router.get("/list", refereeController.list);
 router.get("/:name", refereeController.refereeDetails);
+router.get("/:id1/:id2", refereeController.compareReferees);
 
 /*
  * POST

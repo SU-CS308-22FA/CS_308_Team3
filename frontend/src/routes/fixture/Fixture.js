@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { sortList } from "../../functions/helpers";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
@@ -10,6 +11,7 @@ import "./fixture.scss";
 export default function Fixture() {
     const [matches, setMatches] = useState();
     const [week, setWeek] = useState(1);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios
@@ -49,7 +51,15 @@ export default function Fixture() {
                     {matches &&
                         matches.map(
                             (
-                                { team1, logo1, team2, logo2, date, referee },
+                                {
+                                    id,
+                                    team1,
+                                    logo1,
+                                    team2,
+                                    logo2,
+                                    date,
+                                    referee,
+                                },
                                 index
                             ) => {
                                 return (
@@ -57,7 +67,7 @@ export default function Fixture() {
                                         className="match"
                                         key={index}
                                         onClick={() => {
-                                            console.log("asd"); //TODO go to match
+                                            navigate(`/match-details/${id}`); //TODO go to match
                                         }}
                                     >
                                         <div className="matchInfo">

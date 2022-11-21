@@ -85,4 +85,22 @@ module.exports = {
             console.log(err);
         }
     },
+
+    compareReferees:async (req,res) => {
+        const {id1, id2} = req.params;
+
+        // if (refereeFound != null)
+        //     res.send({ referee: refereeFound, message: "Found" });
+        // else res.send({ message: "Not found" });
+
+        var referee1 = await refereeModel.findOne({name: id1});
+        var referee2 = await refereeModel.findOne({name: id2});
+
+
+        return res.send({
+            referees: [referee1, referee2]
+        });
+
+
+    },
 };

@@ -168,7 +168,7 @@ const NavBar = () => {
                 {teamLogos.map(({ anthem, alt }, index) => {
                     return (
                         <img
-                            onClick={() => console.log(alt)} //TODO
+                            onClick={() => navigate(`/teams/${index}`)} //TODO
                             key={index.toString()}
                             className="logos"
                             src={anthem}
