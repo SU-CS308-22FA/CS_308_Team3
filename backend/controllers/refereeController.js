@@ -202,90 +202,20 @@ module.exports = {
         }
     },
 
-    compareReferees: (req,res) => {
+    compareReferees:async (req,res) => {
         const {id1, id2} = req.params;
 
-        var referee1 = refereeModel.findOne({name: id1})
-        var referee2 = refereeModel.findOne({name: id2})
+        // if (refereeFound != null)
+        //     res.send({ referee: refereeFound, message: "Found" });
+        // else res.send({ message: "Not found" });
 
-        console.log(referee1)
-        console.log(referee2)
+        var referee1 = await refereeModel.findOne({name: id1});
+        var referee2 = await refereeModel.findOne({name: id2});
 
-        var refs = [
-            {
-                name: "Cüneyt Çakır",
-                age: 45,
-                exp: 12,
-                licence: "FIFA",
-                hometown: "İstanbul",
-                score: 7.5,
-                image: "https://img.a.transfermarkt.technology/portrait/header/351-1526478925.jpg?lm=1",
-                last3Matches: [
-                    {
-                        team1: "CORENDON ALANYASPOR",
-                        logo1: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        team2: "ADANA DEMİRSPOR A.Ş.",
-                        logo2: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        date: "12.11.2022 20:00",
-                        referee: "Cüneyt Çakır",
-                    },
-                    {
-                        team1: "CORENDON ALANYASPOR",
-                        logo1: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        team2: "ADANA DEMİRSPOR A.Ş.",
-                        logo2: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        date: "12.11.2022 20:00",
-                        referee: "Cüneyt Çakır",
-                    },
-                    {
-                        team1: "CORENDON ALANYASPOR",
-                        logo1: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        team2: "ADANA DEMİRSPOR A.Ş.",
-                        logo2: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        date: "12.11.2022 20:00",
-                        referee: "Cüneyt Çakır",
-                    },
-                ],
-            },
-            {
-                name: "Cüneyt Çakır2",
-                age: 45,
-                exp: 12,
-                licence: "FIFA",
-                hometown: "İstanbul",
-                score: 7.5,
-                image: "https://img.a.transfermarkt.technology/portrait/header/351-1526478925.jpg?lm=1",
-                last3Matches: [
-                    {
-                        team1: "CORENDON ALANYASPOR",
-                        logo1: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        team2: "ADANA DEMİRSPOR A.Ş.",
-                        logo2: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        date: "12.11.2022 20:00",
-                        referee: "Cüneyt Çakır",
-                    },
-                    {
-                        team1: "CORENDON ALANYASPOR",
-                        logo1: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        team2: "ADANA DEMİRSPOR A.Ş.",
-                        logo2: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        date: "12.11.2022 20:00",
-                        referee: "Cüneyt Çakır",
-                    },
-                    {
-                        team1: "CORENDON ALANYASPOR",
-                        logo1: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        team2: "ADANA DEMİRSPOR A.Ş.",
-                        logo2: "https://upload.wikimedia.org/wikipedia/commons/3/37/Galatasaray_Star_Logo.png",
-                        date: "12.11.2022 20:00",
-                        referee: "Cüneyt Çakır",
-                    },
-                ],
-            }]
 
-            return res.send({
-                referees: refs
-            });
+        return res.send({
+            referees: [referee1, referee2]
+        });
 
 
     },

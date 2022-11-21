@@ -28,7 +28,9 @@ export default function Referees() {
             .catch((err) => console.log(err));
     }, []);
 
-    const compareReferees = () => {}; //TODO
+    const compareReferees = (referee1, referee2) => {
+        navigate(`/referee-compare/${referee1}/${referee2}`);
+    };
 
     return (
         <div>
@@ -79,7 +81,7 @@ export default function Referees() {
                             ))}
                     </Select>
                 </FormControl>
-                <Button onClick={compareReferees}>Compare</Button>
+                <Button onClick={() => compareReferees(referee1, referee2)}>Compare</Button>
             </div>
             <div>
                 <Button onClick={() => navigate("/add-referee")}>
