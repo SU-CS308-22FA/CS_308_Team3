@@ -3,9 +3,12 @@
     flex-direction: column;
     align-items: center;
     .match {
+        display: flex;
         flex-direction: column;
+        justify-content: center;
         padding: 0.1vw 0.1vw;
         width: 39%;
+        min-height: 18vh;
         height: auto;
         min-width: 400px;
         padding: 0vw 2vw;
@@ -17,15 +20,18 @@
         box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.16),
             0 0 0 4px rgba(205, 25, 25, 0.08);
         .matchInfo {
+            // margin: 2vh 0vh;
+            display: flex;
             flex-direction: row;
             // flex: 1;
-            display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
+            min-height: 8vh;
             align-items: center;
             .fixtureTeamLogo{
                 height: 50%;
                 max-height: 50px;
                 width: auto;
+                object-fit: contain;
                 margin: 0px 1vw;
             }
         }
@@ -42,24 +48,12 @@
         border-style: solid;
         margin: 1.5% 1%;
         cursor: pointer;
-        .matchInfo {
-            flex-direction: row;
-            color: white;
-            // flex: 1;
-            display: flex;
-            .fixtureTeamLogo{
-                height: 50%;
-                max-height: 50px;
-                width: auto;
-            }
-        }
+
         .button {
             background-color: white; // theme.palette.primary.main
             color: rgb(7, 68, 173);
         }
         .referee {
-            text-align: center;
-            margin: 1vh 0vh 1.5vh 0vh;
             color: white;
         }
     }
@@ -71,7 +65,7 @@
     // }
     .referee {
         text-align: center;
-        margin: 1vh 0vh 1.5vh 0vh;
+        margin: 1.5vh 0vh 1vh 0vh;
     }
 
 }

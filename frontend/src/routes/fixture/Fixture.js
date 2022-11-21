@@ -26,7 +26,7 @@ export default function Fixture() {
     return (
         <div>
             <h3>Fixture of the Week</h3>
-            <h3>Week {week}</h3>
+            <h3 style={{ color: "red" }}>Week {week}</h3>
             <div className="fixture">
                 <div className="weekChanger">
                     <ArrowCircleLeftIcon
@@ -61,16 +61,18 @@ export default function Fixture() {
                                         }}
                                     >
                                         <div className="matchInfo">
-                                            <p>{team1}</p>
+                                            <p style={{ flex: "1" }}>{team1}</p>
                                             <img
                                                 className="fixtureTeamLogo"
                                                 src={logo1}
                                                 alt={team1}
+                                                style={{ flex: "1" }}
                                             />
                                             <p
                                                 style={{
                                                     fontWeight: "bold",
                                                     margin: "0vw 0.8vw",
+                                                    flex: "1",
                                                 }}
                                             >
                                                 {date}
@@ -79,8 +81,9 @@ export default function Fixture() {
                                                 className="fixtureTeamLogo"
                                                 src={logo2}
                                                 alt={team2}
+                                                style={{ flex: "1" }}
                                             />
-                                            <p>{team2}</p>
+                                            <p style={{ flex: "1" }}>{team2}</p>
                                         </div>
                                         <div className="referee">
                                             {referee === "" ? (

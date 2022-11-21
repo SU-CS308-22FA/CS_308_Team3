@@ -94,8 +94,8 @@ export default function RefereeTable() {
                             {
                                 name,
                                 age,
-                                exp,
-                                licence,
+                                experience,
+                                license,
                                 hometown,
                                 score,
                                 image,
@@ -130,8 +130,8 @@ export default function RefereeTable() {
                                         />
                                         <p>Name: {name}</p>
                                         <p>Age: {age}</p>
-                                        <p>Years of experience: {exp}</p>
-                                        <p>License: {licence}</p>
+                                        <p>Years of experience: {experience}</p>
+                                        <p>License: {license}</p>
                                         <p>Hometown: {hometown}</p>
                                         <p>Score: {score}</p>
                                     </div>
