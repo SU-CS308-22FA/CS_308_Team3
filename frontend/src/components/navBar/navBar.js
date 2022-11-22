@@ -149,7 +149,11 @@ const NavBar = () => {
     );
 
     useEffect(() => {
-        setProfilePhoto(require("../../assets/profiledefault_mini.png"));
+        setProfilePhoto(
+            require(user != null
+                ? "../../assets/sample_pp.jpg"
+                : "../../assets/profiledefault_mini.png")
+        );
     }, [user]);
 
     const sections = useMemo(

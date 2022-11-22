@@ -50,10 +50,6 @@ function App() {
                             <Route path="teams/:id" element={<TeamDetails />} />
 
                             <Route
-                                path="add-referee"
-                                element={<RefereeAdd />}
-                            />
-                            <Route
                                 path="referee-compare/:id1/:id2"
                                 element={<RefereeCompare />}
                             />
@@ -74,7 +70,8 @@ function App() {
                                 }
                             />
                         </>
-                    ) : (
+                    ) : user.userType === "TFF" ? (
+                        // TFF staff routes
                         <>
                             <Route path="/" element={<Fixture />} />
                             <Route path="profile" element={<Profile />} />
@@ -87,6 +84,45 @@ function App() {
                             <Route
                                 path="add-referee"
                                 element={<RefereeAdd />}
+                            />
+                            <Route
+                                path="changepassword"
+                                element={<ChangePassword />}
+                            />
+
+                            <Route
+                                path="match-details/:id"
+                                element={<MatchDetails />}
+                            />
+                            <Route path="teams/:id" element={<TeamDetails />} />
+                            <Route
+                                path="referee-compare/:id1/:id2"
+                                element={<RefereeCompare />}
+                            />
+
+                            {/* TODO */}
+                            {/* <Route path="*" element={<ErrorPage />} /> */}
+                            <Route
+                                path="*"
+                                element={
+                                    <main style={{ padding: "15rem" }}>
+                                        <h1>
+                                            There's nothing here! Page Not Found
+                                        </h1>
+                                    </main>
+                                }
+                            />
+                        </>
+                    ) : (
+                        // normal user routes
+                        <>
+                            <Route path="/" element={<Fixture />} />
+                            <Route path="profile" element={<Profile />} />
+                            <Route path="teams" element={<Teams />} />
+                            <Route path="referees" element={<RefereeTable />} />
+                            <Route
+                                path="referees/:name"
+                                element={<RefereeDetails />}
                             />
                             <Route
                                 path="changepassword"

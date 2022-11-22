@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import "./refereeTable.scss";
@@ -11,9 +11,12 @@ import {
     Select,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts/userContext";
 
 export default function RefereeTable() {
     const navigate = useNavigate();
+
+    const { user } = useContext(UserContext);
 
     const [referees, setReferees] = useState();
     const [referee1, setReferee1] = useState("");
@@ -31,7 +34,7 @@ export default function RefereeTable() {
     const compareReferees = (referee1, referee2) => {
         navigate(`/referee-compare/${referee1}/${referee2}`);
     };
-
+    console.log({ user });
     return (
         <div>
             <h3>Referees</h3>
@@ -81,13 +84,17 @@ export default function RefereeTable() {
                             ))}
                     </Select>
                 </FormControl>
-                <Button onClick={() => compareReferees(referee1, referee2)}>Compare</Button>
-            </div>
-            <div className="addRefButton">
-                <Button onClick={() => navigate("/add-referee")}>
-                    Add New Referee
+                <Button onClick={() => compareReferees(referee1, referee2)}>
+                    Compare
                 </Button>
             </div>
+            {user && user.userType === "TFF" && (
+                <div className="addRefButton">
+                    <Button onClick={() => navigate("/add-referee")}>
+                        Add New Referee
+                    </Button>
+                </div>
+            )}
             {/* <h3 className="comparisonContainer">Ars</h3> */}
             <div className="wrapContainer">
                 {referees &&

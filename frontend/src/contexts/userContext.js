@@ -29,6 +29,7 @@ export const UserProvider = ({ children }) => {
 
     const resetUser = () => {
         setUser(null);
+        sessionStorage.clear();
     };
 
     const login = useCallback(async (email, password) => {
