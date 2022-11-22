@@ -64,9 +64,7 @@ export const UserProvider = ({ children }) => {
     const logout = useCallback(() => {
         setUser(null);
     }, []);
-    // useEffect(() => {
-    //     setUser({ name: "Ege", surname: "Metin", age: 21, memberType: "Fan" });
-    // }, []);
+
     const value = useMemo(
         () => ({
             user,

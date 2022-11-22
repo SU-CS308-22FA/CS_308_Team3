@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { sortList } from "../../functions/helpers";
+import { sortDates } from "../../functions/helpers";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
@@ -19,7 +19,7 @@ export default function Fixture() {
             .then((res) => {
                 const matchesWoOrder = res.data.matches;
                 // console.table(matchesWoOrder);
-                const sortedMathces = sortList(matchesWoOrder);
+                const sortedMathces = sortDates(matchesWoOrder);
                 setMatches(sortedMathces);
             })
             .catch((err) => console.log(err));
