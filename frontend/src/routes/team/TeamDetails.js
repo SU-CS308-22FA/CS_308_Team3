@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import "./TeamDetails.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 export default function Teams() {
     const [team, setTeam] = useState();
@@ -85,7 +92,7 @@ export default function Teams() {
                         </div>
                     </div>
 
-                    {/* <TableContainer component={Paper}>
+                    <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
                     <TableRow>
@@ -105,7 +112,7 @@ export default function Teams() {
                     ))}
                   </TableBody>
                 </Table>
-              </TableContainer>*/}
+              </TableContainer>
                     {/* <div style={{width: "100%", paddingTop: "5vh"}}> */}
                     {/* <div className="side-by-side-TeamDetails" style= {{paddingTop: "5vh"}}> */}
                     {/* <div style={{justifyContent: "start", alignItems: "start", alignContent: "start", float: "left"}}>
