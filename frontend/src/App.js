@@ -19,6 +19,7 @@ import RefereeTable from "./routes/referee/RefereeTable";
 import { MatchDetails } from "./routes/match/matchDetails";
 import TeamDetails from "./routes/team/TeamDetails";
 import RefereeCompare from "./routes/referee/RefereeCompare";
+import TeamEdit from "./routes/team/TeamEdit";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -94,7 +95,7 @@ function App() {
                                 path="match-details/:id"
                                 element={<MatchDetails />}
                             />
-                            <Route path="teams/:id" element={<TeamDetails />} />
+                            <Route path="teams/:id" element={<TeamEdit />} />
                             <Route
                                 path="referee-compare/:id1/:id2"
                                 element={<RefereeCompare />}

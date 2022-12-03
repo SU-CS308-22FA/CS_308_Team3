@@ -22,7 +22,7 @@ export default function Teams() {
             <div className="wrapContainer">
                 {teams &&
                     teams.map(
-                        ({ name, coach, anthem, alt, numPlayers }, index) => {
+                        ({ name, manager, anthem, alt, numPlayers }, index) => {
                             return (
                                 <div
                                     className="team"
@@ -40,7 +40,7 @@ export default function Teams() {
                                             marginBottom: "2vh",
                                         }}
                                     />
-                                    <p>Team manager: {coach}</p>
+                                    <p>Team manager: {manager}</p>
                                     <p>Team Size: {numPlayers}</p>
                                 </div>
                             );

@@ -1,16 +1,17 @@
 .teamLogo {
-  height: 30vh;
-  width: auto;
+    height: 30vh;
+    width: auto;
 }
 
 .side-by-side {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .top-to-bottom {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .side-by-side-TeamDetails {

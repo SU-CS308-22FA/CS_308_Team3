@@ -81,6 +81,23 @@ h3 {
     font-style: bold;
 }
 
+h1 {
+    font-family: Kanit;
+    font-style: bold;
+}
+
+span {
+    font-family: Kanit;
+    font-style: bold;
+}
+
+h3 {
+    span {
+        font-family: Kanit;
+        font-style: bold;
+    }
+}
+
 .wrapContainer {
     flex-direction: row;
     display: flex;
