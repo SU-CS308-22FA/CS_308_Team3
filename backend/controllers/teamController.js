@@ -980,6 +980,9 @@ module.exports = {
 
         teamModel.findOne({});
     },
+    addTeam: (req, res) => {
+        const { newTeam } = req.body;
+    },
     update: () => {},
     remove: () => {},
 };
