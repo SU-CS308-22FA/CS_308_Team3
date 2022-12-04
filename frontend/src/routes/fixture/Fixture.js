@@ -9,7 +9,7 @@ import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import "./fixture.scss";
 
 export default function Fixture() {
-    const [matches, setMatches] = useState();
+    const [matches, setMatches] = useState(null);
     const [week, setWeek] = useState(1);
     const navigate = useNavigate();
 
@@ -115,6 +115,7 @@ export default function Fixture() {
                                 );
                             }
                         )}
+                    {matches === null && <h3>Loading...</h3>}
                 </div>
             </div>
         </div>

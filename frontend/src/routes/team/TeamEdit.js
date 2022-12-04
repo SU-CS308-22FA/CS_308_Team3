@@ -1,14 +1,19 @@
-import { useEffect, useMemo, useState } from "react";
-import "./TeamDetails.css";
+import { useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+import "./teams.scss";
+import { Button } from "@mui/material";
+import { NotificationContext } from "../../contexts/notificationContext";
+
 export default function TeamEdit() {
+    const { setalert } = useContext(NotificationContext);
+
     const [team, setTeam] = useState();
 
     const [manager, setManager] = useState("");
     const [yearEst, setYearEst] = useState("");
-    const [thropies, setThropies] = useState("");
+    const [trophies, setTrophies] = useState("");
     const [fans, setFans] = useState("");
     const [numPlayers, setNumPlayers] = useState("");
     const [players, setPlayers] = useState([]);
@@ -16,19 +21,22 @@ export default function TeamEdit() {
     var team_id = useParams().id;
 
     useEffect(() => {
-        axios
-            .get("/teams/" + team_id)
-            .then((res) => {
-                console.log(res.data.team);
-                setTeam(res.data.team);
-                setManager(res.data.team.manager);
-                setYearEst(res.data.team.establishment);
-                setThropies(res.data.team.trophies);
-                setFans(res.data.team.fans);
-                setNumPlayers(res.data.team.players.length);
-                setPlayers(res.data.team.players);
-            })
-            .catch((err) => console.log(err));
+        const getTeam = async () => {
+            await axios
+                .get("/teams/" + team_id)
+                .then((res) => {
+                    console.log(res.data.team);
+                    setTeam(res.data.team);
+                    setManager(res.data.team.manager);
+                    setYearEst(res.data.team.establishment);
+                    setTrophies(res.data.team.trophies);
+                    setFans(res.data.team.fans);
+                    setNumPlayers(res.data.team.players.length);
+                    setPlayers(res.data.team.players);
+                })
+                .catch((err) => console.log(err));
+        };
+        getTeam();
     }, [team_id]);
 
     const FIELDS = useMemo(
@@ -48,8 +56,8 @@ export default function TeamEdit() {
             {
                 field: "Number of Trophies: ",
                 type: "text",
-                value: thropies,
-                func: setThropies,
+                value: trophies,
+                func: setTrophies,
             },
             {
                 field: "Number of Fans: ",
@@ -64,17 +72,43 @@ export default function TeamEdit() {
                 func: setNumPlayers,
             },
         ],
-        [team]
+        [team, manager, yearEst, trophies, fans, numPlayers]
     );
 
     const removePlayer = (player) => {
-        console.log(player);
+        // console.log(player);
         setPlayers((oldArray) => {
-            console.table(oldArray);
-            oldArray.pop(player);
-            console.table(oldArray);
-            return oldArray;
+            const newArray = oldArray.filter((playr) => playr !== player);
+            return [...newArray];
         });
+    };
+
+    const saveTeamChanges = async () => {
+        const newData = {
+            ...team,
+            manager,
+            yearEst,
+            trophies,
+            fans,
+            numPlayers,
+            players,
+        };
+        console.log(team);
+        // await axios
+        //     .post("/teams/editTeam", newData)
+        //     .then((res) => {
+        //         const message = res.data;
+        //         if (message === "Team update is successful")
+        //             setalert({
+        //                 message: "Update is successful",
+        //                 severity: "success",
+        //             });
+        //         else
+        //             setalert({
+        //                 message: "There was an error while saving",
+        //             });
+        //     })
+        //     .catch((err) => console.error(err));
     };
 
     return (
@@ -91,10 +125,11 @@ export default function TeamEdit() {
                         <div className="teamDetails">
                             {FIELDS.map(({ field, type, value, func }) => {
                                 return (
-                                    <h3 key={field} style={{ margin: "1vh" }}>
-                                        {field}
+                                    <h3 key={field} className="teamInfoEdit">
+                                        <p style={{ flex: "1" }}>{field}</p>
                                         <input
                                             type={type}
+                                            style={{ flex: "1", height: "3vh" }}
                                             name={field}
                                             value={value}
                                             onChange={(event) =>
@@ -104,6 +139,9 @@ export default function TeamEdit() {
                                     </h3>
                                 );
                             })}
+                            <Button onClick={saveTeamChanges}>
+                                Save the changes
+                            </Button>
                         </div>
                     </div>
 

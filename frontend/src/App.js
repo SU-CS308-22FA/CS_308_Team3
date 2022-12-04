@@ -55,11 +55,6 @@ function App() {
                                 element={<RefereeCompare />}
                             />
 
-                            {/* <Route path="referees" element={<Referees />} /> */}
-                            {/* Temporarily here for development */}
-                            {/* <Route path="userprofile" element={<Profile />} />
-                            <Route path="changepassword" element={<ChangePassword />} /> */}
-
                             <Route
                                 path="*"
                                 element={

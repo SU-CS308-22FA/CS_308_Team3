@@ -4,6 +4,7 @@ import {
     createContext,
     useCallback,
     useContext,
+    useEffect,
     useMemo,
     useState,
 } from "react";
@@ -27,10 +28,10 @@ export const UserProvider = ({ children }) => {
         setUser((oldUser) => ({ ...oldUser, ...newUser }));
     };
 
-    const resetUser = () => {
+    const resetUser = useCallback(() => {
         setUser(null);
         sessionStorage.clear();
-    };
+    }, []);
 
     const login = useCallback(async (email, password) => {
         // const salt = bcrypt.genSaltSync(10);
@@ -44,14 +45,16 @@ export const UserProvider = ({ children }) => {
                 console.log(res.data);
                 if (res.data.message === "Login is succesful") {
                     setalert({
-                        open: true,
                         message: "Login is succesful",
                         severity: "success",
                     });
                     setUser(res.data.user);
+                    sessionStorage.setItem(
+                        "user",
+                        JSON.stringify(res.data.user)
+                    );
                 } else {
                     setalert({
-                        open: true,
                         message: "Your credentials are wrong!",
                     });
                 }

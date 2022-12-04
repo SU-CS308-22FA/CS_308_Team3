@@ -18,7 +18,7 @@ export default function RefereeTable() {
 
     const { user } = useContext(UserContext);
 
-    const [referees, setReferees] = useState();
+    const [referees, setReferees] = useState(null);
     const [referee1, setReferee1] = useState("");
     const [referee2, setReferee2] = useState("");
 
@@ -180,6 +180,7 @@ export default function RefereeTable() {
                             );
                         }
                     )}
+                {referees === null && <h3>Loading...</h3>}
             </div>
         </div>
     );

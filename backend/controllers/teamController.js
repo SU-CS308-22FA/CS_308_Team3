@@ -1,11 +1,13 @@
-(teamInfo = [
+const teamModel = require("../model/teamModel");
+
+const teamInfo = [
     {
         name: "Fenerbahçe",
         manager: "Jorge Jesus",
         numPlayers: 27,
         anthem: "https://upload.wikimedia.org/wikipedia/tr/8/86/Fenerbah%C3%A7e_SK.png?20211002193712",
         alt: "fb",
-        fans: "20 300 000",
+        fans: "20300000",
         establishment: 1907,
         trophies: 56,
         players: [
@@ -44,7 +46,7 @@
         numPlayers: 22,
         anthem: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Galatasaray_Sports_Club_Logo.png/822px-Galatasaray_Sports_Club_Logo.png",
         alt: "gs",
-        fans: "25 900 000",
+        fans: "25900000",
         establishment: 1905,
         trophies: 34,
         players: [
@@ -794,182 +796,190 @@
             "Batuhan Celik",
         ],
     },
-]),
-    (module.exports = {
-        list: (req, res) => {
-            const {} = req.body;
-            //console.log(JSON.stringify(req.body, null, 2));
+];
 
-            return res.send({
-                teams: [
-                    "Fenerbahçe",
-                    "Galatasaray",
-                    "Beşiktaş",
-                    "Adana Demirspor",
-                    "Trabzonspor",
-                    "Başakşehir",
-                    "Konyaspor",
-                    "Kayserispor",
-                    "Ümraniyespor",
-                    "İstanbulspor",
-                    "Giresunspor",
-                    "Hatayspor",
-                    "Sivasspor",
-                    "Ankaragücü",
-                    "Fatih Karagümrük",
-                    "Antalyaspor",
-                    "Kasımpaşa",
-                    "Gaziantep Futbol Kulübü",
-                    "Alanyaspor",
-                ],
-            });
-        },
-        teamsList: (req, res) => {
-            return res.send({
-                teams: [
-                    {
-                        name: "Fenerbahçe",
-                        manager: "Jorge Jesus",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/8/86/Fenerbah%C3%A7e_SK.png?20211002193712",
-                        alt: "fb",
-                    },
-                    {
-                        name: "Galatasaray",
-                        manager: "Okan Buruk",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Galatasaray_Sports_Club_Logo.png/822px-Galatasaray_Sports_Club_Logo.png",
-                        alt: "gs",
-                    },
-                    {
-                        name: "Beşiktaş",
-                        manager: "Şenol Güneş",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/commons/0/08/Be%C5%9Fikta%C5%9F_Logo_Be%C5%9Fikta%C5%9F_Amblem_Be%C5%9Fikta%C5%9F_Arma.png",
-                        alt: "bjk",
-                    },
-                    {
-                        name: "Trabzonspor",
-                        manager: "Abdullah Avcı",
-                        numPlayers: 32,
-                        anthem: "https://www.trabzonspor.org.tr/download/resources/logo_6367234456_-1x-1_false.png",
-                        alt: "ts",
-                    },
-                    {
-                        name: "Adana Demirspor",
-                        manager: "Vincenzo Montella",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/5/5f/Adanademirspor.png?20101106185724",
-                        alt: "adana",
-                    },
-                    {
-                        name: "Konyaspor",
-                        manager: "İlhan Palut",
-                        numPlayers: 27,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/archive/4/41/20220809170232%21Konyaspor_1922.png",
-                        alt: "konya",
-                    },
-                    {
-                        name: "Kayserispor",
-                        manager: "Çağdaş Atan",
-                        numPlayers: 32,
-                        anthem: "https://tmssl.akamaized.net/images/wappen/head/3205.png?lm=1520239955",
-                        alt: "kayseri",
-                    },
-                    {
-                        name: "Ümraniyespor",
-                        manager: "Recep Ucar",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/7/75/%C3%9Cmraniyespor_Logosu.png",
-                        alt: "umra",
-                    },
-                    {
-                        name: "İstanbulspor",
-                        manager: "Osman Zeki Korkmaz",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/e/ed/IstanbulsporAS.png",
-                        alt: "istan",
-                    },
-                    {
-                        name: "Giresunspor",
-                        manager: "Hakan Keleş",
-                        numPlayers: 27,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/c/c1/Giresunspor.png",
-                        alt: "gires",
-                    },
-                    {
-                        name: "Hatayspor",
-                        manager: "Volkan Demirel",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/0/08/Hatayspor.png",
-                        alt: "hatay",
-                    },
-                    {
-                        name: "Sivasspor",
-                        manager: "Vincenzo Montella",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/en/thumb/2/20/Sivasspor_logo.svg/1200px-Sivasspor_logo.svg.png",
-                        alt: "sivas",
-                    },
-                    {
-                        name: "Ankaragücü",
-                        manager: "Ömer Erdoğan",
-                        numPlayers: 32,
-                        anthem: "https://ankaragucu.org.tr/wp-content/uploads/2018/06/MKE_Ankarag%C3%BCc%C3%BC_logo.png",
-                        alt: "ankara",
-                    },
-                    {
-                        name: "Fatih Karagümrük",
-                        manager: "Andrea Pirlo",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/9/90/Fatihkaragumruk.png",
-                        alt: "fatihkara",
-                    },
-                    {
-                        name: "Antalyaspor",
-                        manager: "Nuri Şahin",
-                        numPlayers: 29,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/b/b9/Antalyaspor_logo.png",
-                        alt: "antalya",
-                    },
-                    {
-                        name: "Kasımpaşa",
-                        manager: "Şenol Can",
-                        numPlayers: 29,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/6/68/Kasimpasa_2012.png",
-                        alt: "kasım",
-                    },
-                    {
-                        name: "Gaziantep Futbol Kulübü",
-                        manager: "Vincenzo Montella",
-                        numPlayers: 22,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/1/18/Gaziantep_FK.png",
-                        alt: "antep",
-                    },
-                    {
-                        name: "Alanyaspor",
-                        manager: "Francesco Farioli",
-                        numPlayers: 32,
-                        anthem: "https://upload.wikimedia.org/wikipedia/tr/2/29/Alanyaspor_logo.png",
-                        alt: "alanya",
-                    },
-                    {
-                        name: "Başakşehir",
-                        manager: "Emre Belözoğlu",
-                        numPlayers: 31,
-                        anthem: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_logo.svg/1200px-%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_logo.svg.png",
-                        alt: "başak",
-                    },
-                ],
-            });
-        },
-        getTeam: (req, res) => {
-            const { id } = req.params;
+const teams = [
+    {
+        name: "Fenerbahçe",
+        manager: "Jorge Jesus",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/8/86/Fenerbah%C3%A7e_SK.png?20211002193712",
+        alt: "fb",
+    },
+    {
+        name: "Galatasaray",
+        manager: "Okan Buruk",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Galatasaray_Sports_Club_Logo.png/822px-Galatasaray_Sports_Club_Logo.png",
+        alt: "gs",
+    },
+    {
+        name: "Beşiktaş",
+        manager: "Şenol Güneş",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/commons/0/08/Be%C5%9Fikta%C5%9F_Logo_Be%C5%9Fikta%C5%9F_Amblem_Be%C5%9Fikta%C5%9F_Arma.png",
+        alt: "bjk",
+    },
+    {
+        name: "Trabzonspor",
+        manager: "Abdullah Avcı",
+        numPlayers: 32,
+        anthem: "https://www.trabzonspor.org.tr/download/resources/logo_6367234456_-1x-1_false.png",
+        alt: "ts",
+    },
+    {
+        name: "Adana Demirspor",
+        manager: "Vincenzo Montella",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/5/5f/Adanademirspor.png?20101106185724",
+        alt: "adana",
+    },
+    {
+        name: "Konyaspor",
+        manager: "İlhan Palut",
+        numPlayers: 27,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/archive/4/41/20220809170232%21Konyaspor_1922.png",
+        alt: "konya",
+    },
+    {
+        name: "Kayserispor",
+        manager: "Çağdaş Atan",
+        numPlayers: 32,
+        anthem: "https://tmssl.akamaized.net/images/wappen/head/3205.png?lm=1520239955",
+        alt: "kayseri",
+    },
+    {
+        name: "Ümraniyespor",
+        manager: "Recep Ucar",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/7/75/%C3%9Cmraniyespor_Logosu.png",
+        alt: "umra",
+    },
+    {
+        name: "İstanbulspor",
+        manager: "Osman Zeki Korkmaz",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/e/ed/IstanbulsporAS.png",
+        alt: "istan",
+    },
+    {
+        name: "Giresunspor",
+        manager: "Hakan Keleş",
+        numPlayers: 27,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/c/c1/Giresunspor.png",
+        alt: "gires",
+    },
+    {
+        name: "Hatayspor",
+        manager: "Volkan Demirel",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/0/08/Hatayspor.png",
+        alt: "hatay",
+    },
+    {
+        name: "Sivasspor",
+        manager: "Vincenzo Montella",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/en/thumb/2/20/Sivasspor_logo.svg/1200px-Sivasspor_logo.svg.png",
+        alt: "sivas",
+    },
+    {
+        name: "Ankaragücü",
+        manager: "Ömer Erdoğan",
+        numPlayers: 32,
+        anthem: "https://ankaragucu.org.tr/wp-content/uploads/2018/06/MKE_Ankarag%C3%BCc%C3%BC_logo.png",
+        alt: "ankara",
+    },
+    {
+        name: "Fatih Karagümrük",
+        manager: "Andrea Pirlo",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/9/90/Fatihkaragumruk.png",
+        alt: "fatihkara",
+    },
+    {
+        name: "Antalyaspor",
+        manager: "Nuri Şahin",
+        numPlayers: 29,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/b/b9/Antalyaspor_logo.png",
+        alt: "antalya",
+    },
+    {
+        name: "Kasımpaşa",
+        manager: "Şenol Can",
+        numPlayers: 29,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/6/68/Kasimpasa_2012.png",
+        alt: "kasım",
+    },
+    {
+        name: "Gaziantep Futbol Kulübü",
+        manager: "Vincenzo Montella",
+        numPlayers: 22,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/1/18/Gaziantep_FK.png",
+        alt: "antep",
+    },
+    {
+        name: "Alanyaspor",
+        manager: "Francesco Farioli",
+        numPlayers: 32,
+        anthem: "https://upload.wikimedia.org/wikipedia/tr/2/29/Alanyaspor_logo.png",
+        alt: "alanya",
+    },
+    {
+        name: "Başakşehir",
+        manager: "Emre Belözoğlu",
+        numPlayers: 31,
+        anthem: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_logo.svg/1200px-%C4%B0stanbul_Ba%C5%9Fak%C5%9Fehir_logo.svg.png",
+        alt: "başak",
+    },
+];
 
-            return res.send({
-                team: teamInfo[id],
-            });
-        },
-        update: () => {},
-        remove: () => {},
-    });
+module.exports = {
+    list: (req, res) => {
+        const {} = req.body;
+        //console.log(JSON.stringify(req.body, null, 2));
+
+        return res.send({
+            teams: [
+                "Fenerbahçe",
+                "Galatasaray",
+                "Beşiktaş",
+                "Adana Demirspor",
+                "Trabzonspor",
+                "Başakşehir",
+                "Konyaspor",
+                "Kayserispor",
+                "Ümraniyespor",
+                "İstanbulspor",
+                "Giresunspor",
+                "Hatayspor",
+                "Sivasspor",
+                "Ankaragücü",
+                "Fatih Karagümrük",
+                "Antalyaspor",
+                "Kasımpaşa",
+                "Gaziantep Futbol Kulübü",
+                "Alanyaspor",
+            ],
+        });
+    },
+    teamsList: (req, res) => {
+        return res.send({
+            teams: teams,
+        });
+    },
+    getTeam: (req, res) => {
+        const { id } = req.params;
+
+        return res.send({
+            team: teamInfo[id],
+        });
+    },
+    editTeam: (req, res) => {
+        const { newTeamInfo } = req.body;
+
+        teamModel.findOne({});
+    },
+    update: () => {},
+    remove: () => {},
+};
