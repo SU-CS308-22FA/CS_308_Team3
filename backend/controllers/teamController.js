@@ -936,7 +936,7 @@ const teams = [
 
 module.exports = {
     list: (req, res) => {
-        const {} = req.body;
+        // const {} = req.body;
         //console.log(JSON.stringify(req.body, null, 2));
 
         return res.send({
@@ -980,8 +980,37 @@ module.exports = {
 
         teamModel.findOne({});
     },
-    addTeam: (req, res) => {
-        const { newTeam } = req.body;
+    addTeam: async (req, res) => {
+        const { team } = req.body;
+        // console.log(team);
+
+        try {
+            // The team is added already
+            const teamFound = await teamModel.findOne({ name: team.name });
+
+            if (teamFound !== null) {
+                return res.send({
+                    message: "The team already exists",
+                });
+            }
+            const newTeam = new teamModel(team);
+            console.log(newTeam, team);
+            // The team does not exits
+            newTeam.save((err, team) => {
+                if (err) {
+                    return res.status(500).json({
+                        message: "Error when adding team",
+                        error: err,
+                    });
+                }
+                return res.status(201).send({
+                    message: "Team is added",
+                    team: team,
+                });
+            });
+        } catch (err) {
+            console.log(err);
+        }
     },
     update: () => {},
     remove: () => {},

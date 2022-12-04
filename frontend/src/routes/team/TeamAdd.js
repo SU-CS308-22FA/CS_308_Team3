@@ -18,6 +18,9 @@ export default function TeamAdd() {
     const [yearEst, setYearEst] = useState("");
     const [image, setImage] = useState("");
 
+    const [player, setPlayer] = useState("");
+    const [players, setPlayers] = useState([]);
+
     const FIELDS = useMemo(
         () => [
             { field: "Name", type: "text", value: name, func: setName },
@@ -38,12 +41,6 @@ export default function TeamAdd() {
                 type: "text",
                 value: trophies,
                 func: setTrophies,
-            },
-            {
-                field: "Manager",
-                type: "text",
-                value: manager,
-                func: setManager,
             },
             {
                 field: "Number of Fans",
@@ -83,23 +80,28 @@ export default function TeamAdd() {
 
         await axios
             .post("/teams/addTeam", {
-                name,
-                shortName,
-                manager,
-                trophies,
-                fans,
-                yearEst,
+                team: {
+                    name,
+                    shortName,
+                    manager,
+                    trophies,
+                    fans,
+                    yearEst,
+                    image,
+                    players,
+                },
             })
             .then((res) => {
-                console.log(res.data);
-                if (res.data.message === "Team is added") {
+                // console.log(res.data);
+                const { message, team } = res.data;
+                if (message === "Team is added") {
                     setalert({
                         message: "Team is added to the system succesfully",
                         severity: "success",
                     });
                 } else {
                     setalert({
-                        message: res.data.message,
+                        message: message,
                         severity: "error",
                     });
                 }
@@ -109,37 +111,75 @@ export default function TeamAdd() {
             });
     };
 
+    const addPlayer = (player) => {
+        setPlayers((oldPlayers) => [...oldPlayers, player]);
+        setPlayer("");
+    };
+
     return (
-        <div className="RefereeAdd">
-            <div>
-                {
-                    <div style={{ flexDirection: "column" }}>
-                        <h3>New Referee Details</h3>
-                        <div className="textForm">
-                            <div className="textFieldGroup">
-                                {FIELDS.map(({ field, type, value, func }) => {
-                                    return (
-                                        <div className="textField" key={field}>
-                                            <p className="text">{field}</p>
-                                            <TextField
-                                                style={{ width: "20vw" }}
-                                                label={field}
-                                                type={type}
-                                                value={value}
-                                                onChange={(event) =>
-                                                    func(event.target.value)
-                                                }
-                                            />
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                        <Button onClick={addTeam} style={{ marginTop: "2vh" }}>
-                            Add Team
-                        </Button>
+        <div className="teamAdd">
+            <div style={{ flexDirection: "column" }}>
+                <h3>New Referee Details</h3>
+                <div className="textForm">
+                    <div className="textFieldGroup">
+                        {FIELDS.map(({ field, type, value, func }) => {
+                            return (
+                                <div className="textField" key={field}>
+                                    <p className="text">{field}</p>
+                                    <TextField
+                                        style={{ width: "20vw" }}
+                                        label={field}
+                                        type={type}
+                                        value={value}
+                                        onChange={(event) =>
+                                            func(event.target.value)
+                                        }
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
-                }
+                </div>
+                <Button
+                    onClick={addTeam}
+                    style={{ marginTop: "1vh", marginBottom: "3vh" }}
+                >
+                    Submit New Team
+                </Button>
+            </div>
+            <div
+                style={{
+                    paddingLeft: "16vh",
+                }}
+            >
+                <h3>Adding Players</h3>
+                <div
+                    style={{
+                        paddingTop: "5vh",
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                    }}
+                >
+                    <TextField
+                        style={{ width: "15vw" }}
+                        label={"Player"}
+                        type={"text"}
+                        value={player}
+                        onChange={(event) => setPlayer(event.target.value)}
+                    />
+                    <Button onClick={() => addPlayer(player)}>
+                        Add Player
+                    </Button>
+                </div>
+                <div style={{ marginTop: "4vh" }}>
+                    {players !== [] &&
+                        players.map((player, index) => (
+                            <p>
+                                {index + 1}-) {player}
+                            </p>
+                        ))}
+                </div>
             </div>
         </div>
     );

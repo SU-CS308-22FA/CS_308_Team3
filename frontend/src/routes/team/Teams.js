@@ -70,9 +70,11 @@ export default function Teams() {
     return (
         <div className="fixture">
             <h3>Teams</h3>
-            <Button id="addTeamBtn" onClick={goToTeamAdd}>
-                Add a new team
-            </Button>
+            {user.userType === "TFF" && (
+                <Button id="addTeamBtn" onClick={goToTeamAdd}>
+                    Add a new team
+                </Button>
+            )}
             <div className="wrapContainer">
                 {teams &&
                     teams.map(
