@@ -13,6 +13,7 @@ router.get("/:id", teamController.getTeam);
  * POST
  */
 router.post("/editTeam", teamController.editTeam);
+router.post("/addTeam", teamController.addTeam);
 
 /*
  * PUT
