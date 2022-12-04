@@ -62,7 +62,6 @@ export default function RefereeAdd() {
             hometown === ""
         ) {
             setalert({
-                open: true,
                 message: "You cannot leave any of the fields empty!",
             });
             return;
@@ -84,11 +83,6 @@ export default function RefereeAdd() {
                         message: "Referee is added to the system succesfully",
                         severity: "success",
                     });
-                    updateUser(res.data.user);
-                    sessionStorage.setItem(
-                        "user",
-                        JSON.stringify(res.data.user)
-                    );
                 } else {
                     setalert({
                         message: res.data.message,

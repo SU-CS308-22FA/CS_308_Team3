@@ -67,13 +67,11 @@ export default function ProfileWoLogin() {
         if (password.length < 8) {
             console.log("error");
             setalert({
-                open: true,
                 message: "Password has to be at least 8 characters!",
             });
             return;
         } else if (email === "") {
             setalert({
-                open: true,
                 message: "You cannot leave email field empty!",
             });
             return;
@@ -85,7 +83,6 @@ export default function ProfileWoLogin() {
         if (password.length < 8) {
             console.log("error");
             setalert({
-                open: true,
                 message: "Password has to be at least 8 characters!",
             });
             return;
@@ -96,7 +93,6 @@ export default function ProfileWoLogin() {
             age === ""
         ) {
             setalert({
-                open: true,
                 message: "You cannot leave any of the fields empty!",
             });
             return;
@@ -119,8 +115,7 @@ export default function ProfileWoLogin() {
                 console.log(res.data);
                 if (res.data.message === "Registration is succesful") {
                     setalert({
-                        message:
-                            "Registration completed succesfully",
+                        message: "Registration completed succesfully",
                         severity: "success",
                     });
                     updateUser(res.data.user);

@@ -18,7 +18,7 @@ export const sortDates = (listToBeSorted) => {
         const time1 = a.date.substr(a.date.indexOf(" ") + 1);
         const time2 = b.date.substr(b.date.indexOf(" ") + 1);
 
-        console.log({ year1, year2, month1, month2, day1, day2, time1, time2 });
+        // console.log({ year1, year2, month1, month2, day1, day2, time1, time2 });
         if (
             year1 < year2 ||
             (year1 === year2 && month1 < month2) ||
