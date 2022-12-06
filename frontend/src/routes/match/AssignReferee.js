@@ -12,38 +12,46 @@ function AssignReferee({ matchId }) {
     useEffect(() => {
         // reset values when matchId changes
         setReferee(null);
-        setStatus(null);  
+        setStatus(``);  
         setRefereeList(null);
 
         axios
         .get("/fixture/" + matchId + "/referee")
         .then((res) => {
-            if (res.data.referee == "") res.data.referee = null;
+            if (res.data.referee === "") res.data.referee = null;
             console.log(res.data);
             setReferee(res.data.referee);
             setRefereeList(res.data.list);
         })
         .catch((err) => {
-            setStatus("error", "An error occured")
+            setStatus(["error", "An error occured"]);
         });
 
     }, [matchId]);
     
     const handleChangeReferee = useCallback((event) => {
-        // add axios blah blah
-
-        if (event.target.value == "delete") {
-            setReferee(null);
-            // axios blah
-            return;
+        setStatus(["info", "Updating referee"]);
+        
+        let updatedValue = event.target.value;
+        if (event.target.value === "delete") {
+            updatedValue = null;
         }
 
-        // demo code
-        setReferee(event.target.value);
+        axios
+        .put("/fixture/" + matchId + "/referee", {referee: updatedValue || ""})
+        .then((res) => {
+            console.log(res.data);
+            setReferee(updatedValue);
+            setStatus(null);
+        })
+        .catch((err) => {
+            setStatus(["error", err.data]);
+        });
+        
     }, [matchId]);
     console.log(referee)
 
-    if (refereeList == null) {
+    if (refereeList === null) {
         return (
             <Alert severity="info">
                 Loading referee info...
@@ -53,12 +61,12 @@ function AssignReferee({ matchId }) {
 
     return (
         <Box className="AssignReferee" sx={{mx: "auto", maxWidth: "400px", mt: 5}}>
-            { referee == null &&
+            { referee === null &&
                 <Alert severity="info" sx={{my: 2}}>
                     Assign a referee to this game.
                 </Alert>
             }
-            { referee != null &&
+            { referee !== null &&
                 <Alert severity="success" sx={{my: 2}}>
                     You assigned {referee} to this game.
                 </Alert>
@@ -75,7 +83,7 @@ function AssignReferee({ matchId }) {
                 <Select
                     labelId="match-assign-referee"
                     id="match-assign-referee"
-                    value={referee}
+                    value={referee || ""}
                     label="Referee"
                     onChange={handleChangeReferee}
                 >
