@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState} from "react";
-import "./matchDetails.css"
+import "./MatchDetails.css"
 import { Divider,
   Avatar,
   Box } from "@mui/material";
