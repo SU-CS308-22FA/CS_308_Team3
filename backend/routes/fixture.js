@@ -7,7 +7,9 @@ var router = express.Router();
  */
 router.get("/list", fixtureController.list);
 router.get("/that", fixtureController.getMatch);
+router.get("/:id/referee", fixtureController.getRefereeAndList);
 router.get("/:id", fixtureController.getMatch);
+
 
 
 /*

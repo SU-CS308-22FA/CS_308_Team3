@@ -1,3 +1,5 @@
+const refereeModel = require("../model/refereeModel");
+
 var matches = [
     {
         id: 0,
@@ -136,6 +138,17 @@ module.exports = {
             match: matches[id],
         });
     },
+    getRefereeAndList: async (req, res) => {
+        const { id } = req.params;
+
+        refereeModel.find({}).exec(function (err, data) {
+            // console.log(refs);
+            return res.send({
+                referee: matches[id].referee,
+                list: data.map(d => d.name),
+            });
+        });
+    }
 };
 
 // matches: [

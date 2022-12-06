@@ -1,5 +1,6 @@
 import { Alert, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 
 function AssignReferee({ matchId }) {
@@ -14,8 +15,18 @@ function AssignReferee({ matchId }) {
         setStatus(null);  
         setRefereeList(null);
 
-        // load values
-        setRefereeList(["Arda Kardesler", "Volkan Bayarslan", "Yasar Kemal"])
+        axios
+        .get("/fixture/" + matchId + "/referee")
+        .then((res) => {
+            if (res.data.referee == "") res.data.referee = null;
+            console.log(res.data);
+            setReferee(res.data.referee);
+            setRefereeList(res.data.list);
+        })
+        .catch((err) => {
+            setStatus("error", "An error occured")
+        });
+
     }, [matchId]);
     
     const handleChangeReferee = useCallback((event) => {
@@ -68,12 +79,12 @@ function AssignReferee({ matchId }) {
                     label="Referee"
                     onChange={handleChangeReferee}
                 >
+                    { referee && <MenuItem value="delete">Remove referee</MenuItem> }
                     {
                         refereeList.map(refereeOption =>
-                            <MenuItem value={refereeOption}>{refereeOption}</MenuItem>
+                            <MenuItem id={refereeOption} value={refereeOption}>{refereeOption}</MenuItem>
                         )
                     }
-                    { referee && <MenuItem value="delete">Remove referee</MenuItem> }
                 </Select>
             </FormControl>
         </Box>
