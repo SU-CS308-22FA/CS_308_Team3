@@ -1,3 +1,5 @@
+const refereeModel = require("../model/refereeModel");
+
 var matches = [
     {
         id: 0,
@@ -78,7 +80,7 @@ var matches = [
         team2Coach: "Emre Belözoğlu",
     },
     {
-        id: 0,
+        id: 6,
         team1: "FENERBAHÇE",
         logo1: "https://upload.wikimedia.org/wikipedia/tr/8/86/Fenerbah%C3%A7e_SK.png?20211102193712",
         team2: "GALATASARAY",
@@ -91,7 +93,7 @@ var matches = [
         team2Coach: "Okan Buruk",
     },
     {
-        id: 1,
+        id: 7,
         team1: "GİRESUNSPOR",
         logo1: "https://upload.wikimedia.org/wikipedia/tr/c/c1/Giresunspor.png",
         team2: "İSTANBULSPOR",
@@ -104,7 +106,7 @@ var matches = [
         team2Coach: "Ömer Erdoğan",
     },
     {
-        id: 2,
+        id: 8,
         team1: "KAYSERİSPOR",
         logo1: "https://tmssl.akamaized.net/images/wappen/head/3205.png?lm=1520239955",
         team2: "ÜMRANİYESPOR",
@@ -136,6 +138,29 @@ module.exports = {
             match: matches[id],
         });
     },
+    getRefereeAndList: (req, res) => {
+        const { id } = req.params;
+
+        refereeModel.find({}).exec(function (err, data) {
+            // console.log(refs);
+            return res.send({
+                referee: matches[id].referee,
+                list: data.map(d => d.name),
+            });
+        });
+    },
+    updateReferee: (req, res) => {
+        // update this code for mongodb
+        const { id } = req.params;
+        const { referee } = req.body;
+
+        if (typeof(referee) != "string") {
+            return res.status(400).send("Bad referee parameter");
+        }
+
+        matches[id].referee = referee;
+        return res.send("Updated successfully");
+    }
 };
 
 // matches: [

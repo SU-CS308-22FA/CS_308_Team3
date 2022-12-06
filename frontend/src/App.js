@@ -16,7 +16,7 @@ import ChangePassword from "./routes/profile/ChangePassword";
 import RefereeAdd from "./routes/referee/RefereeAdd";
 import RefereeDetails from "./routes/referee/RefereeDetails";
 import RefereeTable from "./routes/referee/RefereeTable";
-import { MatchDetails } from "./routes/match/matchDetails";
+import { MatchDetails } from "./routes/match/MatchDetails";
 import TeamDetails from "./routes/team/TeamDetails";
 import RefereeCompare from "./routes/referee/RefereeCompare";
 import TeamEdit from "./routes/team/TeamEdit";
