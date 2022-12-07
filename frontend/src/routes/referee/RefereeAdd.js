@@ -18,7 +18,7 @@ export default function RefereeAdd() {
     const [license, setLicense] = useState("");
     const [hometown, setHometown] = useState("");
     const [image, setImage] = useState("");
-    //const [score, setScore] = useState("");
+    const [score, setScore] = useState("");
 
     const FIELDS = useMemo(
         () => [

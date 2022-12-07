@@ -11,14 +11,18 @@ import {
     ToggleButtonGroup,
 } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { NotificationContext } from "../../contexts/notificationContext";
+import { UserContext } from "../../contexts/userContext";
 
 import "./refereeDetails.scss";
 
 export default function RefereeDetails() {
+    const { user } = useContext(UserContext);
     const [vote, setVote] = useState("");
     const location = useLocation();
+    const {setalert } = useContext(NotificationContext);
     const {
         state: { name },
     } = location;
@@ -33,6 +37,44 @@ export default function RefereeDetails() {
             if (message === "Found") setReferee(referee);
         });
     }, []);
+
+    const votefunction = async () => {
+        if (
+            vote === ""
+        ) {
+            setalert({
+                message: "You have to select score",
+            });
+            return;
+        }
+
+        await axios
+            .post("/referees/refereeVote", {
+                id1: name,
+                score: vote,
+                user
+
+        
+            })
+            .then((res) => {
+                console.log(res.data);
+                if (res.data.message === "Referee score updated succesful") {
+                    setalert({
+                        message: "Referee score changed succesfully",
+                        severity: "success",
+                    });
+                } else {
+                    setalert({
+                        message: res.data.message,
+                        severity: "error",
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <div className="refereeDetailsContainer">
             <div>
@@ -46,8 +88,7 @@ export default function RefereeDetails() {
                     <h3>Years of Experience: {referee.experience}</h3>
                     <h3>License: {referee.license}</h3>
                     <h3>Hometown: {referee.hometown}</h3>
-                    <h3>Score: {referee.score}</h3>
-
+                    <h3>Score: {`${referee.score}`.slice(0,4)}</h3>
                 </div>
             </div>
             <h1>{referee.name}</h1>
@@ -67,7 +108,9 @@ export default function RefereeDetails() {
                         )}
                 </div>
             </div>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+            
+            {user && (
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="demo-simple-select-helper-label">
                     Vote
                 </InputLabel>
@@ -91,10 +134,11 @@ export default function RefereeDetails() {
                     <MenuItem value={9}>9</MenuItem>
                     <MenuItem value={10}>10</MenuItem>
                 </Select>
-                <Button onClick={vote} variant="outlined" style={{ marginTop: "2vh" }}>
+                <Button onClick={votefunction} variant="outlined" style={{ marginTop: "2vh" }}>
                    Vote
                 </Button>
             </FormControl>
+            )}
 
         </div>
 
