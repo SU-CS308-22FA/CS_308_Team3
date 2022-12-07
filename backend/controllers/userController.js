@@ -169,9 +169,7 @@ module.exports = {
         userModel
             .deleteOne({ _id })
             .then(({ deletedCount }) => {
-                console.log({ _id: [_id] });
-                console.log({ _id: _id });
-                console.log(deletedCount);
+                console.log({ _id: _id }, deletedCount);
                 if (deletedCount === 1)
                     res.send({ message: "Account is deleted" });
                 else res.send({ message: "Error on account delete" });

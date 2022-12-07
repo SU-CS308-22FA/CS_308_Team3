@@ -20,6 +20,7 @@ import { MatchDetails } from "./routes/match/MatchDetails";
 import TeamDetails from "./routes/team/TeamDetails";
 import RefereeCompare from "./routes/referee/RefereeCompare";
 import TeamEdit from "./routes/team/TeamEdit";
+import TeamAdd from "./routes/team/TeamAdd";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -81,6 +82,7 @@ function App() {
                                 path="add-referee"
                                 element={<RefereeAdd />}
                             />
+                            <Route path="add-team" element={<TeamAdd />} />
                             <Route
                                 path="changepassword"
                                 element={<ChangePassword />}

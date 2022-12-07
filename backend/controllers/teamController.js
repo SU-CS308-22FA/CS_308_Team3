@@ -335,7 +335,7 @@ const teamInfo = [
     },
     {
         name: "İstanbulspor",
-        manager: "Osman Zeki Korkmazv",
+        manager: "Osman Zeki Korkmaz",
         numPlayers: 22,
         anthem: "https://upload.wikimedia.org/wikipedia/tr/e/ed/IstanbulsporAS.png",
         alt: "istan",
@@ -936,7 +936,7 @@ const teams = [
 
 module.exports = {
     list: (req, res) => {
-        const {} = req.body;
+        // const {} = req.body;
         //console.log(JSON.stringify(req.body, null, 2));
 
         return res.send({
@@ -964,9 +964,14 @@ module.exports = {
         });
     },
     teamsList: (req, res) => {
-        return res.send({
-            teams: teams,
+        teamModel.find({}).exec(function (err, data) {
+            return res.send({
+                teams: data,
+            });
         });
+        // return res.send({
+        //     teams: teams,
+        // });
     },
     getTeam: (req, res) => {
         const { id } = req.params;
@@ -980,6 +985,55 @@ module.exports = {
 
         teamModel.findOne({});
     },
-    update: () => {},
-    remove: () => {},
+    addTeam: async (req, res) => {
+        const { team } = req.body;
+        // console.log(team);
+
+        try {
+            // The team is added already
+            const teamFound = await teamModel.findOne({ name: team.name });
+
+            if (teamFound !== null) {
+                return res.send({
+                    message: "The team already exists",
+                });
+            }
+            const newTeam = new teamModel(team);
+            console.log(newTeam, team);
+            // The team does not exits
+            newTeam.save((err, team) => {
+                if (err) {
+                    return res.status(500).json({
+                        message: "Error when adding team",
+                        error: err,
+                    });
+                }
+                return res.status(201).send({
+                    message: "Team is added",
+                    team: team,
+                });
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    removeTeam: (req, res) => {
+        const { user } = req.body;
+        const { id } = req.params;
+
+        if (user.userType === "TFF") {
+            teamModel
+                .deleteOne({ name: id })
+                .then(({ deletedCount }) => {
+                    console.log(deletedCount);
+                    if (deletedCount === 1)
+                        return res.send({ message: "Team is removed" });
+                    else return res.send({ message: "Error on team delete" });
+                })
+                .catch((err) => console.log(err));
+        } else {
+            return res.send({ message: "Team delete is not successful" });
+        }
+    },
+    // update: () => {},
 };

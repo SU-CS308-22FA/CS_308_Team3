@@ -47,3 +47,28 @@
     width: 400px;
     align-items: center;
 }
+
+#cancelButton{
+    width: 28px;
+    height: auto;
+    position: relative;
+    left: 31px;
+    top: 57px;
+}
+
+.teamWButton{
+    display: flex;
+    flex-direction: column;
+}
+
+#addTeamBtn{
+    position: absolute;
+    top: 17vh;
+    right: 18vw;
+}
+
+.teamAdd{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
