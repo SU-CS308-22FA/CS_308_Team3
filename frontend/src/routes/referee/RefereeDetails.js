@@ -1,5 +1,6 @@
 import {
     Alert,
+    Box,
     Button,
     FormControl,
     InputAdornment,
@@ -11,7 +12,7 @@ import {
     ToggleButtonGroup,
 } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState,useContext } from "react";
+import { useEffect, useState,useContext, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { NotificationContext } from "../../contexts/notificationContext";
 
@@ -40,7 +41,7 @@ export default function RefereeDetails() {
 
     const isStaff = user && user.userType === "TFF";
 
-    const detailView = (field) => {
+    const detailView = (field) => { 
         const isIntField = ["age", "experience"].includes(field);
 
         return (
