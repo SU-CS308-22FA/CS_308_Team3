@@ -335,7 +335,7 @@ const teamInfo = [
     },
     {
         name: "İstanbulspor",
-        manager: "Osman Zeki Korkmazv",
+        manager: "Osman Zeki Korkmaz",
         numPlayers: 22,
         anthem: "https://upload.wikimedia.org/wikipedia/tr/e/ed/IstanbulsporAS.png",
         alt: "istan",
@@ -964,9 +964,14 @@ module.exports = {
         });
     },
     teamsList: (req, res) => {
-        return res.send({
-            teams: teams,
+        teamModel.find({}).exec(function (err, data) {
+            return res.send({
+                teams: data,
+            });
         });
+        // return res.send({
+        //     teams: teams,
+        // });
     },
     getTeam: (req, res) => {
         const { id } = req.params;
@@ -1012,6 +1017,23 @@ module.exports = {
             console.log(err);
         }
     },
-    update: () => {},
-    remove: () => {},
+    removeTeam: (req, res) => {
+        const { user } = req.body;
+        const { id } = req.params;
+
+        if (user.userType === "TFF") {
+            teamModel
+                .deleteOne({ name: id })
+                .then(({ deletedCount }) => {
+                    console.log(deletedCount);
+                    if (deletedCount === 1)
+                        return res.send({ message: "Team is removed" });
+                    else return res.send({ message: "Error on team delete" });
+                })
+                .catch((err) => console.log(err));
+        } else {
+            return res.send({ message: "Team delete is not successful" });
+        }
+    },
+    // update: () => {},
 };

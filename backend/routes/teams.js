@@ -14,6 +14,7 @@ router.get("/:id", teamController.getTeam);
  */
 router.post("/editTeam", teamController.editTeam);
 router.post("/addTeam", teamController.addTeam);
+router.post("/removeTeam/:id", teamController.removeTeam);
 
 /*
  * PUT

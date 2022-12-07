@@ -24,44 +24,30 @@ export default function Teams() {
             .catch((err) => console.log(err));
     }, []);
 
-    const removeTeam = async () => {
-        console.log("asdasfdc");
+    const removeTeam = async (teamName) => {
         await axios
-            .post("/teams/removeTeam", user.mail)
+            .post("/teams/removeTeam/" + teamName, { user })
             .then((res) => {
-                const message = res.data;
-                if (message === "Team is removed")
+                const { message } = res.data;
+                console.log(message);
+                if (message === "Team is removed") {
+                    setTeams((oldTeams) => {
+                        const newTeams = oldTeams.filter(
+                            (team) => team.name !== teamName
+                        );
+                        return [...newTeams];
+                    });
                     setalert({
                         message: "Team is removed from the league",
                         severity: "success",
                     });
-                else
+                } else
                     setalert({
                         message: "Team could not be removed from the system",
                     });
             })
             .catch((err) => console.error(err));
     };
-
-    // const addNewTeam = async () => {
-    //     await axios
-    //         .post("/teams/addTeam", user.mail)
-    //         .then((res) => {
-    //             const { message, newTeam } = res.data;
-    //             if (message === "Team is added") {
-    //                 setTeams((oldTeams) => {
-    //                     oldTeams.push(newTeam);
-    //                     return [...oldTeams];
-    //                 });
-    //                 setalert({
-    //                     message: "Team is added to the league",
-    //                     severity: "success",
-    //                 });
-    //             } else
-    //                 setalert({ message: "Team could not be added to system" });
-    //         })
-    //         .catch((err) => console.error(err));
-    // };
 
     const goToTeamAdd = () => {
         navigate("/add-team");
@@ -70,7 +56,7 @@ export default function Teams() {
     return (
         <div className="fixture">
             <h3>Teams</h3>
-            {user.userType === "TFF" && (
+            {user?.userType === "TFF" && (
                 <Button id="addTeamBtn" onClick={goToTeamAdd}>
                     Add a new team
                 </Button>
@@ -78,16 +64,18 @@ export default function Teams() {
             <div className="wrapContainer">
                 {teams &&
                     teams.map(
-                        ({ name, manager, anthem, alt, numPlayers }, index) => {
+                        ({ name, manager, image, alt, trophies }, index) => {
                             return (
                                 <div className="teamWButton">
-                                    <img
-                                        src={cancelIcon}
-                                        id="cancelButton"
-                                        alt="cancel"
-                                        key={index}
-                                        onClick={removeTeam}
-                                    />
+                                    {user?.userType === "TFF" && (
+                                        <img
+                                            src={cancelIcon}
+                                            id="cancelButton"
+                                            alt="cancel"
+                                            key={index}
+                                            onClick={() => removeTeam(name)}
+                                        />
+                                    )}
                                     <div
                                         className="team"
                                         onClick={() => {
@@ -95,7 +83,7 @@ export default function Teams() {
                                         }}
                                     >
                                         <img
-                                            src={anthem}
+                                            src={image}
                                             alt={alt}
                                             style={{
                                                 height: "20vh",
@@ -104,7 +92,7 @@ export default function Teams() {
                                             }}
                                         />
                                         <p>Team manager: {manager}</p>
-                                        <p>Team Size: {numPlayers}</p>
+                                        <p>Trophies: {trophies}</p>
                                     </div>
                                 </div>
                             );
