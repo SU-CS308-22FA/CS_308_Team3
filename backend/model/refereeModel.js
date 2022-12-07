@@ -11,6 +11,7 @@ const refereeSchema = Schema({
     image: Object,
     last3Matches: Array,
     score: Number,
+    num_voters: Number,
 });
 
 const refereeModel = mongoose.model("referees", refereeSchema);
