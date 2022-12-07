@@ -20,9 +20,12 @@ router.post("/refereeVote",refereeController.refereeVote);
  * PUT
  */
 
+router.put("/update", refereeController.update);
+
+
 /*
  * DELETE
  */
-// router.delete("/:id", teamController.remove);
+router.delete("/:name", refereeController.remove);
 
 module.exports = router;

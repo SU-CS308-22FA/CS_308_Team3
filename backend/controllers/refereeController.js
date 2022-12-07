@@ -19,8 +19,34 @@ module.exports = {
             res.send({ referee: refereeFound, message: "Found" });
         else res.send({ message: "Not found" });
     },
-    update: () => { },
-    remove: () => { },
+    update: async (req, res) => {
+        const { name, age, experience, license, hometown, image, _id } = req.body;
+
+        const result = await refereeModel.updateOne({ _id }, {
+            name,
+            age,
+            experience,
+            license,
+            hometown,
+            image
+        });
+
+        if (result.acknowledged === false) {
+            return res.status(400).send("Update operation failed.");
+        }
+
+        return res.send("Update operation succeeded.");
+    },
+    remove: async (req, res) => {
+        const { name } = req.params;
+        const result = await refereeModel.deleteOne({ name });
+        console.log(name);
+        if (result.deletedCount === 0) {
+            return res.status(400).send("Delete operation failed.");
+        }
+
+        return res.send("Delete operation succeeded.");
+    },
     refereeAdd: async (req, res) => {
         const { name, age, experience, license, hometown, image, score } = req.body;
 
