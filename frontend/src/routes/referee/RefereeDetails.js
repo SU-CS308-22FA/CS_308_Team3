@@ -20,7 +20,6 @@ import { UserContext } from "../../contexts/userContext";
 import "./refereeDetails.scss";
 
 export default function RefereeDetails() {
-    const { user } = useContext(UserContext);
     const [vote, setVote] = useState("");
     const location = useLocation();
     const {setalert } = useContext(NotificationContext);
