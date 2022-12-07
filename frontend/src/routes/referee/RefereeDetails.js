@@ -1,14 +1,29 @@
-import { Alert, Button, TextField } from "@mui/material";
-import { Box } from "@mui/system";
+import {
+    Alert,
+    Button,
+    FormControl,
+    InputAdornment,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
+    ToggleButton,
+    ToggleButtonGroup,
+} from "@mui/material";
 import axios from "axios";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { NotificationContext } from "../../contexts/notificationContext";
+
 import { UserContext } from "../../contexts/userContext";
 
 import "./refereeDetails.scss";
 
 export default function RefereeDetails() {
+    const { user } = useContext(UserContext);
+    const [vote, setVote] = useState("");
     const location = useLocation();
+    const {setalert } = useContext(NotificationContext);
     const {
         state: { name },
     } = location; 
@@ -74,6 +89,43 @@ export default function RefereeDetails() {
         });
     }
 
+    const votefunction = async () => {
+        if (
+            vote === ""
+        ) {
+            setalert({
+                message: "You have to select score",
+            });
+            return;
+        }
+
+        await axios
+            .post("/referees/refereeVote", {
+                id1: name,
+                score: vote,
+                user
+
+        
+            })
+            .then((res) => {
+                console.log(res.data);
+                if (res.data.message === "Referee score updated succesful") {
+                    setalert({
+                        message: "Referee score changed succesfully",
+                        severity: "success",
+                    });
+                } else {
+                    setalert({
+                        message: res.data.message,
+                        severity: "error",
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <div className="refereeDetailsContainer">
             <div>
@@ -88,6 +140,7 @@ export default function RefereeDetails() {
                     <h3>Years of Experience: {detailView("experience")}</h3>
                     <h3>License: {detailView("license")}</h3>
                     <h3>Hometown: {detailView("hometown")}</h3>
+
                 </div>
             </div>
             <div>
@@ -114,6 +167,41 @@ export default function RefereeDetails() {
                         )}
                 </div>
             </div>
+            
+            {user && (
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="demo-simple-select-helper-label">
+                    Vote
+                </InputLabel>
+                <Select
+                    labelId="demo-simple-select-helper-label"
+                    id="demo-simple-select-helper"
+                    value={vote}
+                    label="Vote"
+                    onChange={(event) =>
+                        setVote(event.target.value)
+                    }
+                >
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                    <MenuItem value={6}>6</MenuItem>
+                    <MenuItem value={7}>7</MenuItem>
+                    <MenuItem value={8}>8</MenuItem>
+                    <MenuItem value={9}>9</MenuItem>
+                    <MenuItem value={10}>10</MenuItem>
+                </Select>
+                <Button onClick={votefunction} variant="outlined" style={{ marginTop: "2vh" }}>
+                   Vote
+                </Button>
+            </FormControl>
+            )}
+
         </div>
+
     );
+
+
 }
