@@ -63,7 +63,9 @@ export default function TeamAdd() {
         ],
         [name, shortName, manager, trophies, fans, yearEst, image]
     );
+
     const addTeam = async () => {
+        // Check if any of the fields are empty
         if (
             name === "" ||
             manager === "" ||
@@ -78,6 +80,7 @@ export default function TeamAdd() {
             return;
         }
 
+        // Send request to add the new team on the list
         await axios
             .post("/teams/addTeam", {
                 team: {
