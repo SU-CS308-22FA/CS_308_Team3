@@ -21,6 +21,7 @@ export default function TeamDetails() {
                 // console.log(res.data.team);
                 setTeam(res.data.team);
                 listPlayers(res.data.team.players);
+                console.log(res.data.team.anthem);
             })
             .catch((err) => console.log(err));
     }, [team_id]);
@@ -47,7 +48,7 @@ export default function TeamDetails() {
                     <div className="side-by-side" style={{ paddingBottom: 20 }}>
                         <img
                             className="teamLogo"
-                            src={team.anthem}
+                            src={team.image}
                             alt={team.alt}
                         />
                         <div

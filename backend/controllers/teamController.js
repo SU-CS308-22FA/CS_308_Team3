@@ -964,16 +964,28 @@ module.exports = {
         });
     },
     teamsList: (req, res) => {
-        return res.send({
-            teams: teams,
+        teamModel.find({}).exec(function (err, data) {
+            // console.log(refs);
+            return res.send({
+                teams: data,
+            });
         });
+        // return res.send({
+        //     teams: teams,
+        // });
     },
-    getTeam: (req, res) => {
+    getTeam: async (req, res) => {
         const { id } = req.params;
+        const teamFound = await teamModel.findOne({ name: id });
+        console.log(id, { teamFound });
 
-        return res.send({
-            team: teamInfo[id],
-        });
+        if (teamFound) return res.send({ team: teamFound });
+        // if team is not found
+        else return res.send({ team: null });
+
+        // return res.send({
+        //     team: teamInfo[id],
+        // });
     },
     editTeam: (req, res) => {
         const { newTeamInfo } = req.body;

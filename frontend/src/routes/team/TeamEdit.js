@@ -119,7 +119,7 @@ export default function TeamEdit() {
                     <div className="side-by-side" style={{ paddingBottom: 20 }}>
                         <img
                             className="teamLogo"
-                            src={team.anthem}
+                            src={team.image}
                             alt={team.alt}
                         />
                         <div className="teamDetails">

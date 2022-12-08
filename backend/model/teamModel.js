@@ -6,7 +6,7 @@ const teamSchema = Schema({
     manager: String,
     trophies: Number,
     players: Array,
-    anthem: String,
+    image: String,
     alt: String,
 });
 

@@ -22,7 +22,7 @@ export default function Teams() {
             <div className="wrapContainer">
                 {teams &&
                     teams.map(
-                        ({ name, manager, anthem, alt, numPlayers }, index) => {
+                        ({ name, manager, image, alt, numPlayers }, index) => {
                             return (
                                 <div
                                     className="team"
@@ -32,7 +32,7 @@ export default function Teams() {
                                     }}
                                 >
                                     <img
-                                        src={anthem}
+                                        src={image}
                                         alt={alt}
                                         style={{
                                             height: "20vh",
