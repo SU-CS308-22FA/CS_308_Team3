@@ -3,11 +3,13 @@ const Schema = mongoose.Schema;
 
 const teamSchema = Schema({
     name: String,
+    shortName: String,
     manager: String,
-    trophies: Number,
-    players: Array,
+    trophies: String,
+    fans: String,
+    yearEst: String,
     image: String,
-    alt: String,
+    players: Array,
 });
 
 const teamModel = mongoose.model("teams", teamSchema);
