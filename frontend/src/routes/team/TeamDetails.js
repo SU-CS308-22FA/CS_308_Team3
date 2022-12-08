@@ -41,7 +41,7 @@ export default function TeamDetails() {
     }
 
     return (
-        <div className="fixture" style={{ width: "100%" }}>
+        <div className="fixture" style={{ width: "100%", marginBottom: "3vh" }}>
             {team ? (
                 <div style={{ width: "100%" }}>
                     <h1 style={{ textAlign: "center" }}>{team.name}</h1>
@@ -84,7 +84,7 @@ export default function TeamDetails() {
                             <h3>
                                 Number of Players:{" "}
                                 <span style={{ fontWeight: "normal" }}>
-                                    {team.numPlayers}
+                                    {team.players.length}
                                 </span>
                             </h3>
                         </div>
@@ -114,23 +114,6 @@ export default function TeamDetails() {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                    {/* <div style={{width: "100%", paddingTop: "5vh"}}> */}
-                    {/* <div className="side-by-side-TeamDetails" style= {{paddingTop: "5vh"}}> */}
-                    {/* <div style={{justifyContent: "start", alignItems: "start", alignContent: "start", float: "left"}}>
-                    <h3>Market Value: <span style={{fontWeight: "normal",}}>100 000 0000000€</span></h3>
-                    <h3>Market Value: <span style={{fontWeight: "normal",}}>100 000 000€</span></h3>
-                    <h3>Market Value: <span style={{fontWeight: "normal",}}>100 000 000€</span></h3>
-                  </div>
-                    
-                    <Divider orientation="vertical" style={{float: "center"}} flexItem></Divider>
-
-                  <div style={{justifyContent: "center", alignItems: "center", alignContent: "center", float: "right"}}>
-                    <h3>Market Value: <span style={{fontWeight: "normal",}}>100 000 000€</span></h3>
-                    <h3>Market Value: <span style={{fontWeight: "normal",}}>100 000 00000000000€</span></h3>
-                    <h3>Market Value: <span style={{fontWeight: "normal",}}>100 000 000€</span></h3>
-                  </div> */}
-                    {/* </div> */}
-                    {/* </div> */}
                 </div>
             ) : (
                 <div>Loading</div>

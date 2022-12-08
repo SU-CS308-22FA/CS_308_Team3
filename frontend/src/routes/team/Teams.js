@@ -24,6 +24,7 @@ export default function Teams() {
             .catch((err) => console.log(err));
     }, []);
 
+    // Send request to remove teams from system
     const removeTeam = async (teamName) => {
         await axios
             .post("/teams/removeTeam/" + teamName, { user })
@@ -41,7 +42,8 @@ export default function Teams() {
                         message: "Team is removed from the league",
                         severity: "success",
                     });
-                } else
+                } // If authentication fails or an error happens
+                else
                     setalert({
                         message: "Team could not be removed from the system",
                     });
@@ -79,7 +81,7 @@ export default function Teams() {
                                     <div
                                         className="team"
                                         onClick={() => {
-                                            navigate(`/teams/${index}`);
+                                            navigate(`/teams/${name}`);
                                         }}
                                     >
                                         <img
