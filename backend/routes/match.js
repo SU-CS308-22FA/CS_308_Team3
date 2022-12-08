@@ -6,5 +6,6 @@ var router = express.Router();
   GET
 */
 router.get("/get", matchController.getMatchById)
+router.get("/referees", matchController.getMatchById)
 
 module.exports = router;

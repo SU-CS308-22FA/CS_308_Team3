@@ -2,7 +2,7 @@ const refereeModel = require("../model/refereeModel");
 
 module.exports = {
     list: (req, res) => {
-        const {} = req.body;
+        const { } = req.body;
         refereeModel.find({}).exec(function (err, data) {
             // console.log(refs);
             return res.send({
@@ -19,10 +19,36 @@ module.exports = {
             res.send({ referee: refereeFound, message: "Found" });
         else res.send({ message: "Not found" });
     },
-    update: () => {},
-    remove: () => {},
+    update: async (req, res) => {
+        const { name, age, experience, license, hometown, image, _id } = req.body;
+
+        const result = await refereeModel.updateOne({ _id }, {
+            name,
+            age,
+            experience,
+            license,
+            hometown,
+            image
+        });
+
+        if (result.acknowledged === false) {
+            return res.status(400).send("Update operation failed.");
+        }
+
+        return res.send("Update operation succeeded.");
+    },
+    remove: async (req, res) => {
+        const { name } = req.params;
+        const result = await refereeModel.deleteOne({ name });
+        console.log(name);
+        if (result.deletedCount === 0) {
+            return res.status(400).send("Delete operation failed.");
+        }
+
+        return res.send("Delete operation succeeded.");
+    },
     refereeAdd: async (req, res) => {
-        const { name, age, experience, license, hometown, image } = req.body;
+        const { name, age, experience, license, hometown, image, score } = req.body;
 
         const newReferee = new refereeModel({
             name: name,
@@ -31,6 +57,7 @@ module.exports = {
             license: license,
             gender: "Male",
             score: 5,
+            num_scores: 1,
             hometown: hometown,
             image: image,
             last3Matches: [
@@ -86,21 +113,59 @@ module.exports = {
         }
     },
 
-    compareReferees:async (req,res) => {
-        const {id1, id2} = req.params;
+    compareReferees: async (req, res) => {
+        const { id1, id2 } = req.params;
 
         // if (refereeFound != null)
         //     res.send({ referee: refereeFound, message: "Found" });
         // else res.send({ message: "Not found" });
 
-        var referee1 = await refereeModel.findOne({name: id1});
-        var referee2 = await refereeModel.findOne({name: id2});
+        var referee = await refereeModel.findOne({ name: id1 });
+        var referee2 = await refereeModel.findOne({ name: id2 });
 
 
         return res.send({
-            referees: [referee1, referee2]
+            referees: [referee, referee2]
         });
 
 
+    },
+    refereeVote: async (req, res) => {
+        const { id1, score, user: { userType, email } } = req.body;
+
+        let voteWeight = 1;
+        if (userType === "TFF") {
+            voteWeight = 10
+        }
+
+        var referee = await refereeModel.findOne({ name: id1 });
+        var refereeScore = referee.score;
+        var num_voters = referee.num_voters ?? 0;
+        // console.log(num_voters, refereeScore);
+        referee.score = ((refereeScore * num_voters) + (score * voteWeight)) / (num_voters + voteWeight)
+        referee.num_voters = (num_voters + voteWeight)
+
+        try {
+            refereeModel.findOneAndUpdate(
+                { name: id1 },
+                referee,
+                { upsert: true },
+                function (err, userFound) {
+                    if (err) {
+                        console.log(err);
+                        return res.send({ message: "There is an error while updating score" });
+                    } else if (!userFound) {
+                        console.log("User not found");
+                        return res.send({ message: "There is an error while updating score" });
+                    }
+                    // User is found
+                    console.log(userFound);
+                    return res.send({ message: "Referee score updated succesful" });
+                })
+
+
+        } catch (err) {
+            console.log(err);
+        }
     },
 };

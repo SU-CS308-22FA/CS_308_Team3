@@ -14,14 +14,18 @@ router.get("/:id1/:id2", refereeController.compareReferees);
  */
 //router.post("/signup", teamController.signup);
 router.post("/refereeAdd", refereeController.refereeAdd);
+router.post("/refereeVote",refereeController.refereeVote);
 
 /*
  * PUT
  */
 
+router.put("/update", refereeController.update);
+
+
 /*
  * DELETE
  */
-// router.delete("/:id", teamController.remove);
+router.delete("/:name", refereeController.remove);
 
 module.exports = router;

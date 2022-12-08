@@ -2,7 +2,7 @@ const teamModel = require("../model/teamModel");
 
 module.exports = {
     list: (req, res) => {
-        const {} = req.body;
+        // const {} = req.body;
         //console.log(JSON.stringify(req.body, null, 2));
 
         return res.send({
@@ -31,7 +31,6 @@ module.exports = {
     },
     teamsList: (req, res) => {
         teamModel.find({}).exec(function (err, data) {
-            // console.log(refs);
             return res.send({
                 teams: data,
             });
@@ -70,8 +69,57 @@ module.exports = {
             );
         else return res.send({ message: "There is an error" });
     },
-    update: () => {},
-    remove: () => {},
+    addTeam: async (req, res) => {
+        const { team } = req.body;
+        // console.log(team);
+
+        try {
+            // The team is added already
+            const teamFound = await teamModel.findOne({ name: team.name });
+
+            if (teamFound !== null) {
+                return res.send({
+                    message: "The team already exists",
+                });
+            }
+            const newTeam = new teamModel(team);
+            console.log(newTeam, team);
+            // The team does not exits
+            newTeam.save((err, team) => {
+                if (err) {
+                    return res.status(500).json({
+                        message: "Error when adding team",
+                        error: err,
+                    });
+                }
+                return res.status(201).send({
+                    message: "Team is added",
+                    team: team,
+                });
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    removeTeam: (req, res) => {
+        const { user } = req.body;
+        const { id } = req.params;
+
+        if (user.userType === "TFF") {
+            teamModel
+                .deleteOne({ name: id })
+                .then(({ deletedCount }) => {
+                    console.log(deletedCount);
+                    if (deletedCount === 1)
+                        return res.send({ message: "Team is removed" });
+                    else return res.send({ message: "Error on team delete" });
+                })
+                .catch((err) => console.log(err));
+        } else {
+            return res.send({ message: "Team delete is not successful" });
+        }
+    },
+    // update: () => {},
 };
 
 // const teamInfo = [

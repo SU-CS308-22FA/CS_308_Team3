@@ -1,16 +1,20 @@
 import axios from "axios"
-import { useEffect, useState} from "react";
-import "./matchDetails.css"
+import { useContext, useEffect, useState} from "react";
+import "./MatchDetails.css"
 import { Divider,
   Avatar,
   Box } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../../contexts/userContext";
+import AssignReferee from "./AssignReferee";
 
 
 
 export function MatchDetails() {
   const [match, setMatch] = useState();
   var match_id = useParams().id;
+
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     axios
@@ -62,6 +66,8 @@ export function MatchDetails() {
               <h2 className="team-title"> {match.team2Coach}</h2>
             </div>
           </div>
+
+          { user && user.userType == "TFF" && <AssignReferee matchId={match_id}/> }
         </div>
         : <div> Loading... </div>}
     </div>
