@@ -142,7 +142,7 @@ export default function RefereeTable() {
                                         <p>Years of experience: {experience}</p>
                                         <p>License: {license}</p>
                                         <p>Hometown: {hometown}</p>
-                                        <p>Score: {score}</p>
+                                        <p>Score: {`${score}`.slice(0,4)}</p>
                                     </div>
                                     <div className="lastMatchesContainer">
                                         <p>Last 3 matches:</p>

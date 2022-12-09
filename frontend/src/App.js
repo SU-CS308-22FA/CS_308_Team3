@@ -21,6 +21,8 @@ import TeamDetails from "./routes/team/TeamDetails";
 import RefereeCompare from "./routes/referee/RefereeCompare";
 import TeamEdit from "./routes/team/TeamEdit";
 import TeamAdd from "./routes/team/TeamAdd";
+import FrequentlyAsked from "./routes/faq/FrequentlyAsked";
+
 
 function App() {
     const { user } = useContext(UserContext);
@@ -44,27 +46,14 @@ function App() {
                                 path="referees/:name"
                                 element={<RefereeDetails />}
                             />
-
                             <Route
                                 path="match-details/:id"
                                 element={<MatchDetails />}
                             />
                             <Route path="teams/:id" element={<TeamDetails />} />
-
                             <Route
                                 path="referee-compare/:id1/:id2"
                                 element={<RefereeCompare />}
-                            />
-
-                            <Route
-                                path="*"
-                                element={
-                                    <main style={{ padding: "15rem" }}>
-                                        <h1>
-                                            There's nothing here! Page Not Found
-                                        </h1>
-                                    </main>
-                                }
                             />
                         </>
                     ) : user.userType === "TFF" ? (
@@ -87,7 +76,6 @@ function App() {
                                 path="changepassword"
                                 element={<ChangePassword />}
                             />
-
                             <Route
                                 path="match-details/:id"
                                 element={<MatchDetails />}
@@ -96,19 +84,6 @@ function App() {
                             <Route
                                 path="referee-compare/:id1/:id2"
                                 element={<RefereeCompare />}
-                            />
-
-                            {/* TODO */}
-                            {/* <Route path="*" element={<ErrorPage />} /> */}
-                            <Route
-                                path="*"
-                                element={
-                                    <main style={{ padding: "15rem" }}>
-                                        <h1>
-                                            There's nothing here! Page Not Found
-                                        </h1>
-                                    </main>
-                                }
                             />
                         </>
                     ) : (
@@ -137,20 +112,22 @@ function App() {
                                 element={<RefereeCompare />}
                             />
 
-                            {/* TODO */}
-                            {/* <Route path="*" element={<ErrorPage />} /> */}
-                            <Route
-                                path="*"
-                                element={
-                                    <main style={{ padding: "15rem" }}>
-                                        <h1>
-                                            There's nothing here! Page Not Found
-                                        </h1>
-                                    </main>
-                                }
-                            />
                         </>
                     )}
+                    <Route
+                        path="faq"
+                        element={<FrequentlyAsked />}
+                    />
+                    <Route
+                        path="*"
+                        element={
+                            <main style={{ padding: "15rem" }}>
+                                <h1>
+                                    There's nothing here! Page Not Found
+                                </h1>
+                            </main>
+                        }
+                    />
                 </Routes>
             </div>
         </BrowserRouter>
