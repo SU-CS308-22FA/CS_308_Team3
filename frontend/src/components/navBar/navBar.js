@@ -172,6 +172,7 @@ const NavBar = () => {
             { label: "Referee", navUrl: "/referees" },
             { label: "Teams", navUrl: "/teams" },
             { label: "Profile", navUrl: "/profile" },
+            { label: "FAQ", navUrl: "/faq" },
         ],
         []
     );

@@ -148,35 +148,37 @@ export default function Profile() {
                         </div>
                     );
                 })}
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                    <InputLabel id="demo-simple-select-helper-label">
-                        Team Supported
-                    </InputLabel>
-                    <Select
-                        labelId="demo-simple-select-helper-label"
-                        id="demo-simple-select-helper"
-                        value={teamSupported}
-                        label="Team Supported"
-                        onChange={(event) =>
-                            setTeamSupported(event.target.value)
-                        }
-                    >
-                        <MenuItem value="">
-                            <em>No team supported</em>
-                        </MenuItem>
-                        {teams !== [] &&
-                            teams.map((team, index) => {
-                                return (
-                                    <MenuItem
-                                        value={team}
-                                        key={index.toString()}
-                                    >
-                                        {team}
-                                    </MenuItem>
-                                );
-                            })}
-                    </Select>
-                </FormControl>
+                {user.userType !== "TFF" &&
+                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <InputLabel id="demo-simple-select-helper-label">
+                            Team Supported
+                        </InputLabel>
+                        <Select
+                            labelId="demo-simple-select-helper-label"
+                            id="demo-simple-select-helper"
+                            value={teamSupported}
+                            label="Team Supported"
+                            onChange={(event) =>
+                                setTeamSupported(event.target.value)
+                            }
+                        >
+                            <MenuItem value="">
+                                <em>No team supported</em>
+                            </MenuItem>
+                            {teams !== [] &&
+                                teams.map((team, index) => {
+                                    return (
+                                        <MenuItem
+                                            value={team}
+                                            key={index.toString()}
+                                        >
+                                            {team}
+                                        </MenuItem>
+                                    );
+                                })}
+                        </Select>
+                    </FormControl>
+                }
 
                 <div
                     style={{

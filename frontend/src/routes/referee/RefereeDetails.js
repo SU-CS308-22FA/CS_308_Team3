@@ -12,7 +12,7 @@ import {
     ToggleButtonGroup,
 } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState,useContext, useCallback } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { NotificationContext } from "../../contexts/notificationContext";
 
@@ -23,10 +23,10 @@ import "./refereeDetails.scss";
 export default function RefereeDetails() {
     const [vote, setVote] = useState("");
     const location = useLocation();
-    const {setalert } = useContext(NotificationContext);
+    const { setalert } = useContext(NotificationContext);
     const {
         state: { name },
-    } = location; 
+    } = location;
 
     const { user } = useContext(UserContext);
 
@@ -36,27 +36,28 @@ export default function RefereeDetails() {
     const [status, setStatus] = useState(null);
 
     const changeRefereeValue = useCallback((key, value) => {
-        setReferee({...referee, [key]: value});
+        setReferee({ ...referee, [key]: value });
     }, [referee]);
 
     const isStaff = user && user.userType === "TFF";
 
-    const detailView = (field) => { 
+    const detailView = (field) => {
         const isIntField = ["age", "experience"].includes(field);
 
         return (
             isStaff
-            ? 
-            <div style={{display: "inline-block"}}>
-                <TextField id="outlined-basic" label="Value" variant="outlined" 
-                    value={referee[field] || ""} 
-                    type={isIntField ? "number" : undefined}
-                    onChange={ev => changeRefereeValue(field, isIntField ? parseInt(ev.target.value) : ev.target.value)} sx={{width: isIntField ? 70 : 180}}/>
-            </div>
-            :
-            <div style={{display: "inline-block"}}>
-                {referee[field]}
-            </div>
+                ?
+                <div style={{ display: "inline-block" }}>
+                    <TextField id="outlined-basic" label="Value" variant="outlined"
+                        value={referee[field] || ""}
+                        type={isIntField ? "number" : undefined}
+                        onChange={ev => changeRefereeValue(field, isIntField ? parseInt(ev.target.value) : ev.target.value)} sx={{ width: isIntField ? 70 : 180 }} />
+                </div>
+
+                :
+                <div style={{ display: "inline-block" }}>
+                    {referee[field]}
+                </div>
         )
     };
 
@@ -89,6 +90,12 @@ export default function RefereeDetails() {
         });
     }
 
+    const updateRefereePage = async () => {
+        await axios.get("/referees/" + name).then(res => {
+            setReferee(res.data.referee);
+        }).catch(err => console.error(err));
+    };
+
     const votefunction = async () => {
         if (
             vote === ""
@@ -104,16 +111,15 @@ export default function RefereeDetails() {
                 id1: name,
                 score: vote,
                 user
-
-        
             })
-            .then((res) => {
+            .then(async (res) => {
                 console.log(res.data);
                 if (res.data.message === "Referee score updated succesful") {
                     setalert({
                         message: "Referee score changed succesfully",
                         severity: "success",
                     });
+                    await updateRefereePage(name);
                 } else {
                     setalert({
                         message: res.data.message,
@@ -127,78 +133,82 @@ export default function RefereeDetails() {
     };
 
     return (
-        <div className="refereeDetailsContainer">
-            <div>
-                <img
-                    className="refereePhoto"
-                    src={referee.image}
-                    alt={referee.name}
-                />
-                {isStaff && <h3>{detailView("image")}</h3>}
-                <div className="refereeDetails">
-                    <h3>Age: {detailView("age")}</h3>
-                    <h3>Years of Experience: {detailView("experience")}</h3>
-                    <h3>License: {detailView("license")}</h3>
-                    <h3>Hometown: {detailView("hometown")}</h3>
+        <div>
+            {referee !== null ? (
+                <div className="refereeDetailsContainer">
+                    <div>
+                        <img
+                            className="refereePhoto"
+                            src={referee.image}
+                            alt={referee.name}
+                        />
+                        {isStaff && <h3>{detailView("image")}</h3>}
+                        <div className="refereeDetails">
+                            <h3>Age: {detailView("age")}</h3>
+                            <h3>Years of Experience: {detailView("experience")}</h3>
+                            <h3>License: {detailView("license")}</h3>
+                            <h3>Hometown: {detailView("hometown")}</h3>
+                            <h3>Score: {`${referee.score}`.slice(0, 4)}</h3>
+                        </div>
+                    </div>
+                    <div>
+                        <h1>{detailView("name")}</h1>
+                        {status && <Alert severity={status[0]} sx={{ width: 150, mb: 2 }}>{status[1]}</Alert>}
+                        {isStaff && <Button variant="contained" sx={{ width: 180 }} onClick={updateReferee}>Update Referee</Button>}
+                        <Box sx={{ my: 2 }} />
+                        {isStaff && <Button variant="outlined" color="error" sx={{ width: 180 }} onClick={deleteReferee}>Delete Referee</Button>}
 
-                </div>
-            </div>
-            <div>
-                <h1>{detailView("name")}</h1>
-                {status && <Alert severity={status[0]} sx={{width: 150, mb: 2}}>{status[1]}</Alert>}
-                {isStaff && <Button variant="contained" sx={{width: 180}} onClick={updateReferee}>Update Referee</Button>}
-                <Box sx={{my: 2}} />
-                {isStaff && <Button variant="outlined" color="error" sx={{width: 180}} onClick={deleteReferee}>Delete Referee</Button>}
+                    </div>
+                    <div className="lastMatchesContainer">
+                        <p style={{ fontSize: "20px" }}>Last 3 matches:</p>
+                        <div className="lastMatches">
+                            {referee.last3Matches &&
+                                referee.last3Matches.map(
+                                    ({ logo1, logo2, date }, index) =>
+                                        date && (
+                                            <div className="match" key={index}>
+                                                <img src={logo1} alt={"logo1"} />
+                                                <p>vs</p>
+                                                <img src={logo2} alt={"logo2"} />
+                                            </div>
+                                        )
+                                )}
+                        </div>
+                    </div>
 
-            </div>
-            <div className="lastMatchesContainer">
-                <p style={{ fontSize: "20px" }}>Last 3 matches:</p>
-                <div className="lastMatches">
-                    {referee.last3Matches &&
-                        referee.last3Matches.map(
-                            ({ logo1, logo2, date }, index) =>
-                                date && (
-                                    <div className="match" key={index}>
-                                        <img src={logo1} alt={"logo1"} />
-                                        <p>vs</p>
-                                        <img src={logo2} alt={"logo2"} />
-                                    </div>
-                                )
-                        )}
-                </div>
-            </div>
-            
-            {user && (
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-helper-label">
-                    Vote
-                </InputLabel>
-                <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    value={vote}
-                    label="Vote"
-                    onChange={(event) =>
-                        setVote(event.target.value)
-                    }
-                >
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
-                    <MenuItem value={6}>6</MenuItem>
-                    <MenuItem value={7}>7</MenuItem>
-                    <MenuItem value={8}>8</MenuItem>
-                    <MenuItem value={9}>9</MenuItem>
-                    <MenuItem value={10}>10</MenuItem>
-                </Select>
-                <Button onClick={votefunction} variant="outlined" style={{ marginTop: "2vh" }}>
-                   Vote
-                </Button>
-            </FormControl>
-            )}
+                    {user && (
+                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                            <InputLabel id="demo-simple-select-helper-label">
+                                Vote
+                            </InputLabel>
+                            <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                value={vote}
+                                label="Vote"
+                                onChange={(event) =>
+                                    setVote(event.target.value)
+                                }
+                            >
+                                <MenuItem value={1}>1</MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
+                                <MenuItem value={3}>3</MenuItem>
+                                <MenuItem value={4}>4</MenuItem>
+                                <MenuItem value={5}>5</MenuItem>
+                                <MenuItem value={6}>6</MenuItem>
+                                <MenuItem value={7}>7</MenuItem>
+                                <MenuItem value={8}>8</MenuItem>
+                                <MenuItem value={9}>9</MenuItem>
+                                <MenuItem value={10}>10</MenuItem>
+                            </Select>
+                            <Button onClick={votefunction} variant="outlined" style={{ marginTop: "2vh" }}>
+                                Vote
+                            </Button>
+                        </FormControl>
+                    )}
 
+                </div>) : (<div>Loading...</div>)
+            }
         </div>
 
     );
