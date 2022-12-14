@@ -29,6 +29,11 @@ function AssignReferee({ matchId }) {
 
     }, [matchId]);
     
+    /**
+     * This function handles referee changes.
+     * @param {event} event change referee event.
+     * @returns {*} saves the new referee to the match.
+     */
     const handleChangeReferee = useCallback((event) => {
         setStatus(["info", "Updating referee"]);
         
