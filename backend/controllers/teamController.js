@@ -45,6 +45,12 @@ module.exports = {
         // if team is not found
         else return res.send({ team: null });
     },
+    /**
+     * This function edit the team information with the request
+     * @param {*} req Request object including user and team objects
+     * @param {*} res Response to send the event message
+     * @returns
+     */
     editTeam: (req, res) => {
         const { user, team } = req.body;
         const { id } = req.params;
@@ -69,6 +75,12 @@ module.exports = {
             );
         else return res.send({ message: "There is an error" });
     },
+    /**
+     * This function adds a team to the teams db
+     * @param {Object} req Request object including the team object
+     * @param {Object} res
+     * @returns
+     */
     addTeam: async (req, res) => {
         const { team } = req.body;
         // console.log(team);
@@ -101,6 +113,12 @@ module.exports = {
             console.log(err);
         }
     },
+    /**
+     * This function removes the team from teams db
+     * @param {Object} req Request coming
+     * @param {Object} res Respond going
+     * @returns
+     */
     removeTeam: (req, res) => {
         const { user } = req.body;
         const { id } = req.params;

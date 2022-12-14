@@ -24,7 +24,10 @@ export default function Teams() {
             .catch((err) => console.log(err));
     }, []);
 
-    // Send request to remove teams from system
+    /**
+     * This function removes a team from the system by its name
+     * @param {String} teamName Name of the team to be removed
+     */
     const removeTeam = async (teamName) => {
         await axios
             .post("/teams/removeTeam/" + teamName, { user })

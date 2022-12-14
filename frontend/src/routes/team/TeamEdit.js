@@ -70,7 +70,10 @@ export default function TeamEdit() {
         [team, manager, yearEst, trophies, fans]
     );
 
-    // Remove the player from players list of the team
+    /**
+     * To remove a player from team's players list
+     * @param {object} player Player to be removed from the team
+     */
     const removePlayer = (player) => {
         // console.log(player);
         setPlayers((oldArray) => {
@@ -79,6 +82,10 @@ export default function TeamEdit() {
         });
     };
 
+    /**
+     * To add a player to team's players list
+     * @param {object} player The player to be added to players list
+     */
     const addPlayer = (player) => {
         setPlayers((oldPlayers) => [...oldPlayers, player]);
         // Reset the player field after adding it to the list

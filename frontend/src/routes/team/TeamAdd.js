@@ -64,6 +64,10 @@ export default function TeamAdd() {
         [name, shortName, manager, trophies, fans, yearEst, image]
     );
 
+    /**
+     * Send the new team information to backend
+     *
+     */
     const addTeam = async () => {
         // Check if any of the fields are empty
         if (
@@ -114,6 +118,10 @@ export default function TeamAdd() {
             });
     };
 
+    /**
+     * To add a player to team's players list
+     * @param {object} player The player to be added to players list
+     */
     const addPlayer = (player) => {
         setPlayers((oldPlayers) => [...oldPlayers, player]);
         setPlayer("");

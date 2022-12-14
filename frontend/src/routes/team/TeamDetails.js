@@ -30,8 +30,6 @@ export default function TeamDetails() {
         return { name };
     }
 
-    // var rows = listPlayers(team.players);
-
     function listPlayers(playerArray) {
         let rows = [];
         for (let i = 0; i < playerArray.length; i++) {
