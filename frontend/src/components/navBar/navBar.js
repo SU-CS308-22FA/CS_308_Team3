@@ -173,6 +173,8 @@ const NavBar = () => {
             { label: "Teams", navUrl: "/teams" },
             { label: "Profile", navUrl: "/profile" },
             { label: "FAQ", navUrl: "/faq" },
+            { label: "Top Rated Referee", navUrl: "/topratedreferee" },
+            
         ],
         []
     );
