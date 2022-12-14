@@ -95,7 +95,10 @@ export default function RefereeDetails() {
             setReferee(res.data.referee);
         }).catch(err => console.error(err));
     };
-
+    /**
+     * Represents vote function 
+     * @returns 
+     */
     const votefunction = async () => {
         if (
             vote === ""
