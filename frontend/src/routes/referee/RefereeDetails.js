@@ -69,6 +69,10 @@ export default function RefereeDetails() {
         });
     }, []);
 
+    /**
+     * This function updates referee information.
+     * @returns {*} makes request to backend to update referee information.
+     */
     const updateReferee = () => {
         setStatus(["info", "Updating referee..."]);
         axios.put("/referees/update", referee).then((res) => {
