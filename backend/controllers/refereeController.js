@@ -130,6 +130,11 @@ module.exports = {
 
 
     },
+    /**
+     * Represent the voting function
+     * @param {*} req - Request
+     * @param {*} res - Response
+     */
     refereeVote: async (req, res) => {
         const { id1, score, user: { userType, email } } = req.body;
 
