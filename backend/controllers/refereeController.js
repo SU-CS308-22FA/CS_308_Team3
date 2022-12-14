@@ -140,7 +140,7 @@ module.exports = {
 
         var referee = await refereeModel.findOne({ name: id1 });
         var refereeScore = referee.score;
-        var num_voters = referee.num_voters ?? 0;
+        var num_voters = referee.num_voters || 0;
         // console.log(num_voters, refereeScore);
         referee.score = ((refereeScore * num_voters) + (score * voteWeight)) / (num_voters + voteWeight)
         referee.num_voters = (num_voters + voteWeight)
