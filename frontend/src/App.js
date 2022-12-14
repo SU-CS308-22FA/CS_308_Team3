@@ -22,7 +22,7 @@ import RefereeCompare from "./routes/referee/RefereeCompare";
 import TeamEdit from "./routes/team/TeamEdit";
 import TeamAdd from "./routes/team/TeamAdd";
 import FrequentlyAsked from "./routes/faq/FrequentlyAsked";
-
+import Topratedreferee from "./routes/topratedreferee/Topratedreferee";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -118,6 +118,11 @@ function App() {
                         path="faq"
                         element={<FrequentlyAsked />}
                     />
+                    
+                    <Route
+                        path="topratedreferee"
+                        element={<Topratedreferee />}
+                    />
                     <Route
                         path="*"
                         element={
@@ -135,3 +140,4 @@ function App() {
 }
 
 export default App;
+
