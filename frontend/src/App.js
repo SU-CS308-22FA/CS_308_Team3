@@ -23,6 +23,7 @@ import TeamEdit from "./routes/team/TeamEdit";
 import TeamAdd from "./routes/team/TeamAdd";
 import FrequentlyAsked from "./routes/faq/FrequentlyAsked";
 import Topratedreferee from "./routes/topratedreferee/Topratedreferee";
+import Topratedmatch from "./routes/topratedmatch/Topratedmatch";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -122,6 +123,10 @@ function App() {
                     <Route
                         path="topratedreferee"
                         element={<Topratedreferee />}
+                    />
+                    <Route
+                        path="topratedmatch"
+                        element={<Topratedmatch />}
                     />
                     <Route
                         path="*"
