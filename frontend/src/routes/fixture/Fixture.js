@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +7,10 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 import "./fixture.scss";
+import { UserContext } from "../../contexts/userContext";
 
 export default function Fixture() {
+    const { user } = useContext(UserContext);
     const [matches, setMatches] = useState(null);
     const [week, setWeek] = useState(1);
     const navigate = useNavigate();
@@ -25,10 +27,27 @@ export default function Fixture() {
             .catch((err) => console.log(err));
     }, []);
 
+    const goToAddMatch = () => {
+        navigate("add-match");
+    };
+
     return (
         <div>
             <h3>Fixture of the Week</h3>
-            <h3 style={{ color: "red" }}>Week {week}</h3>
+            <div className="row" style={{ justifyContent: "space-between" }}>
+                <h3 style={{ color: "red" }}>Week {week}</h3>
+                {user?.userType === "TFF" && (
+                    <Button
+                        color="primary"
+                        variant="outlined"
+                        size="medium"
+                        className="button"
+                        onClick={goToAddMatch}
+                    >
+                        Add a match
+                    </Button>
+                )}
+            </div>
             <div className="fixture">
                 <div className="weekChanger">
                     <ArrowCircleLeftIcon
@@ -67,7 +86,7 @@ export default function Fixture() {
                                         className="match"
                                         key={index}
                                         onClick={() => {
-                                            navigate(`/match-details/${id}`); //TODO go to match
+                                            navigate(`/match-details/${id}`);
                                         }}
                                     >
                                         <div className="matchInfo">

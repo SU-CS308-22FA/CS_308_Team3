@@ -126,7 +126,7 @@ export default function Profile() {
 
     return (
         <div className="profileWoLogin">
-            <div className="column">
+            <div className="columnProfile">
                 <img
                     src={require("./../../assets/profiledefault.png")}
                     alt="profile"
@@ -148,7 +148,7 @@ export default function Profile() {
                         </div>
                     );
                 })}
-                {user.userType !== "TFF" &&
+                {user.userType !== "TFF" && (
                     <FormControl sx={{ m: 1, minWidth: 120 }}>
                         <InputLabel id="demo-simple-select-helper-label">
                             Team Supported
@@ -178,7 +178,7 @@ export default function Profile() {
                                 })}
                         </Select>
                     </FormControl>
-                }
+                )}
 
                 <div
                     style={{
