@@ -9,6 +9,18 @@ module.exports = {
             });
         });
     },
+    getMatchesByWeek: (req, res) => {
+        const { week } = req.params;
+        try {
+            matchModel.find({}).exec(function (err, data) {
+                return res.send({
+                    matches: data.filter((match) => match.week == week),
+                });
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    },
     getMatchById: (req, res) => {
         const {} = req.body;
 

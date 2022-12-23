@@ -6,6 +6,7 @@ var router = express.Router();
   GET
 */
 router.get("/", matchController.getMatches);
+router.get("/:week", matchController.getMatchesByWeek);
 router.get("/referees", matchController.getMatchById);
 
 /*

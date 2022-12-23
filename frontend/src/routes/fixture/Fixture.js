@@ -13,32 +13,33 @@ export default function Fixture() {
     const { user } = useContext(UserContext);
     const [matches, setMatches] = useState(null);
     const [week, setWeek] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // axios
-        //     .get("/fixture/list")
-        //     .then((res) => {
-        //         const matchesWoOrder = res.data.matches;
-        //         // console.table(matchesWoOrder);
-        //         const sortedMathces = sortDates(matchesWoOrder);
-        //         setMatches(sortedMathces);
-        //     })
-        //     .catch((err) => console.log(err));
         axios
-            .get("/match/")
+            .get("/match/" + week)
             .then((res) => {
                 const matchesWoOrder = res.data.matches;
-                console.table(matchesWoOrder);
-                // const sortedMathces = sortDates(matchesWoOrder);
-                // setMatches(sortedMathces);
-                setMatches(matchesWoOrder);
+                // setMatches(matchesWoOrder);
+                // console.table(matchesWoOrder);
+                const sortedMathces = sortDates(matchesWoOrder);
+                setMatches(sortedMathces);
             })
+            .finally(() => setIsLoading(false))
             .catch((err) => console.log(err));
-    }, []);
+    }, [week]);
 
     const goToAddMatch = () => {
         navigate("add-match");
+    };
+
+    const goNextWeek = () => {
+        week < 38 && setWeek((week) => week + 1);
+    };
+
+    const goPrevWeek = () => {
+        week > 1 && setWeek((week) => week - 1);
     };
 
     return (
@@ -61,23 +62,20 @@ export default function Fixture() {
             <div className="fixture">
                 <div className="weekChanger">
                     <ArrowCircleLeftIcon
-                        onClick={() =>
-                            week > 1 ? setWeek((week) => week - 1) : null
-                        }
+                        onClick={goPrevWeek}
                         style={{ height: "35px", width: "auto" }}
                     />
                     <p style={{ margin: "0px 10px", fontSize: "22px" }}>
                         {week}/38
                     </p>
                     <ArrowCircleRightIcon
-                        onClick={() =>
-                            week < 38 ? setWeek((week) => week + 1) : null
-                        }
+                        onClick={goNextWeek}
                         style={{ height: "35px", width: "auto" }}
                     />
                 </div>
                 <div className="wrapContainer">
                     {matches &&
+                        !isLoading &&
                         matches.map(
                             (
                                 {
@@ -156,7 +154,7 @@ export default function Fixture() {
                                 );
                             }
                         )}
-                    {matches === null && <h3>Loading...</h3>}
+                    {(matches === null || isLoading) && <h3>Loading...</h3>}
                 </div>
             </div>
         </div>
