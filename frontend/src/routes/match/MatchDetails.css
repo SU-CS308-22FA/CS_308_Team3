@@ -18,12 +18,14 @@
 
 .team-title {
     text-align: center;
+    justify-content: "center";
+    align-items: "center";
 }
 
 .Main {
     display: flex;
     align-items: center;
-    
+
     text-align: center;
 }
 

@@ -1,11 +1,9 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "./contexts/userContext";
-import NavBar from "./components/navBar/navBar";
-import Login from "./routes/login/Login";
-
 import "./connection";
 import "./App.scss";
+import NavBar from "./components/navBar/navBar";
 import Profile from "./routes/profile/Profile";
 import Teams from "./routes/team/Teams";
 import Fixture from "./routes/fixture/Fixture";
@@ -24,6 +22,7 @@ import TeamAdd from "./routes/team/TeamAdd";
 import FrequentlyAsked from "./routes/faq/FrequentlyAsked";
 import Topratedreferee from "./routes/topratedreferee/Topratedreferee";
 import Topratedmatch from "./routes/topratedmatch/Topratedmatch";
+import MatchAdd from "./routes/fixture/MatchAdd";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -36,7 +35,6 @@ function App() {
                 <Routes>
                     {!user ? (
                         <>
-                            <Route path="/" element={<Fixture />} />
                             <Route
                                 path="profile"
                                 element={<ProfileWoLogin />}
@@ -47,10 +45,6 @@ function App() {
                                 path="referees/:name"
                                 element={<RefereeDetails />}
                             />
-                            <Route
-                                path="match-details/:id"
-                                element={<MatchDetails />}
-                            />
                             <Route path="teams/:id" element={<TeamDetails />} />
                             <Route
                                 path="referee-compare/:id1/:id2"
@@ -60,7 +54,6 @@ function App() {
                     ) : user.userType === "TFF" ? (
                         // TFF staff routes
                         <>
-                            <Route path="/" element={<Fixture />} />
                             <Route path="profile" element={<Profile />} />
                             <Route path="teams" element={<Teams />} />
                             <Route path="referees" element={<RefereeTable />} />
@@ -73,13 +66,10 @@ function App() {
                                 element={<RefereeAdd />}
                             />
                             <Route path="add-team" element={<TeamAdd />} />
+                            <Route path="add-match" element={<MatchAdd />} />
                             <Route
                                 path="changepassword"
                                 element={<ChangePassword />}
-                            />
-                            <Route
-                                path="match-details/:id"
-                                element={<MatchDetails />}
                             />
                             <Route path="teams/:id" element={<TeamEdit />} />
                             <Route
@@ -90,7 +80,6 @@ function App() {
                     ) : (
                         // normal user routes
                         <>
-                            <Route path="/" element={<Fixture />} />
                             <Route path="profile" element={<Profile />} />
                             <Route path="teams" element={<Teams />} />
                             <Route path="referees" element={<RefereeTable />} />
@@ -103,38 +92,31 @@ function App() {
                                 element={<ChangePassword />}
                             />
 
-                            <Route
-                                path="match-details/:id"
-                                element={<MatchDetails />}
-                            />
                             <Route path="teams/:id" element={<TeamDetails />} />
                             <Route
                                 path="referee-compare/:id1/:id2"
                                 element={<RefereeCompare />}
                             />
-
                         </>
                     )}
+                    <Route path="/" element={<Fixture />} />
+
                     <Route
-                        path="faq"
-                        element={<FrequentlyAsked />}
+                        path="match-details/:id"
+                        element={<MatchDetails />}
                     />
-                    
+                    <Route path="faq" element={<FrequentlyAsked />} />
+
                     <Route
                         path="topratedreferee"
                         element={<Topratedreferee />}
                     />
-                    <Route
-                        path="topratedmatch"
-                        element={<Topratedmatch />}
-                    />
+                    <Route path="topratedmatch" element={<Topratedmatch />} />
                     <Route
                         path="*"
                         element={
                             <main style={{ padding: "15rem" }}>
-                                <h1>
-                                    There's nothing here! Page Not Found
-                                </h1>
+                                <h1>There's nothing here! Page Not Found</h1>
                             </main>
                         }
                     />
@@ -145,4 +127,3 @@ function App() {
 }
 
 export default App;
-
