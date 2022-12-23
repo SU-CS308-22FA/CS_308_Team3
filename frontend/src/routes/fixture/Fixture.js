@@ -16,13 +16,23 @@ export default function Fixture() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // axios
+        //     .get("/fixture/list")
+        //     .then((res) => {
+        //         const matchesWoOrder = res.data.matches;
+        //         // console.table(matchesWoOrder);
+        //         const sortedMathces = sortDates(matchesWoOrder);
+        //         setMatches(sortedMathces);
+        //     })
+        //     .catch((err) => console.log(err));
         axios
-            .get("/fixture/list")
+            .get("/match/")
             .then((res) => {
                 const matchesWoOrder = res.data.matches;
-                // console.table(matchesWoOrder);
-                const sortedMathces = sortDates(matchesWoOrder);
-                setMatches(sortedMathces);
+                console.table(matchesWoOrder);
+                // const sortedMathces = sortDates(matchesWoOrder);
+                // setMatches(sortedMathces);
+                setMatches(matchesWoOrder);
             })
             .catch((err) => console.log(err));
     }, []);
@@ -71,12 +81,13 @@ export default function Fixture() {
                         matches.map(
                             (
                                 {
-                                    id,
+                                    _id,
                                     team1,
                                     logo1,
                                     team2,
                                     logo2,
                                     date,
+                                    time,
                                     referee,
                                 },
                                 index
@@ -86,7 +97,7 @@ export default function Fixture() {
                                         className="match"
                                         key={index}
                                         onClick={() => {
-                                            navigate(`/match-details/${id}`);
+                                            navigate(`/match-details/${_id}`);
                                         }}
                                     >
                                         <div className="matchInfo">
@@ -97,15 +108,26 @@ export default function Fixture() {
                                                 alt={team1}
                                                 style={{ flex: "1" }}
                                             />
-                                            <p
-                                                style={{
-                                                    fontWeight: "bold",
-                                                    margin: "0vw 0.8vw",
-                                                    flex: "1",
-                                                }}
-                                            >
-                                                {date}
-                                            </p>
+                                            <div id="datetime">
+                                                <p
+                                                    style={{
+                                                        fontWeight: "bold",
+                                                        margin: "0vw 0.8vw",
+                                                        flex: "1",
+                                                    }}
+                                                >
+                                                    {date}
+                                                </p>
+                                                <p
+                                                    style={{
+                                                        fontWeight: "bold",
+                                                        margin: "0vw 0.8vw",
+                                                        flex: "1",
+                                                    }}
+                                                >
+                                                    {time}
+                                                </p>
+                                            </div>
                                             <img
                                                 className="fixtureTeamLogo"
                                                 src={logo2}

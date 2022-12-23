@@ -26,6 +26,8 @@ export default function MatchAdd() {
     const [referee, setReferee] = useState("");
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
+    const [week, setWeek] = useState(null);
+    const [stadium, setStadium] = useState("");
 
     const [referees, setReferees] = useState(null);
     const [teams, setTeams] = useState([]);
@@ -54,7 +56,7 @@ export default function MatchAdd() {
     //     [name, surname, age, experience, license, hometown]
     // );
     const addMatch = async () => {
-        if (team1 === "" || team2 === "" || date === "k") {
+        if (team1 === "" || team2 === "" || date === "" || time === "") {
             setalert({
                 message: "You cannot leave any of the fields empty!",
             });
@@ -65,35 +67,39 @@ export default function MatchAdd() {
             });
             return;
         }
-
-        // await axios
-        //     .post("/fixture/addmatch", {
-        //         name: name + " " + surname,
-        //         age: parseInt(age),
-        //         experience: parseInt(experience),
-        //         license: license,
-        //         hometown: hometown,
-        //         image: image,
-        //     })
-        //     .then((res) => {
-        //         console.log(res.data);
-        //         if (res.data.message === "RefereAdd is succesful") {
-        //             setalert({
-        //                 message: "Referee is added to the system succesfully",
-        //                 severity: "success",
-        //             });
-        //         } else {
-        //             setalert({
-        //                 message: res.data.message,
-        //                 severity: "error",
-        //             });
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
+        const month = date.month() + 1;
+        // console.log(date.$D + "." + month + "." + date.$y);
+        await axios
+            .post("/match/addmatch", {
+                match: {
+                    team1,
+                    team2,
+                    stadium,
+                    date: date.$D + "." + month + "." + date.$y,
+                    time: time.hour() + "." + time.minute(),
+                    referee,
+                    week,
+                },
+            })
+            .then((res) => {
+                console.log(res.data);
+                if (res.data.message === "MatchAdd is succesful") {
+                    setalert({
+                        message: "Match is added to the system succesfully",
+                        severity: "success",
+                    });
+                } else {
+                    setalert({
+                        message: res.data.message,
+                        severity: "error",
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
-    console.log(date.getMonth());
+
     return (
         <div className="matchAddContainer">
             {
@@ -204,7 +210,8 @@ export default function MatchAdd() {
                             <DatePicker
                                 label="Date"
                                 value={date}
-                                onChange={(newValue) => setDate(newValue)}
+                                format="DD-MM-YYYY"
+                                onChange={(newDate) => setDate(newDate)}
                                 renderInput={(params) => (
                                     <TextField {...params} />
                                 )}
@@ -222,6 +229,25 @@ export default function MatchAdd() {
                                 )}
                             />
                         </LocalizationProvider>
+
+                        <p>Week (Please enter between 1 to 38)</p>
+                        <TextField
+                            style={{ width: "5vw" }}
+                            label={"Week"}
+                            type={"text"}
+                            inputProps={{ maxLength: 2 }}
+                            value={week}
+                            onChange={(event) => setWeek(event.target.value)}
+                        />
+
+                        <p>Stadium</p>
+                        <TextField
+                            style={{ width: "25vw" }}
+                            label={"Stadium"}
+                            type={"text"}
+                            value={stadium}
+                            onChange={(event) => setStadium(event.target.value)}
+                        />
                     </div>
                     <Button onClick={addMatch} style={{ marginTop: "2vh" }}>
                         Add Match

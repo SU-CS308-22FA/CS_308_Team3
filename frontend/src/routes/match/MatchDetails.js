@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import "./MatchDetails.css";
 import { Divider, Avatar, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/userContext";
 import AssignReferee from "./AssignReferee";
+
+import "./MatchDetails.css";
 
 export function MatchDetails() {
     const [match, setMatch] = useState();
@@ -23,8 +24,6 @@ export function MatchDetails() {
 
     return (
         <div className="wrapContainer">
-            {/* <div className="top-to-bottom"> */}
-            {/* <h3>Match Details!</h3> */}
             {match ? (
                 <div>
                     <div className="side-by-side">
@@ -53,7 +52,16 @@ export function MatchDetails() {
                             </h1>
 
                             <h3 className="team-title"> Match Date: </h3>
-                            <h4 className="team-title"> {match.date}</h4>
+                            <h4
+                                className="team-title"
+                                style={{
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                }}
+                            >
+                                {" "}
+                                {match.date}
+                            </h4>
 
                             <h3 className="team-title"> Referee: </h3>
                             <h3 className="team-title"> {match.referee}</h3>
@@ -71,7 +79,7 @@ export function MatchDetails() {
                         </div>
                     </div>
 
-                    {user && user.userType == "TFF" && (
+                    {user?.userType === "TFF" && (
                         <AssignReferee matchId={match_id} />
                     )}
                 </div>

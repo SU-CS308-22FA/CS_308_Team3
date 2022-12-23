@@ -45,10 +45,6 @@ function App() {
                                 path="referees/:name"
                                 element={<RefereeDetails />}
                             />
-                            <Route
-                                path="match-details/:id"
-                                element={<MatchDetails />}
-                            />
                             <Route path="teams/:id" element={<TeamDetails />} />
                             <Route
                                 path="referee-compare/:id1/:id2"
@@ -75,10 +71,6 @@ function App() {
                                 path="changepassword"
                                 element={<ChangePassword />}
                             />
-                            <Route
-                                path="match-details/:id"
-                                element={<MatchDetails />}
-                            />
                             <Route path="teams/:id" element={<TeamEdit />} />
                             <Route
                                 path="referee-compare/:id1/:id2"
@@ -100,10 +92,6 @@ function App() {
                                 element={<ChangePassword />}
                             />
 
-                            <Route
-                                path="match-details/:id"
-                                element={<MatchDetails />}
-                            />
                             <Route path="teams/:id" element={<TeamDetails />} />
                             <Route
                                 path="referee-compare/:id1/:id2"
@@ -113,6 +101,10 @@ function App() {
                     )}
                     <Route path="/" element={<Fixture />} />
 
+                    <Route
+                        path="match-details/:id"
+                        element={<MatchDetails />}
+                    />
                     <Route path="faq" element={<FrequentlyAsked />} />
 
                     <Route
