@@ -1,11 +1,17 @@
 var express = require("express");
-const matchController = require("../controllers/matchController.js")
+const matchController = require("../controllers/matchController.js");
 var router = express.Router();
 
 /*
   GET
 */
-router.get("/get", matchController.getMatchById)
-router.get("/referees", matchController.getMatchById)
+router.get("/", matchController.getMatches);
+router.get("/:week", matchController.getMatchesByWeek);
+router.get("/referees", matchController.getMatchById);
+
+/*
+  POST
+*/
+router.post("/addmatch", matchController.addMatch);
 
 module.exports = router;

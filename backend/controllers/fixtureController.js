@@ -1,4 +1,5 @@
 const refereeModel = require("../model/refereeModel");
+const matchModel = require("../model/matchModel");
 
 var matches = [
     {
@@ -130,37 +131,41 @@ module.exports = {
             matches: matches,
         });
     },
-    getMatch: (req, res) => {
+    getMatch: async (req, res) => {
         const { id } = req.params;
         //console.log(JSON.stringify(req.body, null, 2));
-
+        const matchFound = await matchModel.findOne({ _id: id });
         return res.send({
-            match: matches[id],
+            match: matchFound,
         });
     },
     getRefereeAndList: (req, res) => {
         const { id } = req.params;
 
-        refereeModel.find({}).exec(function (err, data) {
-            // console.log(refs);
-            return res.send({
-                referee: matches[id].referee,
-                list: data.map(d => d.name),
+        try {
+            refereeModel.find({}).exec(function (err, data) {
+                // console.log(refs);
+                return res.send({
+                    // referee: matches[id].referee,
+                    list: data.map((d) => d.name),
+                });
             });
-        });
+        } catch (err) {
+            console.error(err);
+        }
     },
     updateReferee: (req, res) => {
         // update this code for mongodb
         const { id } = req.params;
         const { referee } = req.body;
 
-        if (typeof(referee) != "string") {
+        if (typeof referee != "string") {
             return res.status(400).send("Bad referee parameter");
         }
 
         matches[id].referee = referee;
         return res.send("Updated successfully");
-    }
+    },
 };
 
 // matches: [
