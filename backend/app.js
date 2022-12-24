@@ -9,6 +9,7 @@ var fixtureRouter = require("./routes/fixture");
 var refereeRouter = require("./routes/referee");
 var matchRouter = require("./routes/match");
 var notificationsRouter = require("./routes/notifications");
+var scoresRouter = require("./routes/scores");
 
 var app = express();
 
@@ -67,6 +68,7 @@ app.use("/fixture", fixtureRouter);
 app.use("/referees", refereeRouter);
 app.use("/match", matchRouter);
 app.use("/notifications", notificationsRouter);
+app.use("/scores", scoresRouter)
 
 module.exports = db;
 module.exports = app;
