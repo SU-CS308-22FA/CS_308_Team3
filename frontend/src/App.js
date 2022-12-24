@@ -24,6 +24,7 @@ import TeamAdd from "./routes/team/TeamAdd";
 import FrequentlyAsked from "./routes/faq/FrequentlyAsked";
 import Topratedreferee from "./routes/topratedreferee/Topratedreferee";
 import Topratedmatch from "./routes/topratedmatch/Topratedmatch";
+import NotificationAddTFF from "./routes/notification/NotificationAddTFF"
 
 function App() {
     const { user } = useContext(UserContext);
@@ -56,6 +57,7 @@ function App() {
                                 path="referee-compare/:id1/:id2"
                                 element={<RefereeCompare />}
                             />
+                            
                         </>
                     ) : user.userType === "TFF" ? (
                         // TFF staff routes
@@ -85,6 +87,10 @@ function App() {
                             <Route
                                 path="referee-compare/:id1/:id2"
                                 element={<RefereeCompare />}
+                            />
+                            <Route
+                                path="notification-add/"
+                                element={<NotificationAddTFF />}
                             />
                         </>
                     ) : (
