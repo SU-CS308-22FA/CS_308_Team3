@@ -26,6 +26,7 @@ import Topratedreferee from "./routes/topratedreferee/Topratedreferee";
 import Topratedmatch from "./routes/topratedmatch/Topratedmatch";
 import NotificationAddTFF from "./routes/notification/NotificationAddTFF"
 import NotificationsPage from "./routes/notification/NotificationsPage";
+import NotificationDelete from "./routes/notification/NotificationDelete";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -94,8 +95,12 @@ function App() {
                                 element={<RefereeCompare />}
                             />
                             <Route
-                                path="notification-add/"
+                                path="notification-add"
                                 element={<NotificationAddTFF />}
+                            />
+                            <Route
+                                path="notification-delete"
+                                element={<NotificationDelete />}
                             />
                             <Route
                                 path="notifications"

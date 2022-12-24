@@ -10,6 +10,16 @@ module.exports = {
         });
     });
   },
+  remove: async (req, res) => {
+    const { NotificationHeader } = req.params;
+    const result = await notificationModel.deleteOne({ NotificationHeader });
+    console.log(NotificationHeader);
+    if (result.deletedCount === 0) {
+        return res.status(400).send("Delete operation failed.");
+    }
+
+    return res.send("Delete operation succeeded.");
+},
   notificationAdd: async (req, res) => {
     const { NotificationHeader, NotificationContent } = req.body;
 
