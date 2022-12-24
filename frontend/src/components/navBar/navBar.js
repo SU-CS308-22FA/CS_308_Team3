@@ -176,6 +176,7 @@ const NavBar = () => {
             { label: "Top Rated Referee", navUrl: "/topratedreferee" },
             { label: "Top Rated Match", navUrl: "/topratedmatch" },
             { label: "Notifications", navUrl: "/notifications" },
+            { label: "Scores", navUrl: "/scores" },
             
         ],
         []

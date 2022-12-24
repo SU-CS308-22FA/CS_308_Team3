@@ -26,6 +26,7 @@ import NotificationAddTFF from "./routes/notification/NotificationAddTFF"
 import NotificationsPage from "./routes/notification/NotificationsPage";
 import NotificationDelete from "./routes/notification/NotificationDelete";
 import MatchAdd from "./routes/fixture/MatchAdd";
+import Scores from "./routes/scores/Scores";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -56,6 +57,10 @@ function App() {
                             <Route
                                 path="notifications"
                                 element={<NotificationsPage/>}
+                            />
+                            <Route
+                                path="scores"
+                                element={<Scores/>}
                             />
                             
                         </>
@@ -96,6 +101,10 @@ function App() {
                                 path="notifications"
                                 element={<NotificationsPage/>}
                             /> 
+                            <Route
+                                path="scores"
+                                element={<Scores/>}
+                            />
                         </>
                     ) : (
                         // normal user routes
@@ -116,6 +125,10 @@ function App() {
                             <Route
                                 path="referee-compare/:id1/:id2"
                                 element={<RefereeCompare />}
+                            />
+                            <Route
+                                path="scores"
+                                element={<Scores/>}
                             />
                         </>
                     )}
