@@ -79,3 +79,21 @@
     flex-direction: row;
     align-items: flex-start;
 }
+
+.header {
+    height: 40px;
+    padding: 20px 20px 0;
+    background: #e1e1e1;
+  }
+  .main-content {
+    height: 60vh;
+    padding: 20px;
+  }
+  footer {
+    padding: 10px 20px;
+    background: #f1f6fe;
+    color: rgb(0, 0, 0);
+  }
+  a {
+    color: #106eea;
+  }

@@ -182,6 +182,19 @@ export default function RefereeTable() {
                     )}
                 {referees === null && <h3>Loading...</h3>}
             </div>
+            <br></br>
+				<br></br>
+				<footer>
+      			<p><b>Turkish Football Federation 2022.</b></p>
+				<p>Services</p>
+				  <p><a href="/">Fixture</a></p>
+				  <p><a href="/referees">Referees</a></p>
+				  <p><a href="/teams">Teams</a></p>
+				  <p><a href="/profile">Profile</a></p>
+				  <p><a href="/faq">FAQ</a></p>
+				  <p><a href="/topratedreferee">Top Rated Referee</a></p>
+				  <p><a href="/topratedmatch">Top Rated Match</a></p>
+    			</footer>
         </div>
     );
 }
