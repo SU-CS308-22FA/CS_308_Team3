@@ -50,3 +50,15 @@
   transition: max-height 0.6s ease;
   text-align: left;
 }
+
+.addRefButton{
+  position: absolute;
+  right: 15vw;
+  top: 16vh
+}
+
+.deleteNotificationButton{
+  position: absolute;
+  right: 30vw;
+  top: 16vh
+}

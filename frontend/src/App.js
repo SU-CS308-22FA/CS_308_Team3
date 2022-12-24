@@ -25,6 +25,7 @@ import FrequentlyAsked from "./routes/faq/FrequentlyAsked";
 import Topratedreferee from "./routes/topratedreferee/Topratedreferee";
 import Topratedmatch from "./routes/topratedmatch/Topratedmatch";
 import NotificationAddTFF from "./routes/notification/NotificationAddTFF"
+import NotificationsPage from "./routes/notification/NotificationsPage";
 
 function App() {
     const { user } = useContext(UserContext);
@@ -56,6 +57,10 @@ function App() {
                             <Route
                                 path="referee-compare/:id1/:id2"
                                 element={<RefereeCompare />}
+                            />
+                            <Route
+                                path="notifications"
+                                element={<NotificationsPage/>}
                             />
                             
                         </>
@@ -92,6 +97,10 @@ function App() {
                                 path="notification-add/"
                                 element={<NotificationAddTFF />}
                             />
+                            <Route
+                                path="notifications"
+                                element={<NotificationsPage/>}
+                            /> 
                         </>
                     ) : (
                         // normal user routes
