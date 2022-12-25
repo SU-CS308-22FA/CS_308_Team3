@@ -11,6 +11,7 @@ const matchSchema = Schema({
     time: String,
     week: Number,
     stadium: String,
+    comments: Array,
 });
 
 const teamModel = mongoose.model("matches", matchSchema);
