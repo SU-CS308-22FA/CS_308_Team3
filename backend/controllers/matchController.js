@@ -48,8 +48,9 @@ module.exports = {
                 ...match,
                 logo1: team1Found.image,
                 logo2: team2Found.image,
+                comment: [],
             };
-            console.log(match);
+            // console.log(match);
             const newMatch = new matchModel(matchToAdd);
             newMatch.save((err, match) => {
                 if (err) {

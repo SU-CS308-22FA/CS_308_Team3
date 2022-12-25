@@ -45,3 +45,19 @@
     padding-left: 10vw;
     padding-right: 10vw;
 }
+
+.horizontaldivider {
+}
+
+.commentCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.commentPhoto {
+    height: 50px;
+    width: auto;
+    /* object-fit: cover; */
+}
