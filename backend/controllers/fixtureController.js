@@ -154,17 +154,27 @@ module.exports = {
             console.error(err);
         }
     },
-    updateReferee: (req, res) => {
+    updateReferee: async (req, res) => {
         // update this code for mongodb
         const { id } = req.params;
         const { referee } = req.body;
-
-        if (typeof referee != "string") {
-            return res.status(400).send("Bad referee parameter");
+        try {
+            if (typeof referee != "string") {
+                return res.status(400).send("Bad referee parameter");
+            }
+            const result = await matchModel.updateOne(
+                { _id: id },
+                {
+                    referee: referee,
+                }
+            );
+            if (result.acknowledged === false) {
+                return res.status(400).send("Referee could not be updated");
+            }
+            return res.send("Updated successfully");
+        } catch (err) {
+            return res.status(400).send("Referee could not be updated");
         }
-
-        matches[id].referee = referee;
-        return res.send("Updated successfully");
     },
 };
 

@@ -136,14 +136,18 @@ export default function Fixture() {
                                         </div>
                                         <div className="referee">
                                             {referee === "" ? (
-                                                <Button
-                                                    color="primary"
-                                                    variant="outlined"
-                                                    size="medium"
-                                                    className="button"
-                                                >
-                                                    Assign a referee
-                                                </Button>
+                                                user?.userType === "TFF" ? (
+                                                    <Button
+                                                        color="primary"
+                                                        variant="outlined"
+                                                        size="medium"
+                                                        className="button"
+                                                    >
+                                                        Assign a referee
+                                                    </Button>
+                                                ) : (
+                                                    <p>No referee assigned</p>
+                                                )
                                             ) : (
                                                 <p style={{ fontSize: 18 }}>
                                                     Referee: {referee}

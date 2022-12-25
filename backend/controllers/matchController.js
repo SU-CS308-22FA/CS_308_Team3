@@ -48,7 +48,7 @@ module.exports = {
                 ...match,
                 logo1: team1Found.image,
                 logo2: team2Found.image,
-                comment: [],
+                comments: [],
             };
             // console.log(match);
             const newMatch = new matchModel(matchToAdd);
@@ -67,6 +67,29 @@ module.exports = {
             return res.status(201).send({
                 message: "Match could not be added",
             });
+        }
+    },
+    addComment: async (req, res) => {
+        const { _id, username, comment } = req.body;
+
+        try {
+            const matchFound = await matchModel.findOne({ _id: _id });
+            const newComments = matchFound.comments;
+            newComments.push({ username, comment });
+            console.log(newComments);
+            const result = await matchModel.updateOne(
+                { _id },
+                {
+                    comments: newComments,
+                }
+            );
+            if (result.acknowledged === false) {
+                return res.status(400).send("Comment could not be added");
+            }
+            return res.send({ message: "Comment is added" });
+        } catch (err) {
+            console.error(err);
+            res.send({ message: "Comment could not be added" });
         }
     },
 };
