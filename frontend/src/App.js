@@ -22,7 +22,7 @@ import TeamAdd from "./routes/team/TeamAdd";
 import FrequentlyAsked from "./routes/faq/FrequentlyAsked";
 import Topratedreferee from "./routes/topratedreferee/Topratedreferee";
 import Topratedmatch from "./routes/topratedmatch/Topratedmatch";
-import NotificationAddTFF from "./routes/notification/NotificationAddTFF"
+import NotificationAddTFF from "./routes/notification/NotificationAddTFF";
 import NotificationsPage from "./routes/notification/NotificationsPage";
 import NotificationDelete from "./routes/notification/NotificationDelete";
 import MatchAdd from "./routes/fixture/MatchAdd";
