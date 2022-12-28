@@ -55,14 +55,13 @@ function App() {
                                 element={<RefereeCompare />}
                             />
                             <Route
-                                path="notifications"
-                                element={<NotificationsPage/>}
+                                path="scores"
+                                element={<Scores />}
                             />
                             <Route
                                 path="scores"
-                                element={<Scores/>}
+                                element={<Scores />}
                             />
-                            
                         </>
                     ) : user.userType === "TFF" ? (
                         // TFF staff routes
@@ -98,12 +97,8 @@ function App() {
                                 element={<NotificationDelete />}
                             />
                             <Route
-                                path="notifications"
-                                element={<NotificationsPage/>}
-                            /> 
-                            <Route
                                 path="scores"
-                                element={<Scores/>}
+                                element={<Scores />}
                             />
                         </>
                     ) : (
@@ -128,21 +123,23 @@ function App() {
                             />
                             <Route
                                 path="scores"
-                                element={<Scores/>}
+                                element={<Scores />}
                             />
                         </>
                     )}
                     <Route path="/" element={<Fixture />} />
-
                     <Route
                         path="match-details/:id"
                         element={<MatchDetails />}
                     />
                     <Route path="faq" element={<FrequentlyAsked />} />
-
                     <Route
                         path="topratedreferee"
                         element={<Topratedreferee />}
+                    />
+                    <Route
+                        path="notifications"
+                        element={<NotificationsPage />}
                     />
                     <Route path="topratedmatch" element={<Topratedmatch />} />
                     <Route

@@ -50,3 +50,26 @@
   transition: max-height 0.6s ease;
   text-align: left;
 }
+
+.questionWbtn {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.question {
+  flex: 50;
+}
+
+.deletebtn {
+  flex: 1;
+  height: 30px;
+  margin-left: 20px;
+}
+
+.FAQ {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
