@@ -37,42 +37,19 @@ function App() {
             <NavBar />
             <div className="pageContainer">
                 <Routes>
+                    <Route path="/" element={<Fixture />} />
+
                     {!user ? (
                         <>
                             <Route
                                 path="profile"
                                 element={<ProfileWoLogin />}
                             />
-                            <Route path="teams" element={<Teams />} />
-                            <Route path="referees" element={<RefereeTable />} />
-                            <Route
-                                path="referees/:name"
-                                element={<RefereeDetails />}
-                            />
-                            <Route path="teams/:id" element={<TeamDetails />} />
-                            <Route
-                                path="referee-compare/:id1/:id2"
-                                element={<RefereeCompare />}
-                            />
-                            <Route
-                                path="scores"
-                                element={<Scores />}
-                            />
-                            <Route
-                                path="scores"
-                                element={<Scores />}
-                            />
                         </>
                     ) : user.userType === "TFF" ? (
                         // TFF staff routes
                         <>
                             <Route path="profile" element={<Profile />} />
-                            <Route path="teams" element={<Teams />} />
-                            <Route path="referees" element={<RefereeTable />} />
-                            <Route
-                                path="referees/:name"
-                                element={<RefereeDetails />}
-                            />
                             <Route
                                 path="add-referee"
                                 element={<RefereeAdd />}
@@ -85,10 +62,6 @@ function App() {
                             />
                             <Route path="teams/:id" element={<TeamEdit />} />
                             <Route
-                                path="referee-compare/:id1/:id2"
-                                element={<RefereeCompare />}
-                            />
-                            <Route
                                 path="notification-add"
                                 element={<NotificationAddTFF />}
                             />
@@ -96,43 +69,29 @@ function App() {
                                 path="notification-delete"
                                 element={<NotificationDelete />}
                             />
-                            <Route
-                                path="scores"
-                                element={<Scores />}
-                            />
                         </>
                     ) : (
                         // normal user routes
                         <>
                             <Route path="profile" element={<Profile />} />
-                            <Route path="teams" element={<Teams />} />
-                            <Route path="referees" element={<RefereeTable />} />
-                            <Route
-                                path="referees/:name"
-                                element={<RefereeDetails />}
-                            />
                             <Route
                                 path="changepassword"
                                 element={<ChangePassword />}
                             />
-
-                            <Route path="teams/:id" element={<TeamDetails />} />
-                            <Route
-                                path="referee-compare/:id1/:id2"
-                                element={<RefereeCompare />}
-                            />
-                            <Route
-                                path="scores"
-                                element={<Scores />}
-                            />
                         </>
                     )}
-                    <Route path="/" element={<Fixture />} />
+                    <Route path="teams" element={<Teams />} />
+                    <Route path="teams/:id" element={<TeamDetails />} />
                     <Route
                         path="match-details/:id"
                         element={<MatchDetails />}
                     />
                     <Route path="faq" element={<FrequentlyAsked />} />
+                    <Route path="referees" element={<RefereeTable />} />
+                    <Route
+                        path="referees/:name"
+                        element={<RefereeDetails />}
+                    />
                     <Route
                         path="topratedreferee"
                         element={<Topratedreferee />}
@@ -141,7 +100,15 @@ function App() {
                         path="notifications"
                         element={<NotificationsPage />}
                     />
+                    <Route
+                        path="referee-compare/:id1/:id2"
+                        element={<RefereeCompare />}
+                    />
                     <Route path="topratedmatch" element={<Topratedmatch />} />
+                    <Route
+                        path="scores"
+                        element={<Scores />}
+                    />
                     <Route
                         path="*"
                         element={
