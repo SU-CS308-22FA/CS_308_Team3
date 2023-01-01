@@ -15,7 +15,6 @@ export function MatchDetails() {
     const [awayWinNum, setawayWinNum] = useState(0);
     const [drawNum, setdrawNum] = useState(0);
 
-
     const homeWin = useRef(0);
     const awayWin = useRef(0);
     const drawNumber = useRef(0);
@@ -29,9 +28,8 @@ export function MatchDetails() {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
 
-
     useEffect(() => {
-        setDisabled(sessionStorage.getItem(match_id + "_vote") ?? "0")
+        setDisabled(sessionStorage.getItem(match_id + "_vote") ?? "0");
         axios
             .get("/fixture/" + match_id)
             .then((res) => {
@@ -45,6 +43,12 @@ export function MatchDetails() {
     }, [match_id]);
 
     const commentMatch = () => {
+        if (comment === "") {
+            setalert({
+                message: "Comment Box cannot be empty",
+            });
+            return;
+        }
         axios
             .post("/match/addcomment", {
                 comment,
@@ -74,12 +78,12 @@ export function MatchDetails() {
             });
     };
     const vote = (votedChoice) => {
-        if (votedChoice === "winhome") homeWin.current += 1
-        else if (votedChoice === "winaway") awayWin.current += 1
-        else if (votedChoice === "draw") drawNumber.current += 1
+        if (votedChoice === "winhome") homeWin.current += 1;
+        else if (votedChoice === "winaway") awayWin.current += 1;
+        else if (votedChoice === "draw") drawNumber.current += 1;
 
-        setDisabled("1")
-        sessionStorage.setItem(match_id + "_vote", "1")
+        setDisabled("1");
+        sessionStorage.setItem(match_id + "_vote", "1");
         axios
             .post("/match/vote", {
                 user,
@@ -89,11 +93,13 @@ export function MatchDetails() {
                 id: match_id,
             })
             .then((res) => {
-                console.log(res.data)
+                console.log(res.data);
                 if (res.data.message === "Vote is given") {
-                    if (votedChoice === "winhome") sethomeWinNum(homeWinNum +1)
-                    else if (votedChoice === "winaway") setawayWinNum(awayWinNum +1)
-                    else if (votedChoice === "draw") setdrawNum(drawNum +1)
+                    if (votedChoice === "winhome")
+                        sethomeWinNum(homeWinNum + 1);
+                    else if (votedChoice === "winaway")
+                        setawayWinNum(awayWinNum + 1);
+                    else if (votedChoice === "draw") setdrawNum(drawNum + 1);
                     setalert({
                         message: "Vote is successfully given",
                         severity: "success",
@@ -145,7 +151,6 @@ export function MatchDetails() {
                                     }}
                                 >
                                     Win Home
-
                                 </Button>
                                 <div className="voteHome">
                                     Home Win Count:

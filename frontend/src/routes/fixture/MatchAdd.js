@@ -19,8 +19,6 @@ export default function MatchAdd() {
     const { user } = useContext(UserContext);
     const { setalert } = useContext(NotificationContext);
 
-    const [classNameError, setClassNameError] = useState("errorHidden");
-
     const [team1, setTeam1] = useState("");
     const [team2, setTeam2] = useState("");
     const [referee, setReferee] = useState("");
@@ -56,9 +54,17 @@ export default function MatchAdd() {
     //     [name, surname, age, experience, license, hometown]
     // );
     const addMatch = async () => {
-        if (team1 === "" || team2 === "" || date === "" || time === "") {
+        if (
+            team1 === "" ||
+            team2 === "" ||
+            date === "" ||
+            time === "" ||
+            stadium === "" ||
+            week === null
+        ) {
             setalert({
-                message: "You cannot leave any of the fields empty!",
+                message:
+                    "You cannot leave any of the fields empty except referee!",
             });
             return;
         } else if (team1 === team2) {
@@ -68,15 +74,33 @@ export default function MatchAdd() {
             return;
         }
         const month = date.month() + 1;
-        // console.log(date.$D + "." + month + "." + date.$y);
+        // console.log(
+        //     `0${date.$D}`.slice(-2) +
+        //         "." +
+        //         `0${month}`.slice(-2) +
+        //         "." +
+        //         `0${date.$y}`.slice(-4),
+        //     " hour: " +
+        //         `0${time.hour()}`.slice(-2) +
+        //         "." +
+        //         `0${time.minute()}`.slice(-2)
+        // );
         await axios
             .post("/match/addmatch", {
                 match: {
                     team1,
                     team2,
                     stadium,
-                    date: date.$D + "." + month + "." + date.$y,
-                    time: time.hour() + "." + time.minute(),
+                    date:
+                        `0${date.$D}`.slice(-2) +
+                        "." +
+                        `0${month}`.slice(-2) +
+                        "." +
+                        `0${date.$y}`.slice(-4),
+                    time:
+                        `0${time.hour()}`.slice(-2) +
+                        "." +
+                        `0${time.minute()}`.slice(-2),
                     referee,
                     week,
                 },
@@ -106,23 +130,6 @@ export default function MatchAdd() {
                 <div style={{ flexDirection: "column" }}>
                     <h3>Add a New Match</h3>
                     <div className="textFieldGroup">
-                        {/* {FIELDS.map(({ field, type, value, func }) => {
-                                    return (
-                                        <div className="textField" key={field}>
-                                            <p className="text">{field}</p>
-                                            <TextField
-                                                style={{ width: "20vw" }}
-                                                label={field}
-                                                type={type}
-                                                value={value}
-                                                onChange={(event) =>
-                                                    func(event.target.value)
-                                                }
-                                            />
-                                        </div>
-                                    );
-                                })} */}
-
                         <p>Teams</p>
                         <FormControl sx={{ m: 1, minWidth: 300 }}>
                             <InputLabel id="demo-simple-select-helper-label">
