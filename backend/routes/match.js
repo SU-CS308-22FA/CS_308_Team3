@@ -14,5 +14,6 @@ router.get("/referees", matchController.getMatchById);
 */
 router.post("/addmatch", matchController.addMatch);
 router.post("/addcomment", matchController.addComment);
+router.post("/vote", matchController.voteWinner);
 
 module.exports = router;

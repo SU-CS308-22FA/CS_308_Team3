@@ -12,6 +12,9 @@ const matchSchema = Schema({
     week: Number,
     stadium: String,
     comments: Array,
+    team1Win: Number,
+    team2Win: Number,
+    drawNumber: Number,
 });
 
 const teamModel = mongoose.model("matches", matchSchema);
