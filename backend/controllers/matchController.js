@@ -22,7 +22,7 @@ module.exports = {
         }
     },
     getMatchById: (req, res) => {
-        const {} = req.body;
+        const { } = req.body;
 
         return res.send({
             match: {
@@ -49,6 +49,9 @@ module.exports = {
                 logo1: team1Found.image,
                 logo2: team2Found.image,
                 comments: [],
+                team1Win: 0,
+                team2Win: 0,
+                drawNumber: 0,
             };
             // console.log(match);
             const newMatch = new matchModel(matchToAdd);
@@ -91,5 +94,31 @@ module.exports = {
             console.error(err);
             res.send({ message: "Comment could not be added" });
         }
+    },
+    voteWinner: async (req, res) => {
+        const { user, team1Win, team2Win, drawNumber, id } = req.body;
+        try {
+            // console.log(team1Win, team2Win, drawNumber)
+            const matchFound = await matchModel.findOne({ _id: id });
+            let homewinCount = matchFound.team1Win + team1Win;
+            let awaywinCount = matchFound.team2Win + team2Win;
+            let drawCount = matchFound.drawNumber + drawNumber;
+            const result = await matchModel.updateOne(
+                { _id: id },
+                {
+                    team1Win: homewinCount,
+                    team2Win: awaywinCount,
+                    drawNumber: drawCount
+                }
+            );
+            if (result.acknowledged === false) {
+                return res.status(400).send("Vote could not be given");
+            }
+            return res.send({ message: "Vote is given" });
+        } catch (err) {
+            console.error(err);
+            res.send({ message: "Vote could not be given" });
+        }
+
     },
 };
