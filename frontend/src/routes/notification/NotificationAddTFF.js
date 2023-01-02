@@ -80,6 +80,7 @@ export default function NotificationAddTFF() {
                                                 label={field}
                                                 type={type}
                                                 value={value}
+                                                id={field}
                                                 onChange={(event) =>
                                                     func(event.target.value)
                                                 }
@@ -118,6 +119,7 @@ export default function NotificationAddTFF() {
                         <Button
                             onClick={add_notification}
                             style={{ marginTop: "2vh", marginLeft: "2vw" }}
+                            id="notification_add_button"
                         >
                             Add Notification
                         </Button>

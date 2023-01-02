@@ -173,7 +173,7 @@ export default function ProfileWoLogin() {
                         aria-label="Large sizes"
                     >
                         <ToggleButton value="signup">Sign Up Page</ToggleButton>
-                        <ToggleButton value="login">Login Page</ToggleButton>
+                        <ToggleButton id="logintoggle" value="login">Login Page</ToggleButton>
                     </ToggleButtonGroup>
                 </div>
                 {showSignUp && (
@@ -260,6 +260,7 @@ export default function ProfileWoLogin() {
                                             style={{ width: "20vw" }}
                                             label={field}
                                             value={value}
+                                            id={field}
                                             type={
                                                 field === "Password"
                                                     ? "password"
@@ -274,7 +275,7 @@ export default function ProfileWoLogin() {
                             })}
                         </div>
 
-                        <Button onClick={Login} style={{ marginTop: "2vh" }}>
+                        <Button onClick={Login} id="login_button" style={{ marginTop: "2vh" }}>
                             Log in
                         </Button>
                         <div className={classNameError}>
