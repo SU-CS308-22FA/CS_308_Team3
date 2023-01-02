@@ -27,7 +27,8 @@ import NotificationsPage from "./routes/notification/NotificationsPage";
 import NotificationDelete from "./routes/notification/NotificationDelete";
 import MatchAdd from "./routes/fixture/MatchAdd";
 import Scores from "./routes/scores/Scores";
-
+import Favfixture from "./routes/favfixture/Favfixture";
+import { Tracking } from "./routes/tracking/Tracking";
 function App() {
     const { user } = useContext(UserContext);
     const { alert, setalert } = useContext(NotificationContext);
@@ -69,6 +70,7 @@ function App() {
                                 path="notification-delete"
                                 element={<NotificationDelete />}
                             />
+
                         </>
                     ) : (
                         // normal user routes
@@ -109,6 +111,11 @@ function App() {
                         path="scores"
                         element={<Scores />}
                     />
+                    <Route path="favfixture" element={<Favfixture />} />
+                            <Route
+                                path="tracking/:id"
+                                element={<Tracking />}
+                            />
                     <Route
                         path="*"
                         element={
