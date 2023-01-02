@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<url>
+  <loc>http://localhost:3000/</loc>
+  <lastmod>2022-12-20</lastmod>
+</url>
+
+<url>
+  <loc>http://localhost:3000/referees</loc>
+  <lastmod>2022-12-20</lastmod>
+</url>
+
+<url>
+  <loc>http://localhost:3000/teams</loc>
+  <lastmod>2022-12-20</lastmod>
+</url>
+
+<url>
+  <loc>http://localhost:3000/profile</loc>
+  <lastmod>2022-12-20</lastmod>
+</url>
+<url>
+  <loc>http://localhost:3000/faq</loc>
+  <lastmod>2022-12-20</lastmod>
+</url>
+
+<url>
+  <loc>http://localhost:3000/topratedreferee/</loc>
+  <lastmod>2022-12-20</lastmod>
+</url>
+<url>
+  <loc>http://localhost:3000/topratedmatch</loc>
+  <lastmod>2022-12-20</lastmod>
+</url>
+
+
+</urlset>  

@@ -104,6 +104,19 @@ export default function Teams() {
                         }
                     )}
             </div>
+            <footer>
+      			<p><b>Turkish Football Federation 2022.</b></p>
+				<p>Services</p>
+				  <p><a href="/">Fixture</a></p>
+				  <p><a href="/referees">Referees</a></p>
+				  <p><a href="/teams">Teams</a></p>
+				  <p><a href="/profile">Profile</a></p>
+				  <p><a href="/faq">FAQ</a></p>
+				  <p><a href="/topratedreferee">Top Rated Referee</a></p>
+				  <p><a href="/topratedmatch">Top Rated Match</a></p>
+				  <p><a href="/sitemap.xml" target="_blank">Sitemap</a></p>
+    			</footer>
         </div>
+        
     );
 }
