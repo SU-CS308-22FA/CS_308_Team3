@@ -12,6 +12,7 @@ const userSchema = Schema({
     userType: String,
     age: Number,
     gender: String,
+    favourite: String,
 });
 
 userSchema.statics.authenticate = function (email, password, callback) {
