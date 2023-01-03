@@ -27,7 +27,8 @@ import NotificationsPage from "./routes/notification/NotificationsPage";
 import NotificationDelete from "./routes/notification/NotificationDelete";
 import MatchAdd from "./routes/fixture/MatchAdd";
 import Scores from "./routes/scores/Scores";
-
+import Favfixture from "./routes/favfixture/Favfixture";
+import { Tracking } from "./routes/tracking/Tracking";
 function App() {
     const { user } = useContext(UserContext);
     const { alert, setalert } = useContext(NotificationContext);
@@ -38,7 +39,7 @@ function App() {
             <div className="pageContainer">
                 <Routes>
                     <Route path="/" element={<Fixture />} />
-
+                    <Route path="favfixture" element={<Favfixture />} />
                     {!user ? (
                         <>
                             <Route
@@ -59,6 +60,10 @@ function App() {
                             <Route
                                 path="changepassword"
                                 element={<ChangePassword />}
+                            />
+                            <Route
+                                path="tracking/:id"
+                                element={<Tracking />}
                             />
                             <Route path="teams/:id" element={<TeamEdit />} />
                             <Route
@@ -104,6 +109,10 @@ function App() {
                         path="referee-compare/:id1/:id2"
                         element={<RefereeCompare />}
                     />
+                    <Route
+                                path="tracking/:id"
+                                element={<Tracking />}
+                            />
                     <Route path="topratedmatch" element={<Topratedmatch />} />
                     <Route
                         path="scores"

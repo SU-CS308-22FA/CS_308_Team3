@@ -177,6 +177,7 @@ const NavBar = () => {
             { label: "Top Rated Match", navUrl: "/topratedmatch" },
             { label: "Notifications", navUrl: "/notifications" },
             { label: "Scores", navUrl: "/scores" },
+            { label: "Mark Favourite", navUrl: "/favfixture" },
             
         ],
         []
