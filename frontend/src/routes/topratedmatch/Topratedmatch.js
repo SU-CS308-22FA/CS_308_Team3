@@ -124,13 +124,13 @@ export default function Topratedmatch() {
 	  <div class="panel-body">Galatasaray vs Gaziantep FK</div>
 	  <br></br>
 	  <div class="panel-heading"><b>Week 3</b></div>
-	  <div class="panel-body">BursaSpor vs Galatasaray</div>
+	  <div class="panel-body">Giresunspor vs Kasımpaşa</div>
 	  <br></br>
 	  <div class="panel-heading"><b>Week 2</b></div>
-	  <div class="panel-body">Trabzonspor vs Karagümrük</div>
+	  <div class="panel-body">Kayserispor vs IstanbulsporAS</div>
 	  <br></br>
 	  <div class="panel-heading"><b>Week 1</b></div>
-	  <div class="panel-body">Adana Demirspor vs Gaziantep FK</div>
+	  <div class="panel-body">IstanbulsporAS vs Trabzonspor</div>
 	  <br></br>
       
     </div>
