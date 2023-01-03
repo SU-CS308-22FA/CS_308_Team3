@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { NotificationContext } from "../../contexts/notificationContext";
 import { UserContext } from "../../contexts/userContext";
 import "./profile.scss";
-
+import React from "react";
 export default function Profile() {
     const { user, resetUser } = useContext(UserContext);
     const { setalert } = useContext(NotificationContext);
@@ -24,7 +24,7 @@ export default function Profile() {
     const [surname, setSurname] = useState("");
     const [age, setAge] = useState("");
     const [teamSupported, setTeamSupported] = useState(user.teamSupported);
-
+    const [favourite, setfavourite] = useState(user.favourite);
     const [teams, setTeams] = useState([]);
 
     useEffect(() => {
@@ -40,6 +40,7 @@ export default function Profile() {
         setSurname(user.surname);
         setAge(user.age);
         setTeamSupported(user.teamSupported);
+        setfavourite(user.favourite);
     }, [user]);
 
     const FIELDS = useMemo(
@@ -72,10 +73,12 @@ export default function Profile() {
                     surname,
                     age,
                     teamSupported,
+                    favourite,
                 },
             })
             .then((res) => {
                 console.log(res.data);
+                window.location.reload();
                 if (res.data.message === "Update is successful") {
                     sessionStorage.setItem(
                         "user",
@@ -85,6 +88,7 @@ export default function Profile() {
                             surname,
                             age,
                             teamSupported,
+                            favourite,
                         })
                     );
                     setalert({
@@ -179,7 +183,38 @@ export default function Profile() {
                         </Select>
                     </FormControl>
                 )}
-
+                {user.userType !== "TFF" &&
+                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <InputLabel id="demo-simple-select-helper-label">
+                            My Favourites
+                        </InputLabel>
+                        <Select
+                            labelId="demo-simple-select-helper-label"
+                            id="demo-simple-select-helper"
+                            value={favourite}
+                            label="My Favourites"
+                            onChange={(event) =>
+                                setfavourite(event.target.value)
+                            }
+                        >
+                            <MenuItem value="">
+                                <em>No Favourites</em>
+                            </MenuItem>
+                            {teams !== [] &&
+                                teams.map((team, index) => {
+                                    return (
+                                        <MenuItem
+                                            value={team}
+                                            key={index.toString()}
+                                        >
+                                            {team}
+                                        </MenuItem>
+                                    );
+                                })}
+                        </Select>
+                    </FormControl>
+                    
+                }
                 <div
                     style={{
                         margin: "3vh 0px 1vh 0px",
