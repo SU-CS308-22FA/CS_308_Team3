@@ -27,7 +27,7 @@
             justify-content: space-evenly;
             min-height: 8vh;
             align-items: center;
-            .fixtureTeamLogo{
+            .fixtureTeamLogo {
                 height: 50%;
                 max-height: 50px;
                 width: auto;
@@ -67,10 +67,9 @@
         text-align: center;
         margin: 1.5vh 0vh 1vh 0vh;
     }
-
 }
 
-.weekChanger{
+.weekChanger {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -80,22 +79,18 @@
     height: 40px;
     padding: 20px 20px 0;
     background: #e1e1e1;
-  }
-  .main-content {
+}
+.main-content {
     height: 60vh;
     padding: 20px;
-  }
-  footer {
+}
+footer {
     padding: 10px 20px;
     background: #f1f6fe;
     color: rgb(0, 0, 0);
-  }
-  a {
+}
+a {
     color: #106eea;
-  }
-*{
-    margin: 0;
-    padding: 0;
 }
 .rate {
     float: left;
@@ -103,27 +98,27 @@
     padding: 0 10px;
 }
 .rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
+    position: absolute;
+    top: -9999px;
 }
 .rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#ccc;
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
 }
 .rate:not(:checked) > label:before {
-    content: '★ ';
+    content: "★ ";
 }
 .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: #ffc700;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: #deb217;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
