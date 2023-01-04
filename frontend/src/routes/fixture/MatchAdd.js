@@ -137,7 +137,7 @@ export default function MatchAdd() {
                             </InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
+                                id="match-add-team1"
                                 value={team1}
                                 label="Team Supported"
                                 onChange={(event) =>
@@ -164,7 +164,7 @@ export default function MatchAdd() {
                             </InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
+                                id="match-add-team2"
                                 value={team2}
                                 label="Team Supported"
                                 onChange={(event) =>
@@ -192,7 +192,7 @@ export default function MatchAdd() {
                             </InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
-                                id="demo-simple-select-helper"
+                                id="match-add-referee"
                                 value={referee}
                                 label="Team Supported"
                                 onChange={(event) =>
@@ -217,6 +217,7 @@ export default function MatchAdd() {
                             <DatePicker
                                 label="Date"
                                 value={date}
+                                id="match-add-date"
                                 format="DD-MM-YYYY"
                                 onChange={(newDate) => setDate(newDate)}
                                 renderInput={(params) => (
@@ -230,6 +231,7 @@ export default function MatchAdd() {
                             <TimePicker
                                 label="Basic example"
                                 value={time}
+                                id="match-add-time"
                                 onChange={(newValue) => setTime(newValue)}
                                 renderInput={(params) => (
                                     <TextField {...params} />
@@ -241,6 +243,7 @@ export default function MatchAdd() {
                         <TextField
                             style={{ width: "5vw" }}
                             label={"Week"}
+                            id="match-add-week"
                             type={"text"}
                             inputProps={{ maxLength: 2 }}
                             value={week}
@@ -250,13 +253,18 @@ export default function MatchAdd() {
                         <p>Stadium</p>
                         <TextField
                             style={{ width: "25vw" }}
+                            id="match-add-stadium"
                             label={"Stadium"}
                             type={"text"}
                             value={stadium}
                             onChange={(event) => setStadium(event.target.value)}
                         />
                     </div>
-                    <Button onClick={addMatch} style={{ marginTop: "2vh" }}>
+                    <Button
+                        onClick={addMatch}
+                        style={{ marginTop: "2vh" }}
+                        id="match-add-submit"
+                    >
                         Add Match
                     </Button>
                 </div>

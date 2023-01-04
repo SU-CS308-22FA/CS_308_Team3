@@ -262,6 +262,7 @@ export function MatchDetails() {
                         <p style={{ fontWeight: "bold" }}>{user.username}</p>
                         <textarea
                             type="textare"
+                            id="match-details-comment"
                             name="textValue"
                             value={comment}
                             style={{
@@ -280,6 +281,7 @@ export function MatchDetails() {
                         size="small"
                         className="button"
                         onClick={commentMatch}
+                        id="match-details-commentbtn"
                         style={{
                             alignSelf: "center",
                             marginLeft: "10px",

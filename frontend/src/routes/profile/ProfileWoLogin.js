@@ -173,7 +173,9 @@ export default function ProfileWoLogin() {
                         aria-label="Large sizes"
                     >
                         <ToggleButton value="signup">Sign Up Page</ToggleButton>
-                        <ToggleButton value="login">Login Page</ToggleButton>
+                        <ToggleButton value="login" id="logintoggle">
+                            Login Page
+                        </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
                 {showSignUp && (
@@ -241,6 +243,7 @@ export default function ProfileWoLogin() {
                                 type="file"
                                 name="myImage"
                                 onChange={onImageChange}
+                                id="image"
                             />
                         </div>
                         <Button onClick={signup} style={{ marginTop: "2vh" }}>
@@ -268,13 +271,18 @@ export default function ProfileWoLogin() {
                                             onChange={(event) =>
                                                 func(event.target.value)
                                             }
+                                            id={field + "_login"}
                                         />
                                     </div>
                                 );
                             })}
                         </div>
 
-                        <Button onClick={Login} style={{ marginTop: "2vh" }}>
+                        <Button
+                            onClick={Login}
+                            style={{ marginTop: "2vh" }}
+                            id="loginsubmit"
+                        >
                             Log in
                         </Button>
                         <div className={classNameError}>
